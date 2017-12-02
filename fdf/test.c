@@ -6,11 +6,12 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 20:08:48 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/02 20:23:39 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/02 21:48:24 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
+#include "libft/libft.a"
 
 int main()
 {
@@ -36,7 +37,7 @@ int main()
 		y = 100;
 		while (y < 300)
 		{
-			mlx_pixel_put(mlx, win, x, y, 0x000000FF);
+			mlx_pixel_put(mlx, win, x, y, 0x00FE9900);
 			y++;
 		}
 		x++;
