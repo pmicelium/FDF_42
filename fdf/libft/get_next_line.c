@@ -12,9 +12,6 @@
 
 #include "libft.h"
 #include "get_next_line.h"
-#include <limits.h>
-#include <fcntl.h>
-#include <stdio.h>
 
 static char		*ft_get_after(char **line, char *after)
 {

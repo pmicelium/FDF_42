@@ -15,6 +15,10 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>
+# include <limits.h>
+# include <fcntl.h>
+# include <stdio.h>
+
 # define TEST ft_putendl_color("TEST", "cyan");
 # define NL ft_putchar('\n');
 

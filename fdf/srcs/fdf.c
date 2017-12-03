@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/02 22:27:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/02 22:29:53 by pmiceli          ###   ########.fr       */
+/*   Created: 2017/12/02 22:26:04 by pmiceli           #+#    #+#             */
+/*   Updated: 2017/12/02 22:55:47 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
-# include "libft/libft.h"
-# include "minilibx_macos/mlx.h"
-typedef struct		s_fdf
+#include "../fdf.h"
+
+int		main(int argc, char *argv[])
 {
-	void			*mlx;
-	void			*win1;
-	void			*win2;
-}					t_fdf;
+	t_fdf	fdf;
+	int		***tab;
 
-int					***ft_set_tab(int ***tab, char *argv);
-
-#endif
+	tab = ft_set_tab(tab, argv[1]);
+	fdf.mlx = mlx_init();
+	fdf.win1 = mlx_new_window(fdf.mlx, 500, 500, "fdf");
+//	fdf.win2 = mlx_new_window(fdf.mlx, 300, 400, "fonction");
+//	set_fonct_win(fdf);
+	mlx_loop(fdf.mlx);
+	return (0);
+}
