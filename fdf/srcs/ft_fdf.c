@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 22:26:04 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/05 18:13:06 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/07 15:14:33 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		main(int argc, char *argv[])
 	pos = ft_set_pos(argv[1], pos, put);
 	fdf.mlx = mlx_init();
 	fdf.win1 = mlx_new_window(fdf.mlx, 1800 , 1000, argv[1]);
-	put = ft_set_put(pos, put, fdf);
+//	put = ft_set_put(pos, put, fdf);
 //	put.y0 = (3 * 50) + 50;
 //	put.x0 = (3 * 50) + 50;
 //	put.y1 = (4 * 50) + 50;

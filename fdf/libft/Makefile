@@ -6,7 +6,7 @@
 #    By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 14:44:04 by pmiceli           #+#    #+#              #
-#    Updated: 2017/12/02 19:02:26 by pmiceli          ###   ########.fr        #
+#    Updated: 2017/12/03 17:18:12 by pmiceli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS = ft_putchar.c\
 	   ft_putstr_color.c\
 	   ft_strjoin_free.c\
 	   ft_strcpy.c\
+	   ft_atoi_tab.c\
 	   ft_strdup.c\
 	   ft_strncat.c\
 	   ft_strncmp.c\

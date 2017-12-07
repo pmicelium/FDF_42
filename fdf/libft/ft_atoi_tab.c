@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_atoi_tab.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/07 16:31:27 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/05 11:16:46 by pmiceli          ###   ########.fr       */
+/*   Created: 2017/12/03 17:12:55 by pmiceli           #+#    #+#             */
+/*   Updated: 2017/12/03 17:40:31 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr(int nb)
+int		*ft_atoi_tab(char **str)
 {
-	if (nb == -2147483648)
-		ft_putstr("-2147483648");
-	else
+	size_t	i;
+	size_t	j;
+	int		*tab;
+
+	i = 0;
+	while (str[i])
+		i++;
+	if (!(tab = (int*)malloc(sizeof(int) * i)))
+		return (NULL);
+	i = 0;
+	while (str[i])
 	{
-		if (nb < 0)
+		j = 0;
+		while (str[i][j])
 		{
-			ft_putchar('-');
-			nb = nb * -1;
+			tab[i] = ft_atoi(str[i]);
+			j++;
 		}
-		if (nb > 9)
-		{
-			ft_putnbr(nb / 10);
-			nb = nb % 10;
-			ft_putchar(nb + '0');
-		}
-		else
-			ft_putchar(nb + '0');
+		i++;
 	}
+	return (tab);
 }

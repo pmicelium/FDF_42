@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/03 15:31:44 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/05 16:23:09 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/07 12:49:05 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,9 @@ static char		**ft_malloc_line(char **line, int fd, t_pos *pos, t_put *put)
 		exit(1);
 	if (!(pos->z = (int**)malloc(sizeof(int*) * pos->y)))
 		exit(1);
-	if (!(put->put = (int**)malloc(sizeof(int*) * pos->y * 50)))
-		exit(1);
 	while (i < pos->y)
 	{
 		if (!(pos->z[i] = (int*)malloc(sizeof(int) * pos->x)))
-			exit(1);
-		if (!(put->put[i] = (int*)malloc(sizeof(int) * pos->x * 50)))
 			exit(1);
 		i++;
 	}

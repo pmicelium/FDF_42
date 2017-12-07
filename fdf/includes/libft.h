@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 14:55:34 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/02 18:46:31 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/03 17:40:00 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int					ft_memcmp(void const *s1, void const *s2, size_t n);
 int					ft_strequ(char const *s1, char const *s2);
 int					ft_strnequ(char const *s1, char const *s2, size_t n);
 int					get_next_line(int fd, char **line);
+int					*ft_atoi_tab(char **str);
 char				*ft_strdup(char const *src);
 char				*ft_strcat(char *dest, char const *src);
 char				*ft_strstr(char const *src, char const *to_find);
