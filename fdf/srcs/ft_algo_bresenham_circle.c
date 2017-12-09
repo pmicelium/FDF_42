@@ -6,13 +6,13 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 11:36:07 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/05 14:51:45 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/09 18:45:39 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void		bresenham_circle(t_fdf fdf, t_pos pos, t_put put)
+void		bresenham_circle(t_fdf fdf, t_put put, int color)
 {
 	int		x;
 	int		y;
@@ -23,14 +23,14 @@ void		bresenham_circle(t_fdf fdf, t_pos pos, t_put put)
 	d = 5.0 - 4.0 * put.r;
 	while (x <= y)
 	{
-		mlx_pixel_put(fdf.mlx, fdf.win1, x + put.o_x, y + put.o_y, 0x00FFFFFF);
-		mlx_pixel_put(fdf.mlx, fdf.win1, y + put.o_x, x + put.o_y, 0x00FFFFFF);
-		mlx_pixel_put(fdf.mlx, fdf.win1, -x + put.o_x, y + put.o_y, 0x00FFFFFF);
-		mlx_pixel_put(fdf.mlx, fdf.win1, -y + put.o_x, x + put.o_y, 0x00FFFFFF);
-//		mlx_pixel_put(fdf.mlx, fdf.win1, x + put.o_x, -y + put.o_y, 0x00FFFFFF);
-//		mlx_pixel_put(fdf.mlx, fdf.win1, y + put.o_x, -x + put.o_y, 0x00FFFFFF);
-//		mlx_pixel_put(fdf.mlx, fdf.win1, -x + put.o_x, -y + put.o_y, 0x00FFFFFF);
-//		mlx_pixel_put(fdf.mlx, fdf.win1, -y + put.o_x, -x + put.o_y, 0x00FFFFFF);
+		fdf.img_data[(y + put.o_y) * X_WIN_1 + (x + put.o_x)] = color;
+		fdf.img_data[(x + put.o_y) * X_WIN_1 + (y + put.o_x)] = color;
+		fdf.img_data[(y + put.o_y) * X_WIN_1 + (-x + put.o_x)] = color;
+		fdf.img_data[(x + put.o_y) * X_WIN_1 + (-y + put.o_x)] = color;
+		fdf.img_data[(-y + put.o_y) * X_WIN_1 + (x + put.o_x)] = color;
+		fdf.img_data[(-x + put.o_y) * X_WIN_1 + (y + put.o_x)] = color;
+		fdf.img_data[(-y + put.o_y) * X_WIN_1 + (-x + put.o_x)] = color;
+		fdf.img_data[(-x + put.o_y) * X_WIN_1 + (-y + put.o_x)] = color;
 		if (d > 0)
 		{
 			y--;

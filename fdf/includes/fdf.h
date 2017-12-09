@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 22:27:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/07 12:49:16 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/09 18:45:33 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,14 @@
 # include "libft.h"
 # include "mlx.h"
 # include <math.h>
+# define Y_WIN_1 1000
+# define X_WIN_1 1800
+
 typedef struct		s_fdf
 {
 	void			*mlx;
+	void			*img;
+	int				*img_data;
 	void			*win1;
 	void			*win2;
 }					t_fdf;
@@ -28,6 +33,14 @@ typedef struct		s_pos
 	int				y;
 	int				**z;
 }					t_pos;
+
+typedef struct		s_cam
+{
+	int				x;
+	int				y;
+	int				z;
+}					t_cam;
+
 typedef struct		s_put
 {
 	int				x0;
@@ -39,11 +52,12 @@ typedef struct		s_put
 	int				r;
 }					t_put;
 
-void				bresenham_line(t_fdf fdf, t_pos pos, t_put put, int color);
-void				test_bresenham_line(t_fdf fdf, t_pos pos, t_put put);
-void				test_bresenham_circle(t_fdf fdf, t_pos pos, t_put put);
+void				bresenham_line(t_fdf fdf, t_put put, int color);
+void				bresenham_circle(t_fdf fdf, t_put put, int color);
+
 t_pos				ft_set_pos(char *argv, t_pos pos, t_put put);
 t_put				ft_set_put(t_pos pos, t_put put, t_fdf fdf);
-void				bresenham_circle(t_fdf fdf, t_pos pos, t_put put);
+
+int					key_fonct(int keycode, void *param);
 
 #endif

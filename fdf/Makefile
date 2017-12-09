@@ -5,6 +5,7 @@ SRCS = srcs/ft_fdf.c\
 	   srcs/ft_algo_bresenham_line.c\
 	   srcs/ft_algo_bresenham_circle.c\
 	   srcs/ft_set_put.c\
+	   srcs/ft_key_fonc.c\
 
 all : $(NAME)
 

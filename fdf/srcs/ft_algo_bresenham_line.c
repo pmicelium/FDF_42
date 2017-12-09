@@ -6,13 +6,13 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 18:42:13 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/07 12:43:34 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/09 18:46:46 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static void		algo_bresenham_2(t_fdf fdf, t_pos pos, t_put put, int color)
+static void		algo_bresenham_2(t_fdf fdf, t_put put, int color)
 {
 	int dx;
 	int dy;
@@ -27,7 +27,7 @@ static void		algo_bresenham_2(t_fdf fdf, t_pos pos, t_put put, int color)
 	e = 2 * (dy - dx);
 	while (put.x1 >= put.x0)
 	{
-		mlx_pixel_put(fdf.mlx, fdf.win1, put.x0++, put.y0, color);
+		fdf.img_data[put.y0 * X_WIN_1 + put.x0++] = color;
 		if (e >= 0)
 		{
 			put.y0--;
@@ -38,7 +38,7 @@ static void		algo_bresenham_2(t_fdf fdf, t_pos pos, t_put put, int color)
 	}
 }
 
-static void		algo_bresenham_4(t_fdf fdf, t_pos pos, t_put put, int color)
+static void		algo_bresenham_4(t_fdf fdf, t_put put, int color)
 {
 	int dx;
 	int dy;
@@ -53,21 +53,21 @@ static void		algo_bresenham_4(t_fdf fdf, t_pos pos, t_put put, int color)
 	e = 2 * (dy - dx);
 	if (put.x0 == put.x1)
 		while (put.y0 <= put.y1)
-			mlx_pixel_put(fdf.mlx, fdf.win1, put.x0, put.y0++, color);
+			fdf.img_data[put.y0++ * X_WIN_1 + put.x0] = color;
 	while (put.x0 >= put.x1)
 	{
-		mlx_pixel_put(fdf.mlx, fdf.win1, put.x0--, put.y0, color);
-	if (e >= 0)
-	{
-		put.y0++;
-		e = e + inc_so;
-	}
-	else
-		e = e + inc_o;
+		fdf.img_data[put.y0 * X_WIN_1 + put.x0--] = color;
+		if (e >= 0)
+		{
+			put.y0++;
+			e = e + inc_so;
+		}
+		else
+			e = e + inc_o;
 	}
 }
 
-static void		algo_bresenham_3(t_fdf fdf, t_pos pos, t_put put, int color)
+static void		algo_bresenham_3(t_fdf fdf, t_put put, int color)
 {
 	int		dx;
 	int		dy;
@@ -82,10 +82,10 @@ static void		algo_bresenham_3(t_fdf fdf, t_pos pos, t_put put, int color)
 	e = 2 * (dy - dx);
 	if (put.x0 == put.x1)
 		while (put.y0 >= put.y1)
-			mlx_pixel_put(fdf.mlx, fdf.win1, put.x0, put.y0--, color);
+			fdf.img_data[put.y0-- * X_WIN_1 + put.x0] = color;
 	while (put.x0 >= put.x1)
 	{
-		mlx_pixel_put(fdf.mlx, fdf.win1, put.x0--, put.y0, color);
+		fdf.img_data[put.y0 * X_WIN_1 + put.x0--] = color;
 		if (e >= 0)
 		{
 			put.y0--;
@@ -96,7 +96,7 @@ static void		algo_bresenham_3(t_fdf fdf, t_pos pos, t_put put, int color)
 	}
 }
 
-static void		algo_bresenham_1(t_fdf fdf, t_pos pos, t_put put, int color)
+static void		algo_bresenham_1(t_fdf fdf, t_put put, int color)
 {
 	int		dx;
 	int		dy;
@@ -111,10 +111,11 @@ static void		algo_bresenham_1(t_fdf fdf, t_pos pos, t_put put, int color)
 	e = 2 * (dy - dx);
 	if (put.x0 == put.x1)
 		while (put.y0 >= put.y1)
-			mlx_pixel_put(fdf.mlx, fdf.win1, put.x0, put.y0--, color);
+			//			mlx_pixel_put(fdf.mlx, fdf.win1, put.x0, put.y0--, color);
+			fdf.img_data[put.y0-- * X_WIN_1 + put.x0++] = color;
 	while (put.x0 <= put.x1)
 	{
-		mlx_pixel_put(fdf.mlx, fdf.win1, put.x0++, put.y0, color);
+		fdf.img_data[put.y0 * X_WIN_1 + put.x0++] = color;
 		if (e >= 0)
 		{
 			put.y0 += 1;
@@ -125,7 +126,7 @@ static void		algo_bresenham_1(t_fdf fdf, t_pos pos, t_put put, int color)
 	}
 }
 
-void		bresenham_line(t_fdf fdf, t_pos pos, t_put put, int color)
+void		bresenham_line(t_fdf fdf, t_put put, int color)
 {
 	int		dx;
 	int		dy;
@@ -135,19 +136,11 @@ void		bresenham_line(t_fdf fdf, t_pos pos, t_put put, int color)
 	dx = put.x1 - put.x0;
 	dy = put.y1 - put.y0;
 	if (dx <= 0 && dy <= 0)
-	{
-		algo_bresenham_3(fdf, pos, put, color);
-	}
+		algo_bresenham_3(fdf, put, color);
 	else if (dx >= 0 && dy <= 0)
-	{
-		algo_bresenham_2(fdf, pos, put, color);
-	}
+		algo_bresenham_2(fdf, put, color);
 	else if (dx <= 0 && dy >= 0)
-	{
-		algo_bresenham_4(fdf, pos, put, color);
-	}
+		algo_bresenham_4(fdf, put, color);
 	else if (dx >= 0 && dy >= 0)
-	{
-		algo_bresenham_1(fdf, pos, put, color);
-	}
+		algo_bresenham_1(fdf, put, color);
 }
