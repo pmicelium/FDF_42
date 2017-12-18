@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 18:42:13 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/09 18:46:46 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/18 19:59:59 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void		algo_bresenham_2(t_fdf fdf, t_put put, int color)
 {
+	ft_putendl_color("2", "pink");
 	int dx;
 	int dy;
 	int inc_ne;
@@ -38,8 +39,9 @@ static void		algo_bresenham_2(t_fdf fdf, t_put put, int color)
 	}
 }
 
-static void		algo_bresenham_4(t_fdf fdf, t_put put, int color)
+static void		algo_bresenham_4(t_fdf fdf, t_put put, int color) //marche mal//
 {
+	ft_putendl_color("4", "yellow");
 	int dx;
 	int dy;
 	int inc_o;
@@ -69,6 +71,7 @@ static void		algo_bresenham_4(t_fdf fdf, t_put put, int color)
 
 static void		algo_bresenham_3(t_fdf fdf, t_put put, int color)
 {
+	ft_putendl_color("3", "grey");
 	int		dx;
 	int		dy;
 	int		inc_o;
@@ -96,8 +99,9 @@ static void		algo_bresenham_3(t_fdf fdf, t_put put, int color)
 	}
 }
 
-static void		algo_bresenham_1(t_fdf fdf, t_put put, int color)
+static void		algo_bresenham_1(t_fdf fdf, t_put put, int color) //marche mal//
 {
+	ft_putendl_color("1", "green");
 	int		dx;
 	int		dy;
 	int		inc_e;
@@ -111,7 +115,6 @@ static void		algo_bresenham_1(t_fdf fdf, t_put put, int color)
 	e = 2 * (dy - dx);
 	if (put.x0 == put.x1)
 		while (put.y0 >= put.y1)
-			//			mlx_pixel_put(fdf.mlx, fdf.win1, put.x0, put.y0--, color);
 			fdf.img_data[put.y0-- * X_WIN_1 + put.x0++] = color;
 	while (put.x0 <= put.x1)
 	{
@@ -119,10 +122,10 @@ static void		algo_bresenham_1(t_fdf fdf, t_put put, int color)
 		if (e >= 0)
 		{
 			put.y0 += 1;
-			e += inc_se;
+			e += inc_e;
 		}
 		else
-			e += inc_e;
+			e += inc_se;
 	}
 }
 

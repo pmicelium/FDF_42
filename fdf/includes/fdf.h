@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 22:27:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/18 19:00:52 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/18 19:37:28 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct		s_put
 
 typedef struct		s_key
 {
-	int				elev;
+	float			elev;
 }					t_key;
 
 void				bresenham_line(t_fdf fdf, t_put put, int color);
