@@ -16,15 +16,6 @@
 
 void	ft_link_point(t_fdf fdf, t_pos pos, t_put put)
 {
-	put.x0 = 500;
-	put.y0 = 250;
-	put.x1 = 550;
-	put.y1 = 900;
-	bresenham_line(fdf, put, 0x00FF0000);
-}
-
-void	ft_link_point_1(t_fdf fdf, t_pos pos, t_put put)
-{
 	int i;
 	int j;
 
@@ -36,12 +27,12 @@ void	ft_link_point_1(t_fdf fdf, t_pos pos, t_put put)
 		{
 			put.x0 = pos.placex[i];
 			put.y0 = pos.placey[i];
-//			if (i + 1 != pos.x * j)
-//			{
-//				put.x1 = pos.placex[i + 1];
-//				put.y1 = pos.placey[i + 1];
-//				bresenham_line(fdf, put, 0x80FFFFFF);
-//			}
+			if (i + 1 != pos.x * j)
+			{
+				put.x1 = pos.placex[i + 1];
+				put.y1 = pos.placey[i + 1];
+				bresenham_line(fdf, put, 0x80FFFFFF);
+			}
 			if (j != pos.y - 1)
 			{
 				put.x1 = pos.placex[i + pos.x];
@@ -96,6 +87,5 @@ void	ft_place(t_fdf fdf, t_pos pos, t_key key)
 	key.elev = 2;
 	ft_place_point(&fdf, &pos, key);
 	ft_link_point(fdf, pos, put);
-//	ft_place_point(&fdf, &pos, key);
 	ft_putendl_color("DONE !!", "green");
 }

@@ -35,19 +35,18 @@ typedef struct		s_pos
 	int				*placey;
 }					t_pos;
 
-typedef struct		s_cam
-{
-	int				x;
-	int				y;
-	int				z;
-}					t_cam;
-
 typedef struct		s_put
 {
 	int				x0;
 	int				y0;
 	int				x1;
 	int				y1;
+	int				dx;
+	int				dy;
+	int				inc_x;
+	int				inc_y;
+	int				err;
+	int				e2;
 	int				o_x;
 	int				o_y;
 	int				r;

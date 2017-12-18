@@ -18,7 +18,6 @@ int		main(int argc, char *argv[])
 	t_key	key;
 	t_pos	pos;
 	t_put	put;
-	t_cam	cam;
 	int		x = 0;
 	int		y = 0;
 	int		lsize;
@@ -26,9 +25,6 @@ int		main(int argc, char *argv[])
 	int		bpp;
 	int		tmp;
 
-	cam.x = 500;
-	cam.y = 800;
-	cam.z = +1000;
 	pos = ft_set_pos(argv[1], pos, put);
 
 	fdf.mlx = mlx_init();
