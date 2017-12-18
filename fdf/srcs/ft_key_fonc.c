@@ -17,19 +17,17 @@ int		key_fonct(int keycode, t_key *key)
 	ft_putnbr_endl(keycode);
 	if (keycode == 53)
 		exit(1);
-	if (keycode == 69)
+	if (keycode == 69 || keycode == 24)
 	{
 		key->elev++;
 		ft_putstr_color("elev : ", "yellow");
 		ft_putnbr_endl(key->elev);
-		return (1);
 	}
-	if (keycode == 78)
+	if (keycode == 78 || keycode == 27)
 	{
 		key->elev--;
 		ft_putstr_color("elev : ", "yellow");
 		ft_putnbr_endl(key->elev);
-		return (1);
 	}
 	return (0);
 }

@@ -15,8 +15,8 @@
 # include "libft.h"
 # include "mlx.h"
 # include <math.h>
-# define Y_WIN_1 1000
-# define X_WIN_1 1800
+# define Y_WIN_1 800
+# define X_WIN_1 1400
 
 typedef struct		s_fdf
 {
@@ -33,6 +33,9 @@ typedef struct		s_pos
 	int				**z;
 	int				*placex;
 	int				*placey;
+	int				*elev;
+	int				high_color;
+	int				low_color;
 }					t_pos;
 
 typedef struct		s_put
