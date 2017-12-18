@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   ft_fdf.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/02 22:26:04 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/09 18:49:37 by pmiceli          ###   ########.fr       */
+/*   Created: 2017/12/09 19:04:23 by pmiceli           #+#    #+#             */
+/*   Updated: 2017/12/18 19:04:41 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int		main(int argc, char *argv[])
 {
 	t_fdf	fdf;
+	t_key	key;
 	t_pos	pos;
 	t_put	put;
 	t_cam	cam;
@@ -23,23 +24,23 @@ int		main(int argc, char *argv[])
 	int		lsize;
 	int		endian;
 	int		bpp;
+	int		tmp;
 
-	cam.x = 900;
-	cam.y = 500;
-	cam.z = 900;
+	cam.x = 500;
+	cam.y = 800;
+	cam.z = +1000;
 	pos = ft_set_pos(argv[1], pos, put);
 
 	fdf.mlx = mlx_init();
-	fdf.win1 = mlx_new_window(fdf.mlx, X_WIN_1 , Y_WIN_1 ,argv[1]);
-
-//	put = ft_set_put(pos, put, fdf);
+	fdf.win1 = mlx_new_window(fdf.mlx, X_WIN_1 , Y_WIN_1, argv[1]);
 
 	fdf.img = mlx_new_image(fdf.mlx, X_WIN_1, Y_WIN_1);
 	fdf.img_data = (int*)mlx_get_data_addr(fdf.img, &bpp, &lsize, &endian);
-
+	key.elev = 0;
+	ft_place(fdf, pos, key);
 
 	mlx_put_image_to_window(fdf.mlx, fdf.win1, fdf.img, 0, 0);
-	mlx_key_hook(fdf.win1, key_fonct, 0);
+	tmp = mlx_key_hook(fdf.win1, key_fonct, &key);
 	mlx_loop(fdf.mlx);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 22:27:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/09 18:45:33 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/18 19:00:52 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,15 @@ typedef struct		s_fdf
 	void			*img;
 	int				*img_data;
 	void			*win1;
-	void			*win2;
 }					t_fdf;
 
 typedef struct		s_pos
 {
 	int				x;
-	int				y;
+	int				y;      //malloc foireux quelque part//
 	int				**z;
+	int				*placex;
+	int				*placey;
 }					t_pos;
 
 typedef struct		s_cam
@@ -52,12 +53,17 @@ typedef struct		s_put
 	int				r;
 }					t_put;
 
+typedef struct		s_key
+{
+	int				elev;
+}					t_key;
+
 void				bresenham_line(t_fdf fdf, t_put put, int color);
 void				bresenham_circle(t_fdf fdf, t_put put, int color);
+void				ft_place(t_fdf fdf, t_pos pos, t_key key);
 
 t_pos				ft_set_pos(char *argv, t_pos pos, t_put put);
-t_put				ft_set_put(t_pos pos, t_put put, t_fdf fdf);
 
-int					key_fonct(int keycode, void *param);
+int					key_fonct(int keycode, t_key *key);
 
 #endif
