@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 15:30:51 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/19 21:26:58 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/19 22:12:41 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	ft_feature_color(t_fdf fdf)
 {
-	mlx_string_put(fdf.mlx, fdf.win1, 25, Y_WIN_1 - 35, 0x00c1c1c1, "Lower color :");
-	mlx_string_put(fdf.mlx, fdf.win1, 25, Y_WIN_1 - 55, 0x00c1c1c1, "Upper color :");
+	mlx_string_put(fdf.mlx, fdf.win1, 25, Y_WIN_1 - 35, 0x00c1c1c1,"Lower color : faire itoa_base");
+	mlx_string_put(fdf.mlx, fdf.win1, 25, Y_WIN_1 - 55, 0x00c1c1c1,"Upper color : faire itoa_base");
 }
 
 static void	ft_feature_key(t_fdf fdf)
