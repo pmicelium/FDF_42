@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/03 15:31:44 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/18 16:24:21 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/19 12:28:41 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int		ft_parse_line(char *line)
 	return (0);
 }
 
-static char		**ft_malloc_line(char **line, int fd, t_pos *pos, t_put *put)
+static char		**ft_malloc_line(char **line, int fd, t_pos *pos)
 {
 	char	*line2;
 	char	**tmp;
@@ -94,7 +94,7 @@ static t_pos	ft_get_z(t_pos pos, char **line)
 	return (pos);
 }
 
-t_pos			ft_set_pos(char *argv, t_pos pos, t_put put)
+t_pos			ft_set_pos(char *argv, t_pos pos)
 {
 	char	**line;
 	int		fd;
@@ -107,7 +107,7 @@ t_pos			ft_set_pos(char *argv, t_pos pos, t_put put)
 		exit(1);
 	}
 	i = 0;
-	line = ft_malloc_line(line, fd, &pos, &put);
+	line = ft_malloc_line(line, fd, &pos);
 	close(fd);
 	fd = open(argv, O_RDONLY);
 	while (get_next_line(fd, &line[i]) > 0)
