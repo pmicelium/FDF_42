@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 19:02:04 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/19 20:58:32 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/19 21:09:53 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ static void	ft_place_point(t_fdf *fdf, t_pos *pos, t_key key)
 		x = 0;
 		while (x < pos->x)
 		{
-			pos->placex[i] = (x * fdf->key.zoom) + X_WIN_1 / (fdf->key.zoom / 10) + (pos->z[y][x] * key.elev);
-			pos->placey[i] = (y * fdf->key.zoom) + Y_WIN_1 / (fdf->key.zoom / 10) - (pos->z[y][x] * key.elev);
+			pos->placex[i] = (x * fdf->key.zoom) + X_WIN_1 / (fdf->key.zoom / 10) + ((pos->z[y][x] * key.elev) * key.x_deriv);
+			pos->placey[i] = (y * fdf->key.zoom) + Y_WIN_1 / (fdf->key.zoom / 10) - ((pos->z[y][x] * key.elev) * key.y_deriv);
 			pos->elev[i] = pos->z[y][x] != 0 ? 1 : 0;
 			i++;
 			x++;
@@ -81,18 +81,22 @@ static void	ft_place_point(t_fdf *fdf, t_pos *pos, t_key key)
 void	ft_place(t_fdf fdf, t_pos pos, t_key key)
 {
 	t_put put;
-	static clock_t start;
 	clock_t time;
+	static clock_t start;
 	static unsigned int fps;
 	static unsigned int tmp = 0;
 
-	time = clock();
 	pos.high_color = 0x00FF0000;
 	pos.low_color = 0x0000FFFF;
+	key.x_deriv = 0;
+	key.y_deriv = 1;
+
+	time = clock();
 	ft_place_point(&fdf, &pos, key);
 	ft_link_point(fdf, pos, put);
 	mlx_put_image_to_window(fdf.mlx, fdf.win1, fdf.img, 0, 0);
 	ft_feature_print(fdf);
+
 	fps++;
 	time = clock() - time;
 	start += time;
@@ -107,5 +111,4 @@ void	ft_place(t_fdf fdf, t_pos pos, t_key key)
 	{
 		mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 -40, 25, 0x00c1c1c1, ft_itoa(tmp));
 	}
-	ft_putendl_color("DONE !!", "green");
 }

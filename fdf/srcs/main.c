@@ -6,11 +6,13 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 19:04:23 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/19 19:18:07 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/19 22:00:06 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
+// ajouter le multpile fd //
 
 int		main(int argc, char *argv[])
 {
@@ -28,9 +30,6 @@ int		main(int argc, char *argv[])
 	fdf.key.zoom = 50;
 
 	ft_place(fdf, fdf.pos, fdf.key);
-
-	mlx_put_image_to_window(fdf.mlx, fdf.win1, fdf.img, 0, 0);
-	ft_feature_print(fdf);
 
 	mlx_key_hook(fdf.win1, key_fonct, &fdf);
 	mlx_loop_hook(fdf.mlx, loop_hook, &fdf);

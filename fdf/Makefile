@@ -7,13 +7,28 @@ SRCS = srcs/main.c\
 	   srcs/ft_key_fonc.c\
 	   srcs/ft_feature_print.c\
 
-all : $(NAME)
+all : test
 
 $(NAME) :
-	gcc -o $(NAME) $(SRCS) libft/libft.a  minilibx_macos/libmlx.a -framework OpenGL -framework Appkit -fsanitize=address
+	@echo "\033[036m=>	\033[0m\033[033mCompiling libft ...\033[0m"
+	@make re -C libft
+	@echo "\033[036m=>	\033[0m\033[032mDONE !\033[0m"
+	@echo "\033[036m=>	\033[0m\033[033mCompiling minilibx_macos ...\033[0m"
+	@make re -C minilibx_macos
+	@echo "\033[036m=>	\033[0m\033[032mDONE !\033[0m"
+	@echo "\033[036m=>	\033[0m\033[033mCompiling FDF ...\033[0m"
+	@gcc -o $(NAME) $(SRCS) libft/libft.a  minilibx_macos/libmlx.a -framework OpenGL -framework Appkit -fsanitize=address
+	@echo "\033[036m=>	\033[0m\033[032mDONE !\033[0m"
+	@echo "=============================================="
+
+test :
+	@echo "\033[036m=>	\033[0m\033[033mCompiling FDF ...\033[0m"
+	@gcc -o $(NAME) $(SRCS) libft/libft.a  minilibx_macos/libmlx.a -framework OpenGL -framework Appkit -fsanitize=address
+	@echo "\033[036m=>	\033[0m\033[032mDONE !\033[0m"
 	@echo "=============================================="
 
 clean :
-	rm fdf
+	@rm fdf
+	@echo "\033[036m=>	\033[0m\033[031mRemove executable\033[0m"
 
 re : clean all

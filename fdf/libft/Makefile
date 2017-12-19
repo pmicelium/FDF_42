@@ -6,7 +6,7 @@
 #    By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 14:44:04 by pmiceli           #+#    #+#              #
-#    Updated: 2017/12/03 17:18:12 by pmiceli          ###   ########.fr        #
+#    Updated: 2017/12/19 21:57:10 by pmiceli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS = ft_putchar.c\
 	   ft_putstr_background.c\
 	   ft_putstr_color.c\
 	   ft_strjoin_free.c\
+	   ft_rm_path.c\
 	   ft_strcpy.c\
 	   ft_atoi_tab.c\
 	   ft_strdup.c\
@@ -93,12 +94,12 @@ all : $(NAME)
 
 $(NAME):
 	@gcc -Wall -Wextra -Werror -c $(SRCS)
-	@echo "\033[036m=>	\033[0m\033[032mObject created\033[0m"
+	@echo "\033[036m=>	\033[0m\033[035mObject created\033[0m"
 	@ar rc $(NAME) $(OBJS)
 	@mkdir objets
 	@mv $(OBJS) objets
 	@ranlib $(NAME)
-	@echo "\033[036m=>	\033[0m\033[032mLib created\033[0m"
+	@echo "\033[036m=>	\033[0m\033[035mLib created\033[0m"
 
 clean :
 	@rm -rf objets

@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 22:27:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/19 19:08:43 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/19 21:06:49 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ typedef struct		s_key
 {
 	int			elev;
 	int			zoom;
+	int			x_deriv;
+	int			y_deriv;
 }					t_key;
 
 typedef struct		s_fdf
