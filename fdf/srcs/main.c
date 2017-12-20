@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 19:04:23 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/19 22:00:06 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/20 20:17:47 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,13 @@ int		main(int argc, char *argv[])
 
 	fdf.key.elev = 0;
 	fdf.key.zoom = 50;
+	fdf.key.w = 0;
+	fdf.key.a = 0;
 
 	ft_place(fdf, fdf.pos, fdf.key);
 
 	mlx_key_hook(fdf.win1, key_fonct, &fdf);
+//	mlx_hook(fdf.win1, x_event, x_mask, key_fonct_mv_struct, &fdf);
 	mlx_loop_hook(fdf.mlx, loop_hook, &fdf);
 	mlx_loop(fdf.mlx);
 	return (0);

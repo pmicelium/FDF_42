@@ -6,13 +6,28 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 15:48:06 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/19 21:13:18 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/20 20:18:39 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	key_fonct_elev(int keycode, t_fdf *fdf)
+static void	key_fonct_mv_struct(int keycode, t_fdf *fdf)
+{
+	if (keycode == 13)
+		fdf->key.w -= 5;
+	if (keycode == 1)
+		fdf->key.w += 5;
+	if (keycode == 0)
+		fdf->key.a -= 5;
+	if (keycode == 2)
+		fdf->key.a += 5;
+	fdf->img = mlx_new_image(fdf->mlx, X_WIN_1, Y_WIN_1);
+	fdf->img_data = (int*)mlx_get_data_addr(fdf->img, &fdf->bpp, &fdf->lsize, &fdf->endian);
+	ft_place(*fdf, fdf->pos, fdf->key);
+}
+
+static void	key_fonct_elev(int keycode, t_fdf *fdf)
 {
 	if (keycode == 78 || keycode == 27)
 		fdf->key.elev--;
@@ -23,7 +38,7 @@ void	key_fonct_elev(int keycode, t_fdf *fdf)
 	ft_place(*fdf, fdf->pos, fdf->key);
 }
 
-void	key_fonct_zoom(int keycode, t_fdf *fdf)
+static void	key_fonct_zoom(int keycode, t_fdf *fdf)
 {
 	if (keycode == 25 || keycode == 92)
 		fdf->key.zoom -= 5;
@@ -46,6 +61,8 @@ int		key_fonct(int keycode, t_fdf *fdf)
 		key_fonct_elev(keycode, fdf);
 	if ((keycode == 25 || keycode == 29) || (keycode == 92 || keycode == 82))
 		key_fonct_zoom(keycode, fdf);
+	if (keycode == 13 || keycode == 0 || keycode == 1 || keycode == 2)
+		key_fonct_mv_struct(keycode, fdf);
 	return (0);
 }
 

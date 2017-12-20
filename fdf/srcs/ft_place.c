@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 19:02:04 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/19 21:09:53 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/20 19:52:33 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ static void	ft_place_point(t_fdf *fdf, t_pos *pos, t_key key)
 		x = 0;
 		while (x < pos->x)
 		{
-			pos->placex[i] = (x * fdf->key.zoom) + X_WIN_1 / (fdf->key.zoom / 10) + ((pos->z[y][x] * key.elev) * key.x_deriv);
-			pos->placey[i] = (y * fdf->key.zoom) + Y_WIN_1 / (fdf->key.zoom / 10) - ((pos->z[y][x] * key.elev) * key.y_deriv);
+			pos->placex[i] = (x * fdf->key.zoom) + (X_WIN_1 / (fdf->key.zoom / 10) + key.a) + ((pos->z[y][x] * key.elev) * key.x_deriv);
+			pos->placey[i] = (y * fdf->key.zoom) + (Y_WIN_1 / (fdf->key.zoom / 10) + key.w) - ((pos->z[y][x] * key.elev) * key.y_deriv);
 			pos->elev[i] = pos->z[y][x] != 0 ? 1 : 0;
 			i++;
 			x++;
@@ -108,7 +108,5 @@ void	ft_place(t_fdf fdf, t_pos pos, t_key key)
 		start = 0;
 	}
 	else
-	{
 		mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 -40, 25, 0x00c1c1c1, ft_itoa(tmp));
-	}
 }

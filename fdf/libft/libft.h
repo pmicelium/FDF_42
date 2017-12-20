@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 14:55:34 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/19 21:37:15 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/20 18:55:09 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,11 @@ void				ft_putstr_color(char *str, char *color);
 void				ft_putstr_background(char *str, char *color);
 void				ft_putendl_color(char *str, char *color);
 void				ft_free_tab(char **tab);
+
 size_t				ft_strlcat(char *dest, char const *src, size_t nb);
 size_t				ft_strlen(char const *str);
 size_t				ft_intlen(int nb);
+
 int					ft_strcmp(char const *s1, char const *s2);
 int					ft_strncmp(char const *s1, char const *s2, size_t n);
 int					ft_atoi(char const *str);
@@ -86,6 +88,8 @@ int					ft_strequ(char const *s1, char const *s2);
 int					ft_strnequ(char const *s1, char const *s2, size_t n);
 int					get_next_line(int fd, char **line);
 int					*ft_atoi_tab(char **str);
+int					ft_intlen_base(int nb, char *base);
+
 char				*ft_rm_path(char *str);
 char				*ft_strdup(char const *src);
 char				*ft_strcat(char *dest, char const *src);
@@ -106,6 +110,8 @@ char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strjoin_free(char *s1, char *s2);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
+
 t_list				*ft_lstnew(void const *content, size_t content_size);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+
 #endif
