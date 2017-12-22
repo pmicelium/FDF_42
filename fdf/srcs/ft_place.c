@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 19:02:04 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/22 21:48:42 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/22 23:43:29 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,18 +111,21 @@ void	ft_place(t_fdf fdf, t_pos pos, t_key key)
 	time = clock();
 	ft_place_point(&fdf, &pos, key);
 	mlx_put_image_to_window(fdf.mlx, fdf.win1, fdf.img, 0, 0);
-	ft_feature_print(fdf);
-
-	fps++;
-	time = clock() - time;
-	start += time;
-	if (((float)start/CLOCKS_PER_SEC) >= 0.25)
+	if (key.hud == 1)
 	{
-		mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 -40, 25, 0x00c1c1c1, ft_itoa(fps * 4));
-		tmp = fps * 4;
-		fps = 0;
-		start = 0;
+		ft_feature_print(fdf);
+
+		fps++;
+		time = clock() - time;
+		start += time;
+		if (((float)start/CLOCKS_PER_SEC) >= 0.25)
+		{
+			mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 -40, 25, 0x00c1c1c1, ft_itoa(fps * 4));
+			tmp = fps * 4;
+			fps = 0;
+			start = 0;
+		}
+		else
+			mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 -40, 25, 0x00c1c1c1, ft_itoa(tmp));
 	}
-	else
-		mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 -40, 25, 0x00c1c1c1, ft_itoa(tmp));
 }

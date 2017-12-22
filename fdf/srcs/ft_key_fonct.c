@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 15:48:06 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/22 22:24:26 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/22 23:41:54 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ int			key_fonct(int keycode, t_fdf *fdf)
 		key_fonct_reset(fdf);
 //	if (keycode == 8)
 //		fdf->key.face *= -1;
+	if (keycode == 36)
+		fdf->key.hud *= -1;
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 22:27:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/22 22:27:31 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/22 23:39:59 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct		s_key
 	int			w;
 	int			a;
 	int			face;
+	int			hud;
 }					t_key;
 
 typedef struct		s_fdf

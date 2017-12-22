@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 19:04:23 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/22 22:20:15 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/22 23:40:24 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	key_fonct_set(t_fdf *fdf)
 	fdf->degrad.l_r = (fdf->pos.low_color >> 16) & 0xFF;
 	fdf->degrad.l_g = (fdf->pos.low_color >> 8) & 0xFF;
 	fdf->degrad.l_b = (fdf->pos.low_color) & 0xFF;
-
+	fdf->key.hud = 1;
 }
 
 int		main(int argc, char *argv[])

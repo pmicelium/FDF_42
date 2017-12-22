@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 22:22:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/22 23:38:22 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/22 23:39:36 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static void	ft_red_upper(t_fdf *fdf, int button, int x)
 		else if (fdf->degrad.h_r > 0)
 			fdf->degrad.h_r--;
 	}
-//	fdf->pos.high_color = (fdf->degrad.h_r & 0xFF) << 16;
 }
 
 static void	ft_green_upper(t_fdf *fdf, int button, int x)
