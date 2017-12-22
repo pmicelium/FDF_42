@@ -6,27 +6,35 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 15:30:51 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/22 17:20:29 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/22 22:14:36 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static int	ft_set_color(t_fdf fdf, char color)
+static void	ft_feature_color(t_fdf fdf)
 {
-	int mlx_color;
+	mlx_string_put(fdf.mlx, fdf.win1, 25, Y_WIN_1 - 125, 0x00FFFFFF,  "Colors :");
+	mlx_string_put(fdf.mlx, fdf.win1, 180, Y_WIN_1 - 125, 0x00FFFFFF,  "RED");
+	mlx_string_put(fdf.mlx, fdf.win1, 255, Y_WIN_1 - 125, 0x00FFFFFF,  "GREEN");
+	mlx_string_put(fdf.mlx, fdf.win1, 355, Y_WIN_1 - 125, 0x00FFFFFF,  "BLUE");
 
-	if (color == 'R')
-		mlx_color = 0x00FF0000;
-	if (color == 'G')
-		mlx_color = 0x0000FF00;
-	if (color == 'B')
-		mlx_color = 0x000000FF;
-	if (color == 'L')
-		mlx_color = fdf.pos.low_color;
-	if (color == 'H')
-		mlx_color = fdf.pos.high_color;
-	return (mlx_color);
+	mlx_string_put(fdf.mlx, fdf.win1, 25, Y_WIN_1 - 100, fdf.pos.high_color,   "Upper color :");
+	mlx_string_put(fdf.mlx, fdf.win1, 160, Y_WIN_1 - 100, 0x00c1c1c1, "-     +");
+	mlx_string_put(fdf.mlx, fdf.win1, 180, Y_WIN_1 - 100, 0x00c1c1c1, ft_itoa(fdf.degrad.h_r));
+	mlx_string_put(fdf.mlx, fdf.win1, 245, Y_WIN_1 - 100, 0x00c1c1c1, "-     +");
+	mlx_string_put(fdf.mlx, fdf.win1, 265, Y_WIN_1 - 100, 0x00c1c1c1, ft_itoa(fdf.degrad.h_g));
+	mlx_string_put(fdf.mlx, fdf.win1, 335, Y_WIN_1 - 100, 0x00c1c1c1, "-     +");
+	mlx_string_put(fdf.mlx, fdf.win1, 355, Y_WIN_1 - 100, 0x00c1c1c1, ft_itoa(fdf.degrad.h_b));
+
+
+	mlx_string_put(fdf.mlx, fdf.win1, 25, Y_WIN_1 - 75, fdf.pos.low_color,   "Lower color:");
+	mlx_string_put(fdf.mlx, fdf.win1, 160, Y_WIN_1 - 75, 0x00c1c1c1, "-     +");
+	mlx_string_put(fdf.mlx, fdf.win1, 180, Y_WIN_1 - 75, 0x00c1c1c1, ft_itoa(fdf.degrad.l_r));
+	mlx_string_put(fdf.mlx, fdf.win1, 245, Y_WIN_1 - 75, 0x00c1c1c1, "-     +");
+	mlx_string_put(fdf.mlx, fdf.win1, 265, Y_WIN_1 - 75, 0x00c1c1c1, ft_itoa(fdf.degrad.l_g));
+	mlx_string_put(fdf.mlx, fdf.win1, 335, Y_WIN_1 - 75, 0x00c1c1c1, "-     +");
+	mlx_string_put(fdf.mlx, fdf.win1, 355, Y_WIN_1 - 75, 0x00c1c1c1, ft_itoa(fdf.degrad.l_b));
 }
 
 static void	ft_feature_key(t_fdf fdf)
@@ -58,4 +66,5 @@ void	ft_feature_print(t_fdf fdf)
 {
 	ft_feature_key(fdf);
 	ft_feature_var(fdf);
+	ft_feature_color(fdf);
 }

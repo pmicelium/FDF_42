@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 22:27:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/22 20:03:06 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/22 22:27:31 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,7 @@ typedef struct		s_put
 	int				o_y;
 	int				r;
 }					t_put;
-/*
-typedef struct		s_fps
-{
-	clock_t			time;
-	int				fps;
-	int				tmp;
-}					t_fps;
-*/
+
 typedef struct		s_key
 {
 	int			elev;
@@ -104,6 +97,7 @@ void				key_fonct_set(t_fdf *fdf);
 t_pos				ft_set_pos(char *argv, t_pos pos);
 
 int					key_fonct(int keycode, t_fdf *fdf);
+int					mouse_fonct(int button, int x, int y, t_fdf *fdf);
 int					loop_hook(t_fdf *fdf);
 
 #endif

@@ -6,11 +6,21 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 15:48:06 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/22 17:16:18 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/22 22:24:26 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
+//
+//
+//
+//faire mappage activer le hud //
+//
+//
+//
+
+
 
 static void	key_fonct_mv_struct(int keycode, t_fdf *fdf)
 {
@@ -59,6 +69,7 @@ static void	key_fonct_reset(t_fdf *fdf)
 
 int			key_fonct(int keycode, t_fdf *fdf)
 {
+	ft_putstr_color("keycode : ", "yellow");
 	ft_putnbr_endl(keycode);
 	if (keycode == 53)
 	{
