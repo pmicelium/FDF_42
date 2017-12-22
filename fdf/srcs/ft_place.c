@@ -6,17 +6,26 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 19:02:04 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/20 19:52:33 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/22 21:39:59 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static void	ft_link_point(t_fdf fdf, t_pos pos, t_put put)
+//
+//
+//
+//FAIRE DU CLIPING de la taille de la fenetre !!/
+//
+//
+//
+
+static void	ft_link_point(t_fdf fdf, t_pos pos)
 {
-	int i;
-	int j;
-	int color;
+	t_put	put;
+	int		i;
+	int		j;
+	int		color;
 
 	i = 0;
 	j = 0;
@@ -31,14 +40,24 @@ static void	ft_link_point(t_fdf fdf, t_pos pos, t_put put)
 				put.x1 = pos.placex[i + 1];
 				put.y1 = pos.placey[i + 1];
 				color = pos.elev[i] == 1 && pos.elev[i + 1] == 1 ? pos.high_color : pos.low_color;
-				bresenham_line(fdf, put, color);
+				if (pos.elev [i] != 1 && pos.elev[i + 1] == 1)
+					bresenham_line(fdf, put, color, 1);
+				else if (pos.elev[i] == 1 && pos.elev[i + 1] != 1)
+					bresenham_line(fdf, put, color, 2);
+				else
+					bresenham_line(fdf, put, color, 0);
 			}
 			if (j != pos.y - 1)
 			{
 				put.x1 = pos.placex[i + pos.x];
 				put.y1 = pos.placey[i + pos.x];
 				color = pos.elev[i] == 1 && pos.elev[i + pos.x] == 1 ? pos.high_color : pos.low_color;
-				bresenham_line(fdf, put, color);
+				if (pos.elev [i] != 1 && pos.elev[i + pos.x] == 1)
+					bresenham_line(fdf, put, color, 1);
+				else if  (pos.elev[i] == 1 && pos.elev[i + pos.x] != 1)
+					bresenham_line(fdf, put, color, 2);
+				else
+					bresenham_line(fdf, put, color, 0);
 			}
 			i++;
 		}
@@ -68,7 +87,7 @@ static void	ft_place_point(t_fdf *fdf, t_pos *pos, t_key key)
 		x = 0;
 		while (x < pos->x)
 		{
-			pos->placex[i] = (x * fdf->key.zoom) + (X_WIN_1 / (fdf->key.zoom / 10) + key.a) + ((pos->z[y][x] * key.elev) * key.x_deriv);
+			pos->placex[i] = (x * fdf->key.zoom) + (X_WIN_1 / (fdf->key.zoom / 10) + key.a) - ((pos->z[y][x] * key.elev) * key.x_deriv);
 			pos->placey[i] = (y * fdf->key.zoom) + (Y_WIN_1 / (fdf->key.zoom / 10) + key.w) - ((pos->z[y][x] * key.elev) * key.y_deriv);
 			pos->elev[i] = pos->z[y][x] != 0 ? 1 : 0;
 			i++;
@@ -76,24 +95,21 @@ static void	ft_place_point(t_fdf *fdf, t_pos *pos, t_key key)
 		}
 		y++;
 	}
+	ft_link_point(*fdf, *pos);
 }
 
 void	ft_place(t_fdf fdf, t_pos pos, t_key key)
 {
-	t_put put;
 	clock_t time;
 	static clock_t start;
 	static unsigned int fps;
 	static unsigned int tmp = 0;
 
-	pos.high_color = 0x00FF0000;
-	pos.low_color = 0x0000FFFF;
 	key.x_deriv = 0;
 	key.y_deriv = 1;
 
 	time = clock();
 	ft_place_point(&fdf, &pos, key);
-	ft_link_point(fdf, pos, put);
 	mlx_put_image_to_window(fdf.mlx, fdf.win1, fdf.img, 0, 0);
 	ft_feature_print(fdf);
 

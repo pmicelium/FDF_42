@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 15:48:06 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/20 20:18:39 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/22 17:16:18 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,15 @@ static void	key_fonct_zoom(int keycode, t_fdf *fdf)
 	ft_place(*fdf, fdf->pos, fdf->key);
 }
 
-int		key_fonct(int keycode, t_fdf *fdf)
+static void	key_fonct_reset(t_fdf *fdf)
+{
+	key_fonct_set(fdf);
+	fdf->img = mlx_new_image(fdf->mlx, X_WIN_1, Y_WIN_1);
+	fdf->img_data = (int*)mlx_get_data_addr(fdf->img, &fdf->bpp, &fdf->lsize, &fdf->endian);
+	ft_place(*fdf, fdf->pos, fdf->key);
+}
+
+int			key_fonct(int keycode, t_fdf *fdf)
 {
 	ft_putnbr_endl(keycode);
 	if (keycode == 53)
@@ -63,6 +71,10 @@ int		key_fonct(int keycode, t_fdf *fdf)
 		key_fonct_zoom(keycode, fdf);
 	if (keycode == 13 || keycode == 0 || keycode == 1 || keycode == 2)
 		key_fonct_mv_struct(keycode, fdf);
+	if (keycode == 49)
+		key_fonct_reset(fdf);
+//	if (keycode == 8)
+//		fdf->key.face *= -1;
 	return (0);
 }
 
