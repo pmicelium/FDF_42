@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 22:27:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/23 18:57:21 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/23 21:12:13 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,28 @@ typedef struct		s_degrad
 	int				l_b;
 }					t_degrad;
 
+typedef struct		s_cal
+{
+	int				x_len;
+	int				y_len;
+	int				base_x_len;
+	int				base_y_len;
+	int				y_trans;
+	int				x_trans;
+}					t_cal;
+
 typedef struct		s_pos
 {
 	int				x;
 	int				y;      //malloc foireux quelque part je pense //
 	int				**z;
-	float				*placex;
-	float				*placey;
+	float			*placex;
+	float			*placey;
 	int				*elev;
 	int				high_color;
 	int				low_color;
 	int				degraded;
+	struct s_cal	cal;
 }					t_pos;
 
 typedef struct		s_put
@@ -68,7 +79,7 @@ typedef struct		s_key
 	int			rot;
 	int			w;
 	int			a;
-	int			x_deriv;
+	float			x_deriv;
 	float		y_deriv;
 	int			face;
 	int			hud;

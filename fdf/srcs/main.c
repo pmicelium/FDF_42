@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 19:04:23 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/23 18:55:12 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/23 19:30:43 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	key_fonct_set(t_fdf *fdf)
 	fdf->degrad.l_b = (fdf->pos.low_color) & 0xFF;
 	fdf->key.hud = 1;
 	fdf->key.rot = 0;
-	fdf->key.x_deriv = 0;
+	fdf->key.x_deriv = 1;
 	fdf->key.y_deriv = 1;
 }
 
