@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 15:48:06 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/23 21:25:45 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/23 22:21:56 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ static void	key_fonct_rot(int keycode, t_fdf *fdf)
 		if (fdf->key.x_deriv < 1)
 			fdf->key.x_deriv += 0.1;
 	}
-	printf("x_deriv %f, y_deriv %f\n", fdf->key.x_deriv, fdf->key.y_deriv);
 	fdf->img = mlx_new_image(fdf->mlx, X_WIN_1, Y_WIN_1);
 	fdf->img_data = (int*)mlx_get_data_addr(fdf->img, &fdf->bpp, &fdf->lsize, &fdf->endian);
 	ft_place(*fdf, fdf->pos, fdf->key);

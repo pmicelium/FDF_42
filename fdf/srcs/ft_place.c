@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 19:02:04 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/23 21:49:39 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/23 23:20:46 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,9 @@ static void	ft_place_point(t_fdf *fdf, t_pos *pos, t_key key)
 
 	i = 0;
 	y = 0;
-	if (!(pos->placex = (float*)malloc(sizeof(float) * (pos->x * (pos->y - 1)))))
+	if (!(pos->placex = (int*)malloc(sizeof(int) * (pos->x * (pos->y - 1)))))
 		exit(1);
-	if (!(pos->placey = (float*)malloc(sizeof(float) * (pos->x * (pos->y - 1)))))
+	if (!(pos->placey = (int*)malloc(sizeof(int) * (pos->x * (pos->y - 1)))))
 		exit(1);
 	if (!(pos->elev = (int*)malloc(sizeof(int) * (pos->x * (pos->y - 1)))))
 		exit(1);
@@ -100,11 +100,17 @@ static void	ft_place_point(t_fdf *fdf, t_pos *pos, t_key key)
 		{
 			pos->cal = ft_calculator(fdf, x, y);
 
-			pos->placex[i] = pos->cal.x_len + (400 + (fdf->key.zoom / 10) + key.a) + ((pos->z[y][x] * key.elev) * (key.x_deriv - 1)) + pos->cal.y_trans;
-			pos->placey[i] = pos->cal.y_len + (400 + (fdf->key.zoom / 10) + key.w) + ((pos->z[y][x] * key.elev) * (key.y_deriv - 1)) + pos->cal.x_trans;
+			if (pos->cal.x_trans != 0)
+				pos->placex[i] = pos->cal.x_len + (400 + (fdf->key.zoom / 10) + key.a) + ((pos->z[y][x] * key.elev) * (key.x_deriv - 1)) + ((pos->cal.y_trans * pos->cal.x_trans));
+			else
+				pos->placex[i] = pos->cal.x_len + (400 + (fdf->key.zoom / 10) + key.a) + ((pos->z[y][x] * key.elev) * (key.x_deriv - 1)) + 0;
+			if (pos->cal.y_trans != 0)
+				pos->placey[i] = pos->cal.y_len + (400 + (fdf->key.zoom / 10) + key.w) + ((pos->z[y][x] * key.elev) * (key.y_deriv - 1)) + ((pos->cal.x_trans * pos->cal.y_trans));
+			else
+				pos->placey[i] = pos->cal.y_len + (400 + (fdf->key.zoom / 10) + key.w) + ((pos->z[y][x] * key.elev) * (key.y_deriv - 1)) + 0;
 
-
-
+			if (pos->cal.y_trans != 0)
+				TEST;
 			pos->elev[i] = pos->z[y][x] != 0 ? 1 : 0;
 			i++;
 			x++;

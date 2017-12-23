@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 22:27:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/23 21:12:13 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/23 23:08:47 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef struct		s_cal
 	int				base_y_len;
 	int				y_trans;
 	int				x_trans;
+	int				rot_x;
+	int				rot_y;
 }					t_cal;
 
 typedef struct		s_pos
@@ -46,8 +48,8 @@ typedef struct		s_pos
 	int				x;
 	int				y;      //malloc foireux quelque part je pense //
 	int				**z;
-	float			*placex;
-	float			*placey;
+	int			*placex;
+	int			*placey;
 	int				*elev;
 	int				high_color;
 	int				low_color;
