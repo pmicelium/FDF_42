@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 15:30:51 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/22 23:46:23 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/23 16:42:35 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	ft_feature_key(t_fdf fdf)
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 90, 0x00c1c1c1,  "Zoom out       : 9");
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 110, 0x00c1c1c1, "Elevation +    : +");
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 130, 0x00c1c1c1, "Elevation -    : -");
-	mlx_string_put(fdf.mlx, fdf.win1, 25, 150, 0x00c1c1c1, "Mouve image    : wasd");
+	mlx_string_put(fdf.mlx, fdf.win1, 25, 150, 0x00c1c1c1, "Mouve image    : arrows");
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 170, 0x00c1c1c1, "Reset image    : space");
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 190, 0x00c1c1c1, "hidden surface : c");
 }

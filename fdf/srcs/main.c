@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 19:04:23 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/22 23:40:24 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/23 18:55:12 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 void	key_fonct_set(t_fdf *fdf)
 {
-	fdf->key.elev = 0;
-	fdf->key.zoom = 50;
+	fdf->key.elev = 2;
+	fdf->key.zoom = 30;
 	fdf->key.w = 0;
 	fdf->key.a = 0;
 	fdf->key.face = 1;
@@ -30,15 +30,33 @@ void	key_fonct_set(t_fdf *fdf)
 	fdf->degrad.l_g = (fdf->pos.low_color >> 8) & 0xFF;
 	fdf->degrad.l_b = (fdf->pos.low_color) & 0xFF;
 	fdf->key.hud = 1;
+	fdf->key.rot = 0;
+	fdf->key.x_deriv = 0;
+	fdf->key.y_deriv = 1;
 }
 
 int		main(int argc, char *argv[])
 {
 	t_fdf	fdf;
-	int		x = 0;
-	int		y = 0;
+	int i;
+	char **line;
 
-	fdf.pos = ft_set_pos(argv[1], fdf.pos);
+	i = 1;
+	if (ft_strcmp(argv[i], "-bonus.fr") == 0)
+	{
+		ft_display_bonus_fr();
+		i++;
+		if (i == argc)
+			exit(1);
+	}
+	if (ft_strcmp(argv[i], "-bonus.en") == 0)
+	{
+		ft_display_bonus_en();
+		i++;
+		if (i == argc)
+			exit(1);
+	}
+	fdf.pos = ft_set_pos(argv[i], fdf.pos);
 	fdf.mlx = mlx_init();
 	fdf.win1 = mlx_new_window(fdf.mlx, X_WIN_1 , Y_WIN_1, argv[1]);
 	fdf.img = mlx_new_image(fdf.mlx, X_WIN_1, Y_WIN_1);
@@ -50,7 +68,6 @@ int		main(int argc, char *argv[])
 
 	mlx_key_hook(fdf.win1, key_fonct, &fdf);
 	mlx_mouse_hook(fdf.win1, mouse_fonct, &fdf);
-//	mlx_hook(fdf.win1, x_event, x_mask, key_fonct_mv_struct, &fdf);
 	mlx_loop_hook(fdf.mlx, loop_hook, &fdf);
 	mlx_loop(fdf.mlx);
 	return (0);

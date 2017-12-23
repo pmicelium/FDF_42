@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 20:24:05 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/22 21:44:24 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/23 17:45:10 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ void		bresenham_line(t_fdf fdf, t_put put, int color, int degrad)
 	{
 		if (degrad != 0)
 			color = ft_degraded(fdf, i++ / steap, put, degrad);
-		fdf.img_data[put.y0 * X_WIN_1 + put.x0] = color;
+		if (put.y0 * X_WIN_1 + put.x0 < X_WIN_1 * Y_WIN_1)
+			fdf.img_data[put.y0 * X_WIN_1 + put.x0] = color;
 		if (put.x0 == put.x1 && put.y0 == put.y1)
 			break;
 		put.e2 = 2 * put.err;

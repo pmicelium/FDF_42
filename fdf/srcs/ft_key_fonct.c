@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 15:48:06 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/22 23:41:54 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/23 18:56:13 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@
 
 static void	key_fonct_mv_struct(int keycode, t_fdf *fdf)
 {
-	if (keycode == 13)
+	if (keycode == 126)
 		fdf->key.w -= 5;
-	if (keycode == 1)
+	if (keycode == 125)
 		fdf->key.w += 5;
-	if (keycode == 0)
+	if (keycode == 123)
 		fdf->key.a -= 5;
-	if (keycode == 2)
+	if (keycode == 124)
 		fdf->key.a += 5;
 	fdf->img = mlx_new_image(fdf->mlx, X_WIN_1, Y_WIN_1);
 	fdf->img_data = (int*)mlx_get_data_addr(fdf->img, &fdf->bpp, &fdf->lsize, &fdf->endian);
@@ -67,6 +67,24 @@ static void	key_fonct_reset(t_fdf *fdf)
 	ft_place(*fdf, fdf->pos, fdf->key);
 }
 
+static void	key_fonct_rot(int keycode, t_fdf *fdf)
+{
+	if (keycode == 13)
+	{
+		if (fdf->key.y_deriv > -1)
+			fdf->key.y_deriv -= 0.1;
+	}
+	if (keycode == 1)
+	{
+		if (fdf->key.y_deriv < 1)
+		fdf->key.y_deriv += 0.1;
+	}
+	fdf->img = mlx_new_image(fdf->mlx, X_WIN_1, Y_WIN_1);
+	fdf->img_data = (int*)mlx_get_data_addr(fdf->img, &fdf->bpp, &fdf->lsize, &fdf->endian);
+	ft_place(*fdf, fdf->pos, fdf->key);
+
+}
+
 int			key_fonct(int keycode, t_fdf *fdf)
 {
 	ft_putstr_color("keycode : ", "yellow");
@@ -80,10 +98,12 @@ int			key_fonct(int keycode, t_fdf *fdf)
 		key_fonct_elev(keycode, fdf);
 	if ((keycode == 25 || keycode == 29) || (keycode == 92 || keycode == 82))
 		key_fonct_zoom(keycode, fdf);
-	if (keycode == 13 || keycode == 0 || keycode == 1 || keycode == 2)
+	if (keycode == 126 || keycode == 123 || keycode == 124 || keycode == 125)
 		key_fonct_mv_struct(keycode, fdf);
 	if (keycode == 49)
 		key_fonct_reset(fdf);
+	if (keycode == 13 || keycode == 0 || keycode == 1 || keycode == 2)
+		key_fonct_rot(keycode, fdf);
 //	if (keycode == 8)
 //		fdf->key.face *= -1;
 	if (keycode == 36)

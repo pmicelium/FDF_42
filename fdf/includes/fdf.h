@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 22:27:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/22 23:39:59 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/23 18:57:21 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ typedef struct		s_pos
 	int				x;
 	int				y;      //malloc foireux quelque part je pense //
 	int				**z;
-	int				*placex;
-	int				*placey;
+	float				*placex;
+	float				*placey;
 	int				*elev;
 	int				high_color;
 	int				low_color;
@@ -65,10 +65,11 @@ typedef struct		s_key
 {
 	int			elev;
 	int			zoom;
-	int			x_deriv;
-	int			y_deriv;
+	int			rot;
 	int			w;
 	int			a;
+	int			x_deriv;
+	float		y_deriv;
 	int			face;
 	int			hud;
 }					t_key;
@@ -94,6 +95,8 @@ void				bresenham_circle(t_fdf fdf, t_put put, int color);
 void				ft_place(t_fdf fdf, t_pos pos, t_key key);
 void				ft_feature_print(t_fdf fdf);
 void				key_fonct_set(t_fdf *fdf);
+void				ft_display_bonus_fr(void);
+void				ft_display_bonus_en(void);
 
 t_pos				ft_set_pos(char *argv, t_pos pos);
 

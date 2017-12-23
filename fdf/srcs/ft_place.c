@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 19:02:04 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/22 23:43:29 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/23 19:00:58 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ static void	ft_place_point(t_fdf *fdf, t_pos *pos, t_key key)
 
 	i = 0;
 	y = 0;
-	if (!(pos->placex = (int*)malloc(sizeof(int) * (pos->x * (pos->y - 1)))))
+	if (!(pos->placex = (float*)malloc(sizeof(float) * (pos->x * (pos->y - 1)))))
 		exit(1);
-	if (!(pos->placey = (int*)malloc(sizeof(int) * (pos->x * (pos->y - 1)))))
+	if (!(pos->placey = (float*)malloc(sizeof(float) * (pos->x * (pos->y - 1)))))
 		exit(1);
 	if (!(pos->elev = (int*)malloc(sizeof(int) * (pos->x * (pos->y - 1)))))
 		exit(1);
@@ -87,8 +87,10 @@ static void	ft_place_point(t_fdf *fdf, t_pos *pos, t_key key)
 		x = 0;
 		while (x < pos->x)
 		{
-			pos->placex[i] = (x * fdf->key.zoom) + (X_WIN_1 / (fdf->key.zoom / 10) + key.a) - ((pos->z[y][x] * key.elev) * key.x_deriv);
-			pos->placey[i] = (y * fdf->key.zoom) + (Y_WIN_1 / (fdf->key.zoom / 10) + key.w) - ((pos->z[y][x] * key.elev) * key.y_deriv);
+			pos->placex[i] = (x * fdf->key.zoom) + (400 + (fdf->key.zoom / 10) + key.a);
+			pos->placey[i] = ((y * fdf->key.zoom) * key.y_deriv ) - ((pos->z[y][x] * key.elev))  + (400 + (fdf->key.zoom / 10) + key.w) ;
+			place_x = pos->placex[i];
+			place_y = pos->placey[i];
 			pos->elev[i] = pos->z[y][x] != 0 ? 1 : 0;
 			i++;
 			x++;
@@ -105,9 +107,7 @@ void	ft_place(t_fdf fdf, t_pos pos, t_key key)
 	static unsigned int fps;
 	static unsigned int tmp = 0;
 
-	key.x_deriv = 0;
-	key.y_deriv = 1;
-
+	
 	time = clock();
 	ft_place_point(&fdf, &pos, key);
 	mlx_put_image_to_window(fdf.mlx, fdf.win1, fdf.img, 0, 0);

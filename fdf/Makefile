@@ -7,6 +7,7 @@ SRCS = srcs/main.c\
 	   srcs/ft_key_fonct.c\
 	   srcs/ft_mouse_fonct.c\
 	   srcs/ft_feature_print.c\
+	   srcs/ft_display_bonus.c\
 
 all : test
 
