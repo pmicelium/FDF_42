@@ -23,7 +23,7 @@ This project consists in graphically creating the schematic representation of a 
 
 # Usage
 
-Run `make`. An executable will compile. Currently only tested on OS X.
+Run `make`. An executable will compile.
 
 Run it with `./fdf [-bonus.fr] [-bonus.en] [map.fdf]`.
 
