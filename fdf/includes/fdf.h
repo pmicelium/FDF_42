@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 22:27:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/23 23:08:47 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/25 18:12:11 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,14 @@
 # include <time.h>
 # define Y_WIN_1 1000
 # define X_WIN_1 1800
+
+//
+//
+//
+//faire le menage dans les strcut//
+//
+//
+//
 
 typedef struct		s_degrad
 {
@@ -48,8 +56,9 @@ typedef struct		s_pos
 	int				x;
 	int				y;      //malloc foireux quelque part je pense //
 	int				**z;
-	int			*placex;
-	int			*placey;
+	int				*placex;
+	int				*placey;
+	int				*placez;
 	int				*elev;
 	int				high_color;
 	int				low_color;

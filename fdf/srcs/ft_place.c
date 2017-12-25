@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/09 19:02:04 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/23 23:20:46 by pmiceli          ###   ########.fr       */
+/*   Created: 2017/12/25 17:29:13 by pmiceli           #+#    #+#             */
+/*   Updated: 2017/12/25 18:20:10 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,16 +87,18 @@ static void	ft_place_point(t_fdf *fdf, t_pos *pos, t_key key)
 {
 	int x;
 	int y;
-	int color;
 	int i;
 	int tmp_px;
 	int tmp_py;
+	int tmp_pz;
 
 	i = 0;
 	y = 0;
 	if (!(pos->placex = (int*)malloc(sizeof(int) * (pos->x * (pos->y - 1)))))
 		exit(1);
 	if (!(pos->placey = (int*)malloc(sizeof(int) * (pos->x * (pos->y - 1)))))
+		exit(1);
+	if (!(pos->placez = (int*)malloc(sizeof(int) * (pos->x * (pos->y - 1)))))
 		exit(1);
 	if (!(pos->elev = (int*)malloc(sizeof(int) * (pos->x * (pos->y - 1)))))
 		exit(1);
@@ -106,16 +108,29 @@ static void	ft_place_point(t_fdf *fdf, t_pos *pos, t_key key)
 		while (x < pos->x)
 		{
 			pos->cal = ft_calculator(fdf, x, y);
-
-			pos->placex[i] = pos->cal.x_len + ((pos->z[y][x] * key.elev) * (key.x_deriv - 1)) + ((pos->cal.y_trans * pos->cal.x_trans));
-			pos->placey[i] = pos->cal.y_len + ((pos->z[y][x] * key.elev) * (key.y_deriv - 1)) + ((pos->cal.x_trans * pos->cal.y_trans));
 			pos->elev[i] = pos->z[y][x] != 0 ? 1 : 0;
+
+			pos->placex[i] = pos->cal.base_x_len;
+			pos->placey[i] = pos->cal.base_y_len; // mettre les modif sur z ici a la place du key.deriv ou faire un placez;
+			pos->placez[i] = pos->z[y][x] * key.elev;
+
+			tmp_px = pos->placex[i];
+			tmp_py = pos->placey[i];
+			tmp_pz = pos->placez[i];
+
+			pos->placex[i] = tmp_px * cos(-fdf->key.rot_z * M_PI / 180) - tmp_py * sin(-fdf->key.rot_z * M_PI / 180);
+			pos->placey[i] = tmp_py * cos(-fdf->key.rot_z * M_PI / 180) + tmp_px * sin(-fdf->key.rot_z * M_PI / 180);
 
 			tmp_px = pos->placex[i];
 			tmp_py = pos->placey[i];
 
-			pos->placex[i] = tmp_px * cos(fdf->key.rot_z * M_PI / 180) - tmp_py * sin(fdf->key.rot_z * M_PI / 180);
-			pos->placey[i] = tmp_py * cos(fdf->key.rot_z * M_PI / 180) + tmp_px * sin(fdf->key.rot_z * M_PI / 180);
+			pos->placey[i] = tmp_py * cos(fdf->key.rot_x * M_PI / 180) - tmp_pz * sin(fdf->key.rot_x * M_PI / 180);
+			pos->placez[i] = tmp_py * sin(fdf->key.rot_x * M_PI / 180) + tmp_pz * cos(fdf->key.rot_x * M_PI / 180);
+
+			tmp_py = pos->placey[i];
+			tmp_pz = pos->placez[i];
+
+			pos->placex[i] = tmp_px * cos(fdf->key.rot_y * M_PI / 180) + tmp_pz * sin(fdf->key.rot_y * M_PI / 180);
 
 			pos->placex[i] += (400 + fdf->key.zoom / 10) + key.a;
 			pos->placey[i] += (400 + fdf->key.zoom / 10) + key.w;

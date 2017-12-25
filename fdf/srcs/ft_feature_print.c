@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 15:30:51 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/23 22:56:57 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/25 17:43:23 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ static void	ft_feature_var(t_fdf fdf)
 		mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 -40, 85, 0x00FF0000, "off");
 	else
 		mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 -40, 85, 0x0000FF00, "on");
-	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 -220, 105, 0x00ff9900, "X-axis rotation : ");
-	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 -220, 125, 0x00ff9900, "Y-axis rotation : ");
+	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 -220, 105, 0x00ff9900, ft_strjoin("X-axis rotation : ", ft_itoa(fdf.key.rot_x)));
+	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 -220, 125, 0x00ff9900, ft_strjoin("Y-axis rotation : ", ft_itoa(fdf.key.rot_y)));
 	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 -220, 145, 0x00c1c1c1, ft_strjoin("Z-axis rotation : ", ft_itoa(fdf.key.rot_z)));
 
 }

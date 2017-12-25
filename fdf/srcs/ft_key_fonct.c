@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 15:48:06 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/23 22:21:56 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/25 17:41:50 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,25 +60,21 @@ static void	key_fonct_reset(t_fdf *fdf)
 static void	key_fonct_rot(int keycode, t_fdf *fdf)
 {
 	if (keycode == 13)
-	{
-		if (fdf->key.y_deriv > -1)
-			fdf->key.y_deriv -= 0.1;
-	}
+		fdf->key.rot_x++;
 	if (keycode == 1)
-	{
-		if (fdf->key.y_deriv < 1)
-			fdf->key.y_deriv += 0.1;
-	}
+		fdf->key.rot_x--;
 	if (keycode == 0)
-	{
-		if (fdf->key.x_deriv > -1)
-			fdf->key.x_deriv -= 0.1;
-	}
+		fdf->key.rot_y--;
 	if (keycode == 2)
-	{
-		if (fdf->key.x_deriv < 1)
-			fdf->key.x_deriv += 0.1;
-	}
+		fdf->key.rot_y++;
+	if (fdf->key.rot_x == 360)
+		fdf->key.rot_x = 0;
+	if (fdf->key.rot_x == -1)
+		fdf->key.rot_x = 359;
+	if (fdf->key.rot_y == 360)
+		fdf->key.rot_y = 0;
+	if (fdf->key.rot_y == -1)
+		fdf->key.rot_y = 359;
 	fdf->img = mlx_new_image(fdf->mlx, X_WIN_1, Y_WIN_1);
 	fdf->img_data = (int*)mlx_get_data_addr(fdf->img, &fdf->bpp, &fdf->lsize, &fdf->endian);
 	ft_place(*fdf, fdf->pos, fdf->key);
@@ -87,9 +83,9 @@ static void	key_fonct_rot(int keycode, t_fdf *fdf)
 static void		key_fonct_rot_z(int keycode, t_fdf *fdf)
 {
 	if (keycode == 3)
-		fdf->key.rot_z++;
-	if (keycode == 15)
 		fdf->key.rot_z--;
+	if (keycode == 15)
+		fdf->key.rot_z++;
 	if (fdf->key.rot_z == 360)
 		fdf->key.rot_z = 0;
 	if (fdf->key.rot_z == -1)
