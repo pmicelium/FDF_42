@@ -78,6 +78,8 @@ typedef struct		s_key
 {
 	int			elev;
 	int			zoom;
+	double		rot_x;
+	double		rot_y;
 	double		rot_z;
 	int			w;
 	int			a;

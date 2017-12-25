@@ -45,11 +45,11 @@ static void	ft_feature_key(t_fdf fdf)
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 90, 0x00c1c1c1,  "Zoom out            : 9");
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 110, 0x00c1c1c1, "Elevation +         : +");
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 130, 0x00c1c1c1, "Elevation -         : -");
-	mlx_string_put(fdf.mlx, fdf.win1, 25, 150, 0x00c1c1c1, "Rotate image <x,y>  : wasd");
+	mlx_string_put(fdf.mlx, fdf.win1, 25, 150, 0x00ff9900, "Rotate image <x,y>  : wasd");
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 170, 0x00c1c1c1, "Rotate image < z >  : rf");
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 190, 0x00c1c1c1, "Mouve image         : arrows");
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 210, 0x00c1c1c1, "Reset image         : space");
-	mlx_string_put(fdf.mlx, fdf.win1, 25, 230, 0x00c1c1c1, "hidden surface      : c");
+	mlx_string_put(fdf.mlx, fdf.win1, 25, 230, 0x00FF0000, "hidden surface      : c");
 }
 
 static void	ft_feature_var(t_fdf fdf)
@@ -62,6 +62,9 @@ static void	ft_feature_var(t_fdf fdf)
 		mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 -40, 85, 0x00FF0000, "off");
 	else
 		mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 -40, 85, 0x0000FF00, "on");
+	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 -220, 105, 0x00ff9900, "X-axis rotation : ");
+	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 -220, 125, 0x00ff9900, "Y-axis rotation : ");
+	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 -220, 145, 0x00c1c1c1, ft_strjoin("Z-axis rotation : ", ft_itoa(fdf.key.rot_z)));
 
 }
 

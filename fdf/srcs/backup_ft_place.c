@@ -15,12 +15,7 @@
 //
 //
 //
-//  FAIRE DU CLIPING de la taille de la fenetre pour eviter le crach random
-//
-//
-//
-//  pour les faces caches faire un parse pendant que je draw pour mettre en noir chque pixel
-//  qu'il y a dans le carre de dim i / i + 1 / i + pos.x / i + pos.x + 1
+//FAIRE DU CLIPING de la taille de la fenetre !!/
 //
 //
 //
@@ -134,6 +129,7 @@ void	ft_place(t_fdf fdf, t_pos pos, t_key key)
 	static unsigned int fps;
 	static unsigned int tmp = 0;
 
+	
 	time = clock();
 	ft_place_point(&fdf, &pos, key);
 	mlx_put_image_to_window(fdf.mlx, fdf.win1, fdf.img, 0, 0);

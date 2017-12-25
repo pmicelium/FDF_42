@@ -84,12 +84,16 @@ static void	key_fonct_rot(int keycode, t_fdf *fdf)
 	ft_place(*fdf, fdf->pos, fdf->key);
 }
 
-void		key_fonct_rot_z(int keycode, t_fdf *fdf)
+static void		key_fonct_rot_z(int keycode, t_fdf *fdf)
 {
-	if (keycode == 15)
-		fdf->key.rot_z++;
 	if (keycode == 3)
-		fdf->key.rot_z--;;
+		fdf->key.rot_z++;
+	if (keycode == 15)
+		fdf->key.rot_z--;
+	if (fdf->key.rot_z == 360)
+		fdf->key.rot_z = 0;
+	if (fdf->key.rot_z == -1)
+		fdf->key.rot_z = 359;
 	fdf->img = mlx_new_image(fdf->mlx, X_WIN_1, Y_WIN_1);
 	fdf->img_data = (int*)mlx_get_data_addr(fdf->img, &fdf->bpp, &fdf->lsize, &fdf->endian);
 	ft_place(*fdf, fdf->pos, fdf->key);
