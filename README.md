@@ -1,7 +1,7 @@
 # FDF 42
 This project consists in graphically creating the schematic representation of a terrain in relief.
 
-![screenshot](/fdf/screens/fdf_42.tiff?raw=true)
+![screenshot](/fdf/screens/fdf_42.png?raw=true)
 
 # Features
 
@@ -20,3 +20,11 @@ This project consists in graphically creating the schematic representation of a 
 -Dynamic color management (with the mouse or mouse wheel).
 
 -Line clipping
+
+# Usage
+
+Run `make`. An executable will compile. Currently only tested on OS X.
+
+Run it with `./fdf [-bonus.fr] [-bonus.en] [map.fdf]`.
+The flags `-bonus.fr` shows the bonus list.
+Some maps have been created in 'test_maps' folder.
