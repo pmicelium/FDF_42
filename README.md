@@ -5,7 +5,7 @@ This project consists in graphically creating the schematic representation of a 
 
 # Features
 
--Possibility to move, rotate the image and to reinitialize it.
+-Possibility to move, rotate the model and to reinitialize it.
 
 -Display colors according to the elevation of the point.
 
