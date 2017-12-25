@@ -27,6 +27,6 @@ Run `make`. An executable will compile. Currently only tested on OS X.
 
 Run it with `./fdf [-bonus.fr] [-bonus.en] [map.fdf]`.
 
-The flags `-bonus.fr` shows the bonus list.
+The flags `-bonus.fr` and `-bonus.en` shows the bonus list.
 
 Some maps have been created in 'test_maps' folder.
