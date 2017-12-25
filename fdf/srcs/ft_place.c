@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 17:29:13 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/25 18:20:10 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/25 20:25:00 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,19 +70,6 @@ static void	ft_link_point(t_fdf fdf, t_pos pos)
 	}
 }
 
-static t_cal	ft_calculator(t_fdf *fdf, int x, int y)
-{
-	t_cal cal;
-
-	cal.x_len = x * fdf->key.zoom * fdf->key.x_deriv;
-	cal.y_len = y * fdf->key.zoom * fdf->key.y_deriv;
-	cal.base_x_len = x * fdf->key.zoom;
-	cal.base_y_len = y * fdf->key.zoom;
-	cal.y_trans = sqrt((pow(cal.base_y_len, 2) - pow(cal.y_len, 2)));
-	cal.x_trans = sqrt((pow(cal.base_x_len, 2) - pow(cal.x_len, 2)));
-	return (cal);
-}
-
 static void	ft_place_point(t_fdf *fdf, t_pos *pos, t_key key)
 {
 	int x;
@@ -107,11 +94,10 @@ static void	ft_place_point(t_fdf *fdf, t_pos *pos, t_key key)
 		x = 0;
 		while (x < pos->x)
 		{
-			pos->cal = ft_calculator(fdf, x, y);
 			pos->elev[i] = pos->z[y][x] != 0 ? 1 : 0;
 
-			pos->placex[i] = pos->cal.base_x_len;
-			pos->placey[i] = pos->cal.base_y_len; // mettre les modif sur z ici a la place du key.deriv ou faire un placez;
+			pos->placex[i] = x * key.zoom;
+			pos->placey[i] = y * key.zoom;
 			pos->placez[i] = pos->z[y][x] * key.elev;
 
 			tmp_px = pos->placex[i];

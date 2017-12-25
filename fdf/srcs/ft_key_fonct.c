@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 15:48:06 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/25 17:41:50 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/25 20:33:01 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,6 @@ static void		key_fonct_rot_z(int keycode, t_fdf *fdf)
 
 int			key_fonct(int keycode, t_fdf *fdf)
 {
-	ft_putstr_color("keycode : ", "yellow");
-	ft_putnbr_endl(keycode);
 	if (keycode == 53)
 	{
 		ft_putendl_color("Exiting...", "green");
@@ -116,8 +114,6 @@ int			key_fonct(int keycode, t_fdf *fdf)
 		key_fonct_rot(keycode, fdf);
 	if (keycode == 15 || keycode == 3)
 		key_fonct_rot_z(keycode, fdf);
-//	if (keycode == 8)
-//		fdf->key.face *= -1;
 	if (keycode == 36)
 		fdf->key.hud *= -1;
 	return (0);

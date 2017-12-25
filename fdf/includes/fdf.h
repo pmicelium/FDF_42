@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 22:27:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/25 18:12:11 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/25 20:31:38 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,6 @@ typedef struct		s_degrad
 	int				l_b;
 }					t_degrad;
 
-typedef struct		s_cal
-{
-	int				x_len;
-	int				y_len;
-	int				base_x_len;
-	int				base_y_len;
-	int				y_trans;
-	int				x_trans;
-	int				rot_x;
-	int				rot_y;
-}					t_cal;
-
 typedef struct		s_pos
 {
 	int				x;
@@ -63,7 +51,6 @@ typedef struct		s_pos
 	int				high_color;
 	int				low_color;
 	int				degraded;
-	struct s_cal	cal;
 }					t_pos;
 
 typedef struct		s_put
@@ -92,8 +79,6 @@ typedef struct		s_key
 	double		rot_z;
 	int			w;
 	int			a;
-	float		x_deriv;
-	float		y_deriv;
 	int			face;
 	int			hud;
 }					t_key;
@@ -111,7 +96,6 @@ typedef struct		s_fdf
 	struct s_pos	pos;
 	struct s_key	key;
 	struct s_degrad	degrad;
-//	struct s_fps	fps;
 }					t_fdf;
 
 void				bresenham_line(t_fdf fdf, t_put put, int color, int degrad);
@@ -121,6 +105,7 @@ void				ft_feature_print(t_fdf fdf);
 void				key_fonct_set(t_fdf *fdf);
 void				ft_display_bonus_fr(void);
 void				ft_display_bonus_en(void);
+void				ft_antialiasing(t_fdf *fdf);
 
 t_pos				ft_set_pos(char *argv, t_pos pos);
 

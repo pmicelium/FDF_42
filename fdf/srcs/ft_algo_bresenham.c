@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 20:24:05 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/23 17:45:10 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/25 19:38:49 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ static int	ft_degraded(t_fdf fdf, double i, t_put put, int degrad)
 		b = (fdf.degrad.l_b - fdf.degrad.h_b) * i + fdf.degrad.h_b;
 		color = (r & 0xFF) << 16 | (g & 0xFF) << 8 | (b & 0xFF);
 	}
-//	printf("%X,%d, %d, %d\n", color, r, g, b);
 	return (color);
 }
 

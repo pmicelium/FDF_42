@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 22:22:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/22 23:39:36 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/25 19:38:47 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ static void	ft_bleu_upper(t_fdf *fdf, int button, int x)
 }
 
 //                            //
-
 
 static void	ft_red_lower(t_fdf *fdf, int button, int x)
 {
