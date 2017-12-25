@@ -46,7 +46,7 @@ static void	ft_feature_key(t_fdf fdf)
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 110, 0x00c1c1c1, "Elevation +         : +");
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 130, 0x00c1c1c1, "Elevation -         : -");
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 150, 0x00c1c1c1, "Rotate image <x,y>  : wasd");
-	mlx_string_put(fdf.mlx, fdf.win1, 25, 170, 0x00FF0000, "Rotate image < z >  : rf");
+	mlx_string_put(fdf.mlx, fdf.win1, 25, 170, 0x00c1c1c1, "Rotate image < z >  : rf");
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 190, 0x00c1c1c1, "Mouve image         : arrows");
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 210, 0x00c1c1c1, "Reset image         : space");
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 230, 0x00c1c1c1, "hidden surface      : c");

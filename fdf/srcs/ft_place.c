@@ -84,6 +84,8 @@ static void	ft_place_point(t_fdf *fdf, t_pos *pos, t_key key)
 	int y;
 	int color;
 	int i;
+	int tmp_px;
+	int tmp_py;
 
 	i = 0;
 	y = 0;
@@ -100,18 +102,18 @@ static void	ft_place_point(t_fdf *fdf, t_pos *pos, t_key key)
 		{
 			pos->cal = ft_calculator(fdf, x, y);
 
-			if (pos->cal.x_trans != 0)
-				pos->placex[i] = pos->cal.x_len + (400 + (fdf->key.zoom / 10) + key.a) + ((pos->z[y][x] * key.elev) * (key.x_deriv - 1)) + ((pos->cal.y_trans * pos->cal.x_trans));
-			else
-				pos->placex[i] = pos->cal.x_len + (400 + (fdf->key.zoom / 10) + key.a) + ((pos->z[y][x] * key.elev) * (key.x_deriv - 1)) + 0;
-			if (pos->cal.y_trans != 0)
-				pos->placey[i] = pos->cal.y_len + (400 + (fdf->key.zoom / 10) + key.w) + ((pos->z[y][x] * key.elev) * (key.y_deriv - 1)) + ((pos->cal.x_trans * pos->cal.y_trans));
-			else
-				pos->placey[i] = pos->cal.y_len + (400 + (fdf->key.zoom / 10) + key.w) + ((pos->z[y][x] * key.elev) * (key.y_deriv - 1)) + 0;
-
-			if (pos->cal.y_trans != 0)
-				TEST;
+			pos->placex[i] = pos->cal.x_len + ((pos->z[y][x] * key.elev) * (key.x_deriv - 1)) + ((pos->cal.y_trans * pos->cal.x_trans));
+			pos->placey[i] = pos->cal.y_len + ((pos->z[y][x] * key.elev) * (key.y_deriv - 1)) + ((pos->cal.x_trans * pos->cal.y_trans));
 			pos->elev[i] = pos->z[y][x] != 0 ? 1 : 0;
+
+			tmp_px = pos->placex[i];
+			tmp_py = pos->placey[i];
+
+			pos->placex[i] = tmp_px * cos(fdf->key.rot_z * M_PI / 180) - tmp_py * sin(fdf->key.rot_z * M_PI / 180);
+			pos->placey[i] = tmp_py * cos(fdf->key.rot_z * M_PI / 180) + tmp_px * sin(fdf->key.rot_z * M_PI / 180);
+
+			pos->placex[i] += (400 + fdf->key.zoom / 10) + key.a;
+			pos->placey[i] += (400 + fdf->key.zoom / 10) + key.w;
 			i++;
 			x++;
 		}
