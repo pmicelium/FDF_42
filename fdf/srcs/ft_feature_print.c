@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 15:30:51 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/25 17:43:23 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/25 18:22:57 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,12 @@ static void	ft_feature_key(t_fdf fdf)
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 90, 0x00c1c1c1,  "Zoom out            : 9");
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 110, 0x00c1c1c1, "Elevation +         : +");
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 130, 0x00c1c1c1, "Elevation -         : -");
-	mlx_string_put(fdf.mlx, fdf.win1, 25, 150, 0x00ff9900, "Rotate image <x,y>  : wasd");
-	mlx_string_put(fdf.mlx, fdf.win1, 25, 170, 0x00c1c1c1, "Rotate image < z >  : rf");
-	mlx_string_put(fdf.mlx, fdf.win1, 25, 190, 0x00c1c1c1, "Mouve image         : arrows");
-	mlx_string_put(fdf.mlx, fdf.win1, 25, 210, 0x00c1c1c1, "Reset image         : space");
-	mlx_string_put(fdf.mlx, fdf.win1, 25, 230, 0x00FF0000, "hidden surface      : c");
+	mlx_string_put(fdf.mlx, fdf.win1, 25, 150, 0x00c1c1c1, "Rotate image < x >  : w s");
+	mlx_string_put(fdf.mlx, fdf.win1, 25, 170, 0x00c1c1c1, "Rotate image < y >  : a d");
+	mlx_string_put(fdf.mlx, fdf.win1, 25, 190, 0x00c1c1c1, "Rotate image < z >  : r f");
+	mlx_string_put(fdf.mlx, fdf.win1, 25, 210, 0x00c1c1c1, "Mouve image         : arrows");
+	mlx_string_put(fdf.mlx, fdf.win1, 25, 230, 0x00c1c1c1, "Reset image         : space");
+	mlx_string_put(fdf.mlx, fdf.win1, 25, 250, 0x00FF0000, "hidden surface      : c");
 }
 
 static void	ft_feature_var(t_fdf fdf)
@@ -62,8 +63,8 @@ static void	ft_feature_var(t_fdf fdf)
 		mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 -40, 85, 0x00FF0000, "off");
 	else
 		mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 -40, 85, 0x0000FF00, "on");
-	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 -220, 105, 0x00ff9900, ft_strjoin("X-axis rotation : ", ft_itoa(fdf.key.rot_x)));
-	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 -220, 125, 0x00ff9900, ft_strjoin("Y-axis rotation : ", ft_itoa(fdf.key.rot_y)));
+	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 -220, 105, 0x00c1c1c1, ft_strjoin("X-axis rotation : ", ft_itoa(fdf.key.rot_x)));
+	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 -220, 125, 0x00c1c1c1, ft_strjoin("Y-axis rotation : ", ft_itoa(fdf.key.rot_y)));
 	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 -220, 145, 0x00c1c1c1, ft_strjoin("Z-axis rotation : ", ft_itoa(fdf.key.rot_z)));
 
 }
