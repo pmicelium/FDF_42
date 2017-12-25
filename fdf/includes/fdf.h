@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 22:27:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/25 20:31:38 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/25 22:27:14 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <time.h>
 # define Y_WIN_1 1000
 # define X_WIN_1 1800
+# define GREY 0x00c1c1c1
+# define WHITE 0x00FFFFFF
 
 //
 //
@@ -68,6 +70,7 @@ typedef struct		s_put
 	int				o_x;
 	int				o_y;
 	int				r;
+	int				color;
 }					t_put;
 
 typedef struct		s_key
@@ -79,7 +82,6 @@ typedef struct		s_key
 	double		rot_z;
 	int			w;
 	int			a;
-	int			face;
 	int			hud;
 }					t_key;
 
@@ -106,10 +108,18 @@ void				key_fonct_set(t_fdf *fdf);
 void				ft_display_bonus_fr(void);
 void				ft_display_bonus_en(void);
 void				ft_antialiasing(t_fdf *fdf);
+int					key_fonct(int keycode, t_fdf *fdf);
+void				key_fonct_mv_struct(int keycode, t_fdf *fdf);
+void				key_fonct_elev(int keycode, t_fdf *fdf);
+void				key_fonct_zoom(int keycode, t_fdf *fdf);
+void				key_fonct_reset(t_fdf *fdf);
+void				ft_red_upper(t_fdf *fdf, int button, int x);
+void				ft_green_upper(t_fdf *fdf, int button, int x);
+void				ft_fps(t_fdf fdf, clock_t time);
+void				ft_link_point(t_fdf fdf, t_pos pos);
 
 t_pos				ft_set_pos(char *argv, t_pos pos);
 
-int					key_fonct(int keycode, t_fdf *fdf);
 int					mouse_fonct(int button, int x, int y, t_fdf *fdf);
 int					loop_hook(t_fdf *fdf);
 

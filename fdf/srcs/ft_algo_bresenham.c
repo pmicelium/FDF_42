@@ -6,13 +6,13 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 20:24:05 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/25 19:38:49 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/25 20:45:01 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void		bresenham_circle(t_fdf fdf, t_put put, int color)
+void			bresenham_circle(t_fdf fdf, t_put put, int color)
 {
 	int		x;
 	int		y;
@@ -41,12 +41,12 @@ void		bresenham_circle(t_fdf fdf, t_put put, int color)
 	}
 }
 
-static int	ft_degraded(t_fdf fdf, double i, t_put put, int degrad)
+static int		ft_degraded(t_fdf fdf, double i, t_put put, int degrad)
 {
-	int r;
-	int g;
-	int b;
-	int color;
+	int		r;
+	int		g;
+	int		b;
+	int		color;
 
 	if (degrad == 1)
 	{
@@ -65,36 +65,50 @@ static int	ft_degraded(t_fdf fdf, double i, t_put put, int degrad)
 	return (color);
 }
 
-void		bresenham_line(t_fdf fdf, t_put put, int color, int degrad)
+static t_put	ft_set_put_line(t_put put)
 {
-	int i;
-	double steap;
-
-	steap = sqrt(pow((put.x1 - put.x0), 2) + pow((put.y1 - put.y0), 2));
-	i = 0;
-	put.dx = abs (put.x1 - put.x0);
-	put.dy = -abs (put.y1 - put.y0);
+	put.dx = abs(put.x1 - put.x0);
+	put.dy = -abs(put.y1 - put.y0);
 	put.inc_x = put.x0 < put.x1 ? 1 : -1;
 	put.inc_y = put.y0 < put.y1 ? 1 : -1;
 	put.err = put.dx + put.dy;
+	return (put);
+}
+
+static t_put	bresenham_line_2(t_put put)
+{
+	if (put.e2 >= put.dy)
+	{
+		put.err += put.dy;
+		put.x0 += put.inc_x;
+	}
+	if (put.e2 <= put.dx)
+	{
+		put.err += put.dx;
+		put.y0 += put.inc_y;
+	}
+	return (put);
+}
+
+void			bresenham_line(t_fdf fdf, t_put put, int color, int degrad)
+{
+	int		i;
+	double	steap;
+
+	i = 0;
+	steap = sqrt(pow((put.x1 - put.x0), 2) + pow((put.y1 - put.y0), 2));
+	put = ft_set_put_line(put);
 	while (1)
 	{
 		if (degrad != 0)
 			color = ft_degraded(fdf, i++ / steap, put, degrad);
-		if (put.y0 * X_WIN_1 + put.x0 < X_WIN_1 * Y_WIN_1)
+		if (put.y0 * X_WIN_1 + put.x0 < X_WIN_1 * Y_WIN_1
+				&& put.y0 >= 0 && put.x0 >= 0
+				&& put.y0 < Y_WIN_1 && put.x0 < X_WIN_1)
 			fdf.img_data[put.y0 * X_WIN_1 + put.x0] = color;
 		if (put.x0 == put.x1 && put.y0 == put.y1)
-			break;
+			break ;
 		put.e2 = 2 * put.err;
-		if (put.e2 >= put.dy) 
-		{
-			put.err += put.dy;
-			put.x0 += put.inc_x;
-		}
-		if (put.e2 <= put.dx)
-		{
-			put.err += put.dx; 
-			put.y0 += put.inc_y; 
-		}
+		put = bresenham_line_2(put);
 	}
 }

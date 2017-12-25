@@ -5,9 +5,13 @@ SRCS = srcs/main.c\
 	   srcs/ft_algo_bresenham.c\
 	   srcs/ft_place.c\
 	   srcs/ft_key_fonct.c\
+	   srcs/ft_key_fonct_2.c\
 	   srcs/ft_mouse_fonct.c\
+	   srcs/ft_mouse_fonct_2.c\
 	   srcs/ft_feature_print.c\
 	   srcs/ft_display_bonus.c\
+	   srcs/ft_fps.c\
+	   srcs/ft_link_point.c\
 
 all : test
 

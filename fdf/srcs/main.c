@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 19:04:23 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/25 20:31:50 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/25 21:20:02 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 // ajouter le multpile fd //
 
-void	key_fonct_set(t_fdf *fdf)
+void			key_fonct_set(t_fdf *fdf)
 {
 	fdf->key.elev = 2;
 	fdf->key.zoom = 30;
 	fdf->key.w = 0;
 	fdf->key.a = 0;
-	fdf->key.face = 1;
 	fdf->pos.low_color = 0x00FFFFFF;
 	fdf->pos.high_color = 0x00FF0000;
 	fdf->degrad.h_r = (fdf->pos.high_color >> 16) & 0xFF;
@@ -35,37 +34,43 @@ void	key_fonct_set(t_fdf *fdf)
 	fdf->key.rot_z = 0;
 }
 
-int		main(int argc, char *argv[])
+static int		show_bonus(int argc, char **argv, int i)
 {
-	t_fdf	fdf;
-	int i;
-	char **line;
-
-	i = 1;
 	if (ft_strcmp(argv[i], "-bonus.fr") == 0)
 	{
 		ft_display_bonus_fr();
 		i++;
 		if (i == argc)
-			exit(1);
+			return (0);
 	}
 	if (ft_strcmp(argv[i], "-bonus.en") == 0)
 	{
-		ft_display_bonus_en();
 		i++;
+		ft_display_bonus_en();
 		if (i == argc)
-			exit(1);
+			return (0);
 	}
+	return (i);
+}
+
+int				main(int argc, char *argv[])
+{
+	t_fdf	fdf;
+	int		i;
+	char	**line;
+
+	i = 1;
+	i = show_bonus(argc, argv, i);
+	if (i == 0)
+		return (0);
 	fdf.pos = ft_set_pos(argv[i], fdf.pos);
 	fdf.mlx = mlx_init();
-	fdf.win1 = mlx_new_window(fdf.mlx, X_WIN_1 , Y_WIN_1, argv[1]);
+	fdf.win1 = mlx_new_window(fdf.mlx, X_WIN_1, Y_WIN_1, argv[1]);
 	fdf.img = mlx_new_image(fdf.mlx, X_WIN_1, Y_WIN_1);
-	fdf.img_data = (int*)mlx_get_data_addr(fdf.img, &fdf.bpp, &fdf.lsize, &fdf.endian);
-
+	fdf.img_data = (int*)mlx_get_data_addr(fdf.img, &fdf.bpp, &fdf.lsize,
+			&fdf.endian);
 	key_fonct_set(&fdf);
-
 	ft_place(fdf, fdf.pos, fdf.key);
-
 	mlx_key_hook(fdf.win1, key_fonct, &fdf);
 	mlx_mouse_hook(fdf.win1, mouse_fonct, &fdf);
 	mlx_loop_hook(fdf.mlx, loop_hook, &fdf);

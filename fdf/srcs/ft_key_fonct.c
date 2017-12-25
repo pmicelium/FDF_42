@@ -6,56 +6,11 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 15:48:06 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/25 20:33:01 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/25 21:28:21 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-
-static void	key_fonct_mv_struct(int keycode, t_fdf *fdf)
-{
-	if (keycode == 126)
-		fdf->key.w -= 5;
-	if (keycode == 125)
-		fdf->key.w += 5;
-	if (keycode == 123)
-		fdf->key.a -= 5;
-	if (keycode == 124)
-		fdf->key.a += 5;
-	fdf->img = mlx_new_image(fdf->mlx, X_WIN_1, Y_WIN_1);
-	fdf->img_data = (int*)mlx_get_data_addr(fdf->img, &fdf->bpp, &fdf->lsize, &fdf->endian);
-	ft_place(*fdf, fdf->pos, fdf->key);
-}
-
-static void	key_fonct_elev(int keycode, t_fdf *fdf)
-{
-	if (keycode == 78 || keycode == 27)
-		fdf->key.elev--;
-	else
-		fdf->key.elev++;
-	fdf->img = mlx_new_image(fdf->mlx, X_WIN_1, Y_WIN_1);
-	fdf->img_data = (int*)mlx_get_data_addr(fdf->img, &fdf->bpp, &fdf->lsize, &fdf->endian);
-	ft_place(*fdf, fdf->pos, fdf->key);
-}
-
-static void	key_fonct_zoom(int keycode, t_fdf *fdf)
-{
-	if (keycode == 25 || keycode == 92)
-		fdf->key.zoom -= 5;
-	else
-		fdf->key.zoom += 5;
-	fdf->img = mlx_new_image(fdf->mlx, X_WIN_1, Y_WIN_1);
-	fdf->img_data = (int*)mlx_get_data_addr(fdf->img, &fdf->bpp, &fdf->lsize, &fdf->endian);
-	ft_place(*fdf, fdf->pos, fdf->key);
-}
-
-static void	key_fonct_reset(t_fdf *fdf)
-{
-	key_fonct_set(fdf);
-	fdf->img = mlx_new_image(fdf->mlx, X_WIN_1, Y_WIN_1);
-	fdf->img_data = (int*)mlx_get_data_addr(fdf->img, &fdf->bpp, &fdf->lsize, &fdf->endian);
-	ft_place(*fdf, fdf->pos, fdf->key);
-}
 
 static void	key_fonct_rot(int keycode, t_fdf *fdf)
 {
@@ -76,11 +31,12 @@ static void	key_fonct_rot(int keycode, t_fdf *fdf)
 	if (fdf->key.rot_y == -1)
 		fdf->key.rot_y = 359;
 	fdf->img = mlx_new_image(fdf->mlx, X_WIN_1, Y_WIN_1);
-	fdf->img_data = (int*)mlx_get_data_addr(fdf->img, &fdf->bpp, &fdf->lsize, &fdf->endian);
+	fdf->img_data = (int*)mlx_get_data_addr(fdf->img, &fdf->bpp, &fdf->lsize,
+			&fdf->endian);
 	ft_place(*fdf, fdf->pos, fdf->key);
 }
 
-static void		key_fonct_rot_z(int keycode, t_fdf *fdf)
+static void	key_fonct_rot_z(int keycode, t_fdf *fdf)
 {
 	if (keycode == 3)
 		fdf->key.rot_z--;
@@ -91,7 +47,8 @@ static void		key_fonct_rot_z(int keycode, t_fdf *fdf)
 	if (fdf->key.rot_z == -1)
 		fdf->key.rot_z = 359;
 	fdf->img = mlx_new_image(fdf->mlx, X_WIN_1, Y_WIN_1);
-	fdf->img_data = (int*)mlx_get_data_addr(fdf->img, &fdf->bpp, &fdf->lsize, &fdf->endian);
+	fdf->img_data = (int*)mlx_get_data_addr(fdf->img, &fdf->bpp, &fdf->lsize,
+			&fdf->endian);
 	ft_place(*fdf, fdf->pos, fdf->key);
 }
 
@@ -119,7 +76,7 @@ int			key_fonct(int keycode, t_fdf *fdf)
 	return (0);
 }
 
-int		loop_hook(t_fdf *fdf)
+int			loop_hook(t_fdf *fdf)
 {
 	ft_place(*fdf, fdf->pos, fdf->key);
 	return (0);
