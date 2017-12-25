@@ -6,13 +6,15 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 19:04:23 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/25 21:20:02 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/25 22:48:26 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
 // ajouter le multpile fd //
+
+// ajouter la projection conique //
 
 void			key_fonct_set(t_fdf *fdf)
 {
@@ -65,7 +67,7 @@ int				main(int argc, char *argv[])
 		return (0);
 	fdf.pos = ft_set_pos(argv[i], fdf.pos);
 	fdf.mlx = mlx_init();
-	fdf.win1 = mlx_new_window(fdf.mlx, X_WIN_1, Y_WIN_1, argv[1]);
+	fdf.win1 = mlx_new_window(fdf.mlx, X_WIN_1, Y_WIN_1, argv[i]);
 	fdf.img = mlx_new_image(fdf.mlx, X_WIN_1, Y_WIN_1);
 	fdf.img_data = (int*)mlx_get_data_addr(fdf.img, &fdf.bpp, &fdf.lsize,
 			&fdf.endian);

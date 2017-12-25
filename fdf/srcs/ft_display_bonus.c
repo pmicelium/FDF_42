@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/23 16:26:53 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/25 21:06:55 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/25 22:42:05 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void		ft_display_bonus_fr(void)
 	ft_putendl("-Gestion dynamique du zoom.");
 	ft_putendl("-Affichage des FPS / IPS.");
 	ft_putendl("-Gestion dynamique des couleurs (sourie ou mollette)");
+	ft_putendl("-Clipping des lignes");
 }
 
 void		ft_display_bonus_en(void)
@@ -41,4 +42,5 @@ void		ft_display_bonus_en(void)
 	ft_putendl("-Dynamic zoom management.");
 	ft_putendl("-Display of the FPS.");
 	ft_putendl("-Dynamic color management (with the mouse or mouse wheel).");
+	ft_putendl("-Line clipping");
 }
