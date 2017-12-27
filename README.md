@@ -21,6 +21,8 @@ This project consists in graphically creating the schematic representation of a 
 
 -Line clipping
 
+-Management of the 'button stayed pressed' utility.
+
 # Usage
 
 Run `make`. An executable will compile.
