@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/03 15:31:44 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/19 12:28:41 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/27 20:51:42 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ static int		ft_parse_line(char *line)
 	j = 0;
 	while (tmp[j])
 		j++;
-	if (c == 0)
-	{
-		space = j;
-		c = ft_strlen(line);
-	}
-	i = ft_strlen(line);
-	if (i != c || j != space)
-	{
-		ft_putendl_color("wrong line detected => exit", "red");
-		exit(1);
-	}
+//	if (c == 0)
+//	{
+//		space = j;
+//		c = ft_strlen(line);
+//	}
+//	i = ft_strlen(line);
+//	if (i != c || j != space)
+//	{
+//		ft_putendl_color("wrong line detected => exit", "red");
+//		exit(1);
+//	}
 	return (0);
 }
 
@@ -43,10 +43,10 @@ static char		**ft_malloc_line(char **line, int fd, t_pos *pos)
 	char	*line2;
 	char	**tmp;
 	int		i;
-	int		len;
 
 	i = 0;
 	pos->y = 0;
+	pos->x = 0;
 	while (get_next_line(fd, &line2) > 0)
 		pos->y++;
 	tmp = ft_strsplit(line2, ' ');
@@ -62,6 +62,7 @@ static char		**ft_malloc_line(char **line, int fd, t_pos *pos)
 			exit(1);
 		i++;
 	}
+//	ft_free_tab(tmp);
 	return (line);
 }
 
@@ -89,7 +90,7 @@ static t_pos	ft_get_z(t_pos pos, char **line)
 		j = 0;
 		y++;
 		i++;
-		free(tmp);
+//		ft_free_tab(tmp);
 	}
 	return (pos);
 }
@@ -100,6 +101,7 @@ t_pos			ft_set_pos(char *argv, t_pos pos)
 	int		fd;
 	int		i;
 
+	line = NULL;
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
 	{
@@ -117,6 +119,6 @@ t_pos			ft_set_pos(char *argv, t_pos pos)
 		i++;
 	}
 	pos = ft_get_z(pos, line);
-	free(line);
+//	ft_free_tab(line);
 	return (pos);
 }

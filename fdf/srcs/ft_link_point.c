@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 22:25:54 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/25 22:32:40 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/27 19:21:48 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	ft_place_pre_bresenham_j(t_fdf fdf, t_put *put, int i, int j)
 	}
 }
 
-void		ft_link_point(t_fdf fdf, t_pos pos)
+void		ft_link_point(t_fdf fdf)
 {
 	t_put	put;
 	int		i;
@@ -54,12 +54,12 @@ void		ft_link_point(t_fdf fdf, t_pos pos)
 
 	i = 0;
 	j = 0;
-	while (j < pos.y)
+	while (j < fdf.pos.y)
 	{
-		while (i < pos.x * j)
+		while (i < fdf.pos.x * j)
 		{
-			put.x0 = pos.placex[i];
-			put.y0 = pos.placey[i];
+			put.x0 = fdf.pos.placex[i];
+			put.y0 = fdf.pos.placey[i];
 			ft_place_pre_bresenham_i(fdf, &put, i, j);
 			ft_place_pre_bresenham_j(fdf, &put, i, j);
 			i++;

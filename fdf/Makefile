@@ -9,6 +9,7 @@ SRCS = srcs/main.c\
 	   srcs/ft_mouse_fonct.c\
 	   srcs/ft_mouse_fonct_2.c\
 	   srcs/ft_feature_print.c\
+	   srcs/ft_feature_print_2.c\
 	   srcs/ft_display_bonus.c\
 	   srcs/ft_fps.c\
 	   srcs/ft_link_point.c\
@@ -23,13 +24,13 @@ $(NAME) :
 	@make re -C minilibx_macos
 	@echo "\033[036m=>	\033[0m\033[032mDONE !\033[0m"
 	@echo "\033[036m=>	\033[0m\033[033mCompiling FDF ...\033[0m"
-	@gcc -o $(NAME) $(SRCS) libft/libft.a  minilibx_macos/libmlx.a -framework OpenGL -framework Appkit -fsanitize=address
+	@gcc -Wall -Wextra -Werror -o $(NAME) $(SRCS) libft/libft.a  minilibx_macos/libmlx.a -framework OpenGL -framework Appkit -fsanitize=address
 	@echo "\033[036m=>	\033[0m\033[032mDONE !\033[0m"
 	@echo "=============================================="
 
 test :
 	@echo "\033[036m=>	\033[0m\033[033mCompiling FDF ...\033[0m"
-	@gcc -o $(NAME) $(SRCS) libft/libft.a  minilibx_macos/libmlx.a -framework OpenGL -framework Appkit -fsanitize=address
+	@gcc -o $(NAME) $(SRCS) libft/libft.a  minilibx_macos/libmlx.a -framework OpenGL -framework Appkit
 	@echo "\033[036m=>	\033[0m\033[032mDONE !\033[0m"
 	@echo "=============================================="
 

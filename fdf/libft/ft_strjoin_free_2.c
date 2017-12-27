@@ -6,13 +6,13 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 11:01:50 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/27 18:40:29 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/27 18:47:52 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin_free(char *s1, char *s2)
+char	*ft_strjoin_free_2(char *s1, char *s2)
 {
 	char		*new;
 	size_t		i;
@@ -37,6 +37,6 @@ char	*ft_strjoin_free(char *s1, char *s2)
 		k++;
 	}
 	new[k] = '\0';
-	free(s1);
+	free(s2);
 	return (new);
 }

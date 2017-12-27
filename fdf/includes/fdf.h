@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 22:27:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/25 22:27:14 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/27 22:47:23 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 # include "libft.h"
 # include "mlx.h"
 # include <math.h>
-# include <stdio.h>
 # include <stdio.h>
 # include <time.h>
 # define Y_WIN_1 1000
@@ -44,7 +43,7 @@ typedef struct		s_degrad
 typedef struct		s_pos
 {
 	int				x;
-	int				y;      //malloc foireux quelque part je pense //
+	int				y;
 	int				**z;
 	int				*placex;
 	int				*placey;
@@ -75,14 +74,14 @@ typedef struct		s_put
 
 typedef struct		s_key
 {
-	int			elev;
-	int			zoom;
-	double		rot_x;
-	double		rot_y;
-	double		rot_z;
-	int			w;
-	int			a;
-	int			hud;
+	int				elev;
+	int				zoom;
+	double			rot_x;
+	double			rot_y;
+	double			rot_z;
+	int				w;
+	int				a;
+	int				hud;
 }					t_key;
 
 typedef struct		s_fdf
@@ -91,10 +90,10 @@ typedef struct		s_fdf
 	void			*img;
 	int				*img_data;
 	void			*win1;
-	void			*win2;
 	int				lsize;
 	int				endian;
 	int				bpp;
+	int				repaint;
 	struct s_pos	pos;
 	struct s_key	key;
 	struct s_degrad	degrad;
@@ -102,7 +101,7 @@ typedef struct		s_fdf
 
 void				bresenham_line(t_fdf fdf, t_put put, int color, int degrad);
 void				bresenham_circle(t_fdf fdf, t_put put, int color);
-void				ft_place(t_fdf fdf, t_pos pos, t_key key);
+void				ft_place(t_fdf fdf, t_key key);
 void				ft_feature_print(t_fdf fdf);
 void				key_fonct_set(t_fdf *fdf);
 void				ft_display_bonus_fr(void);
@@ -115,8 +114,9 @@ void				key_fonct_zoom(int keycode, t_fdf *fdf);
 void				key_fonct_reset(t_fdf *fdf);
 void				ft_red_upper(t_fdf *fdf, int button, int x);
 void				ft_green_upper(t_fdf *fdf, int button, int x);
-void				ft_fps(t_fdf fdf, clock_t time);
-void				ft_link_point(t_fdf fdf, t_pos pos);
+void				ft_fps(t_fdf fdf);
+void				ft_link_point(t_fdf fdf);
+void				ft_feature_color_2(t_fdf fdf);
 
 t_pos				ft_set_pos(char *argv, t_pos pos);
 

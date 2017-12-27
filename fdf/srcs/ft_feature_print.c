@@ -6,28 +6,33 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 15:30:51 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/25 21:15:44 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/27 18:57:46 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static void	ft_feature_color_2(t_fdf fdf)
+static void	ft_feature_color_3(t_fdf fdf)
 {
+	char *tmp;
+
 	mlx_string_put(fdf.mlx, fdf.win1, 25, Y_WIN_1 - 75, fdf.pos.low_color,
 			"Lower color:");
 	mlx_string_put(fdf.mlx, fdf.win1, 160, Y_WIN_1 - 75, GREY,
 			"-     +");
-	mlx_string_put(fdf.mlx, fdf.win1, 180, Y_WIN_1 - 75, GREY,
-			ft_itoa(fdf.degrad.l_r));
+	tmp = ft_itoa(fdf.degrad.l_r);
+	mlx_string_put(fdf.mlx, fdf.win1, 180, Y_WIN_1 - 75, GREY, tmp);
+	free(tmp);
 	mlx_string_put(fdf.mlx, fdf.win1, 245, Y_WIN_1 - 75, GREY,
 			"-     +");
-	mlx_string_put(fdf.mlx, fdf.win1, 265, Y_WIN_1 - 75, GREY,
-			ft_itoa(fdf.degrad.l_g));
+	tmp = ft_itoa(fdf.degrad.l_g);
+	mlx_string_put(fdf.mlx, fdf.win1, 265, Y_WIN_1 - 75, GREY, tmp);
+	free(tmp);
 	mlx_string_put(fdf.mlx, fdf.win1, 335, Y_WIN_1 - 75, GREY,
 			"-     +");
-	mlx_string_put(fdf.mlx, fdf.win1, 355, Y_WIN_1 - 75, GREY,
-			ft_itoa(fdf.degrad.l_b));
+	tmp = ft_itoa(fdf.degrad.l_b);
+	mlx_string_put(fdf.mlx, fdf.win1, 355, Y_WIN_1 - 75, GREY, tmp);
+	free(tmp);
 }
 
 static void	ft_feature_color(t_fdf fdf)
@@ -44,17 +49,8 @@ static void	ft_feature_color(t_fdf fdf)
 			"Upper color :");
 	mlx_string_put(fdf.mlx, fdf.win1, 160, Y_WIN_1 - 100, GREY,
 			"-     +");
-	mlx_string_put(fdf.mlx, fdf.win1, 180, Y_WIN_1 - 100, GREY,
-			ft_itoa(fdf.degrad.h_r));
-	mlx_string_put(fdf.mlx, fdf.win1, 245, Y_WIN_1 - 100, GREY,
-			"-     +");
-	mlx_string_put(fdf.mlx, fdf.win1, 265, Y_WIN_1 - 100, GREY,
-			ft_itoa(fdf.degrad.h_g));
-	mlx_string_put(fdf.mlx, fdf.win1, 335, Y_WIN_1 - 100, GREY,
-			"-     +");
-	mlx_string_put(fdf.mlx, fdf.win1, 355, Y_WIN_1 - 100, GREY,
-			ft_itoa(fdf.degrad.h_b));
 	ft_feature_color_2(fdf);
+	ft_feature_color_3(fdf);
 }
 
 static void	ft_feature_key(t_fdf fdf)
@@ -85,17 +81,24 @@ static void	ft_feature_key(t_fdf fdf)
 
 static void	ft_feature_var(t_fdf fdf)
 {
+	char *tmp;
+
 	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 - 100, 25, 0x00c1c1c1, "FPS :");
-	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 - 110, 45, 0x00c1c1c1,
-			ft_strjoin("Zoom : x", ft_itoa(fdf.key.zoom)));
-	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 - 160, 65, 0x00c1c1c1,
-			ft_strjoin("Elevation : ", ft_itoa(fdf.key.elev)));
-	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 - 220, 85, 0x00c1c1c1,
-			ft_strjoin("X-axis rotation : ", ft_itoa(fdf.key.rot_x)));
-	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 - 220, 105, 0x00c1c1c1,
-			ft_strjoin("Y-axis rotation : ", ft_itoa(fdf.key.rot_y)));
-	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 - 220, 125, 0x00c1c1c1,
-			ft_strjoin("Z-axis rotation : ", ft_itoa(fdf.key.rot_z)));
+	tmp = ft_strjoin_free_2("Zoom : x", ft_itoa(fdf.key.zoom));
+	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 - 110, 45, 0x00c1c1c1, tmp);
+	free (tmp);
+	tmp = ft_strjoin_free_2("Elevation : ", ft_itoa(fdf.key.elev));
+	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 - 160, 65, 0x00c1c1c1, tmp);
+	free (tmp);
+	tmp = ft_strjoin_free_2("X-axis rotation : ", ft_itoa(fdf.key.rot_x));
+	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 - 220, 85, 0x00c1c1c1, tmp);
+	free (tmp);
+	tmp = ft_strjoin_free_2("Y-axis rotation : ", ft_itoa(fdf.key.rot_y));
+	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 - 220, 105, 0x00c1c1c1, tmp);
+	free (tmp);
+	tmp = ft_strjoin_free_2("Z-axis rotation : ", ft_itoa(fdf.key.rot_z));
+	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 - 220, 125, 0x00c1c1c1, tmp);
+	free (tmp);
 }
 
 void		ft_feature_print(t_fdf fdf)

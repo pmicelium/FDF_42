@@ -6,7 +6,7 @@
 #    By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 14:44:04 by pmiceli           #+#    #+#              #
-#    Updated: 2017/12/23 16:15:43 by pmiceli          ###   ########.fr        #
+#    Updated: 2017/12/27 18:41:37 by pmiceli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS = ft_putchar.c\
 	   ft_putendl_color.c\
 	   ft_intlen_base.c\
 	   ft_putstr_background.c\
+	   ft_strjoin_free_2.c\
 	   ft_putstr_color.c\
 	   ft_strjoin_free.c\
 	   ft_rm_path.c\

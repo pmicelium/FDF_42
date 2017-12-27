@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 20:24:05 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/25 20:45:01 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/27 17:59:55 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void			bresenham_circle(t_fdf fdf, t_put put, int color)
 	}
 }
 
-static int		ft_degraded(t_fdf fdf, double i, t_put put, int degrad)
+static int		ft_degraded(t_fdf fdf, double i, int degrad)
 {
 	int		r;
 	int		g;
@@ -101,7 +101,7 @@ void			bresenham_line(t_fdf fdf, t_put put, int color, int degrad)
 	while (1)
 	{
 		if (degrad != 0)
-			color = ft_degraded(fdf, i++ / steap, put, degrad);
+			color = ft_degraded(fdf, i++ / steap, degrad);
 		if (put.y0 * X_WIN_1 + put.x0 < X_WIN_1 * Y_WIN_1
 				&& put.y0 >= 0 && put.x0 >= 0
 				&& put.y0 < Y_WIN_1 && put.x0 < X_WIN_1)

@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 19:04:23 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/27 15:20:08 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/27 21:33:32 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 void			key_fonct_set(t_fdf *fdf)
 {
 	fdf->key.elev = 2;
-	fdf->key.zoom = 30;
+	fdf->key.zoom = 5;
 	fdf->key.w = 0;
 	fdf->key.a = 0;
 	fdf->pos.low_color = 0x00FFFFFF;
@@ -31,6 +31,7 @@ void			key_fonct_set(t_fdf *fdf)
 	fdf->degrad.l_g = (fdf->pos.low_color >> 8) & 0xFF;
 	fdf->degrad.l_b = (fdf->pos.low_color) & 0xFF;
 	fdf->key.hud = 1;
+	fdf->repaint = 1;
 	fdf->key.rot_x = 0;
 	fdf->key.rot_y = 0;
 	fdf->key.rot_z = 0;
@@ -59,7 +60,6 @@ int				main(int argc, char *argv[])
 {
 	t_fdf	fdf;
 	int		i;
-	char	**line;
 
 	i = 1;
 	i = show_bonus(argc, argv, i);
@@ -72,8 +72,8 @@ int				main(int argc, char *argv[])
 	fdf.img_data = (int*)mlx_get_data_addr(fdf.img, &fdf.bpp, &fdf.lsize,
 			&fdf.endian);
 	key_fonct_set(&fdf);
-	ft_place(fdf, fdf.pos, fdf.key);
-	mlx_mouse_hook(fdf.win1, mouse_fonct, &fdf);
+	ft_place(fdf, fdf.key);
+	mlx_hook(fdf.win1, 4, (1l << 8), &mouse_fonct, &fdf);
 	mlx_hook(fdf.win1, 2, (1l << 8), &key_fonct, &fdf);
 	mlx_loop_hook(fdf.mlx, loop_hook, &fdf);
 	mlx_loop(fdf.mlx);

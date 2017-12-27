@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 17:29:13 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/25 22:28:26 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/27 22:04:37 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ static void	ft_place_calcul(t_fdf *fdf, int x, int y, int i)
 	tmp_pz = fdf->pos.placez[i];
 	fdf->pos.placex[i] = tmp_px * cos(fdf->key.rot_y * M_PI / 180)
 		+ tmp_pz * sin(fdf->key.rot_y * M_PI / 180);
-	fdf->pos.placex[i] += (400 + fdf->key.zoom / 10) + fdf->key.a;
-	fdf->pos.placey[i] += (400 + fdf->key.zoom / 10) + fdf->key.w;
+	fdf->pos.placex[i] += (((X_WIN_1 / 2) - (fdf->pos.x * fdf->key.zoom / 2))
+			+ fdf->key.zoom / 10) + fdf->key.a;
+	fdf->pos.placey[i] += (((Y_WIN_1 / 2) - (fdf->pos.y * fdf->key.zoom / 2))
+			+ fdf->key.zoom / 10) + fdf->key.w;
 }
 
 static void	ft_place_malloc(t_fdf *fdf)
@@ -76,18 +78,19 @@ static void	ft_place_point(t_fdf *fdf)
 		}
 		y++;
 	}
-	ft_link_point(*fdf, fdf->pos);
+	ft_link_point(*fdf);
 }
 
-void		ft_place(t_fdf fdf, t_pos pos, t_key key)
+void		ft_place(t_fdf fdf, t_key key)
 {
-	clock_t		time;
+//	clock_t		time;
 
-	time = clock();
+//	time = clock();
+
 	ft_place_point(&fdf);
-	mlx_put_image_to_window(fdf.mlx, fdf.win1, fdf.img, 0, 0);
-	if (key.hud == 1)
-	{
-		ft_fps(fdf, time);
-	}
+//	if (fdf.key.hud == 1)
+//	{
+//		ft_feature_print(fdf);
+//		ft_fps(fdf, time);
+//	}
 }
