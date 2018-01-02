@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 15:48:06 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/02 17:44:07 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/02 20:33:42 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static void	key_fonct_rot_z(int keycode, t_fdf *fdf)
 		fdf->key.rot_z = 0;
 	if (fdf->key.rot_z == -1)
 		fdf->key.rot_z = 359;
-
 }
 
 static void	ft_free_all(t_fdf *fdf)
@@ -51,6 +50,15 @@ static void	ft_free_all(t_fdf *fdf)
 	mlx_destroy_window(fdf->mlx, fdf->win1);
 	free(fdf->mlx);
 	ft_free_tab_int(fdf->pos.z);
+	printf("mlx %p\n", fdf->mlx);
+	printf("win1 %p\n", fdf->win1);
+	printf("img %p\n", fdf->img);
+	printf("img_data %p\n", fdf->img_data);
+	printf("z %p\n", fdf->pos.z);
+	printf("placex %p\n", fdf->pos.placex);
+	printf("placey %p\n", fdf->pos.placey);
+	printf("placez%p\n", fdf->pos.placez);
+	printf("elev %p\n", fdf->pos.elev);
 }
 
 int			key_fonct(int keycode, t_fdf *fdf)
@@ -87,6 +95,7 @@ int			loop_hook(t_fdf *fdf)
 {
 	if (fdf->repaint == 1)
 	{
+		mlx_destroy_image(fdf->mlx, fdf->img);
 		fdf->img = mlx_new_image(fdf->mlx, X_WIN_1, Y_WIN_1);
 		fdf->img_data = (int*)mlx_get_data_addr(fdf->img, &fdf->bpp,
 				&fdf->lsize, &fdf->endian);

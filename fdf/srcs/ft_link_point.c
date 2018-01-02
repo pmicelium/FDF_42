@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 22:25:54 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/27 19:21:48 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/02 18:43:12 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,8 @@ void		ft_link_point(t_fdf fdf)
 		}
 		j++;
 	}
+	free(fdf.pos.placex);
+	free(fdf.pos.placey);
+	free(fdf.pos.placez);
+	free(fdf.pos.elev);
 }

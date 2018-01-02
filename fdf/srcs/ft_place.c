@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 17:29:13 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/27 22:04:37 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/02 18:43:22 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,14 +83,5 @@ static void	ft_place_point(t_fdf *fdf)
 
 void		ft_place(t_fdf fdf, t_key key)
 {
-//	clock_t		time;
-
-//	time = clock();
-
 	ft_place_point(&fdf);
-//	if (fdf.key.hud == 1)
-//	{
-//		ft_feature_print(fdf);
-//		ft_fps(fdf, time);
-//	}
 }

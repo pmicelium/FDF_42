@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 22:27:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/29 19:40:09 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/02 19:35:40 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ void				ft_feature_print(t_fdf fdf);
 void				key_fonct_set(t_fdf *fdf);
 void				ft_display_bonus_fr(void);
 void				ft_display_bonus_en(void);
-void				ft_antialiasing(t_fdf *fdf);
 int					key_fonct(int keycode, t_fdf *fdf);
 void				key_fonct_mv_struct(int keycode, t_fdf *fdf);
 void				key_fonct_elev(int keycode, t_fdf *fdf);
