@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 19:04:23 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/27 21:33:32 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/30 20:49:52 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,12 @@
 
 // ajouter le multpile fd //
 
-// ajouter la projection conique //
-
 void			key_fonct_set(t_fdf *fdf)
 {
 	fdf->key.elev = 2;
 	fdf->key.zoom = 5;
 	fdf->key.w = 0;
 	fdf->key.a = 0;
-	fdf->pos.low_color = 0x00FFFFFF;
-	fdf->pos.high_color = 0x00FF0000;
 	fdf->degrad.h_r = (fdf->pos.high_color >> 16) & 0xFF;
 	fdf->degrad.h_g = (fdf->pos.high_color >> 8) & 0xFF;
 	fdf->degrad.h_b = (fdf->pos.high_color) & 0xFF;
@@ -35,6 +31,8 @@ void			key_fonct_set(t_fdf *fdf)
 	fdf->key.rot_x = 0;
 	fdf->key.rot_y = 0;
 	fdf->key.rot_z = 0;
+	fdf->fps.fps = 0;
+	fdf->fps.start = 0;
 }
 
 static int		show_bonus(int argc, char **argv, int i)
@@ -71,6 +69,8 @@ int				main(int argc, char *argv[])
 	fdf.img = mlx_new_image(fdf.mlx, X_WIN_1, Y_WIN_1);
 	fdf.img_data = (int*)mlx_get_data_addr(fdf.img, &fdf.bpp, &fdf.lsize,
 			&fdf.endian);
+	fdf.pos.low_color = 0x00FFFFFF;
+	fdf.pos.high_color = 0x00FF0000;
 	key_fonct_set(&fdf);
 	ft_place(fdf, fdf.key);
 	mlx_hook(fdf.win1, 4, (1l << 8), &mouse_fonct, &fdf);

@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 14:55:34 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/27 18:49:05 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/29 21:42:12 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void				ft_putstr_color(char *str, char *color);
 void				ft_putstr_background(char *str, char *color);
 void				ft_putendl_color(char *str, char *color);
 void				ft_free_tab(char **tab);
+void				ft_free_tab_int(int **tab);
 void				ft_display_file(char *file_name);
 
 size_t				ft_strlcat(char *dest, char const *src, size_t nb);

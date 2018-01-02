@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 22:27:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/27 22:47:23 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/29 19:40:09 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,12 @@ typedef struct		s_put
 	int				color;
 }					t_put;
 
+typedef struct		s_fps
+{
+	unsigned int	fps;
+	unsigned int	start;
+}					t_fps;
+
 typedef struct		s_key
 {
 	int				elev;
@@ -97,6 +103,7 @@ typedef struct		s_fdf
 	struct s_pos	pos;
 	struct s_key	key;
 	struct s_degrad	degrad;
+	struct s_fps	fps;
 }					t_fdf;
 
 void				bresenham_line(t_fdf fdf, t_put put, int color, int degrad);
@@ -114,7 +121,7 @@ void				key_fonct_zoom(int keycode, t_fdf *fdf);
 void				key_fonct_reset(t_fdf *fdf);
 void				ft_red_upper(t_fdf *fdf, int button, int x);
 void				ft_green_upper(t_fdf *fdf, int button, int x);
-void				ft_fps(t_fdf fdf);
+void				ft_fps(t_fdf *fdf);
 void				ft_link_point(t_fdf fdf);
 void				ft_feature_color_2(t_fdf fdf);
 

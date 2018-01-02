@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 22:22:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/25 21:39:28 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/29 22:10:04 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ int			mouse_fonct(int button, int x, int y, t_fdf *fdf)
 		fdf->pos.low_color = (fdf->degrad.l_r & 0xFF) << 16 |
 			(fdf->degrad.l_g & 0xFF) << 8 | (fdf->degrad.l_b & 0xFF);
 	}
+	fdf->repaint = 1;
 	return (0);
 }

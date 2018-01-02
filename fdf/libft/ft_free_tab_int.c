@@ -6,7 +6,7 @@
 /*   By: vtudes <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 22:12:42 by vtudes            #+#    #+#             */
-/*   Updated: 2017/12/27 19:16:47 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/29 21:40:16 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_free_tab_int(int **tab)
 	i = 0;
 	while (tab[i])
 	{
-		ft_memdel((void**)&tab[i]);
+		free(tab[i]);
 		i++;
 	}
 	free(tab);

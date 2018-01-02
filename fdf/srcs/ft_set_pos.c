@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/03 15:31:44 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/27 20:51:42 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/02 18:23:35 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,55 +14,61 @@
 
 static int		ft_parse_line(char *line)
 {
-	static int	c;
-	static int	space;
-	char		**tmp;
-	int			i;
-	int			j;
-
-	tmp = ft_strsplit(line, ' ');
-	j = 0;
-	while (tmp[j])
-		j++;
-//	if (c == 0)
-//	{
-//		space = j;
-//		c = ft_strlen(line);
-//	}
-//	i = ft_strlen(line);
-//	if (i != c || j != space)
-//	{
-//		ft_putendl_color("wrong line detected => exit", "red");
-//		exit(1);
-//	}
 	return (0);
+}
+
+static int		ft_count_x(char *str)
+{
+	int		i;
+	int		res;
+
+	i = 0;
+	res = 0;
+	while (str[i])
+	{
+		if (str[i] != 32 && (str[i + 1] == 32 || str[i + 1] == '\0'))
+			res++;
+		i++;
+	}
+	return (res);
 }
 
 static char		**ft_malloc_line(char **line, int fd, t_pos *pos)
 {
 	char	*line2;
-	char	**tmp;
 	int		i;
+	int		j;
 
 	i = 0;
+	j = 0;
 	pos->y = 0;
 	pos->x = 0;
+	line2 = NULL;
 	while (get_next_line(fd, &line2) > 0)
+	{
+		if (j == 0)
+		{
+			pos->x = ft_count_x(line2);
+			j++;
+		}
 		pos->y++;
-	tmp = ft_strsplit(line2, ' ');
-	while (tmp[pos->x])
-		pos->x++;
-	if (!(line = (char**)malloc(sizeof(char*) * pos->y)))
+		free(line2);
+	}
+	ft_putnbr_endl(pos->x);
+// no leaks //
+//	while (1);
+	if (!(line = (char**)malloc(sizeof(char*) * (pos->y + 1))))
 		exit(1);
-	if (!(pos->z = (int**)malloc(sizeof(int*) * pos->y)))
+	line[pos->y] = NULL;
+	if (!(pos->z = (int**)malloc(sizeof(int*) * (pos->y + 1))))
 		exit(1);
+	pos->z[pos->y] = NULL;
 	while (i < pos->y)
 	{
 		if (!(pos->z[i] = (int*)malloc(sizeof(int) * pos->x)))
 			exit(1);
 		i++;
 	}
-//	ft_free_tab(tmp);
 	return (line);
 }
 
@@ -86,11 +92,9 @@ static t_pos	ft_get_z(t_pos pos, char **line)
 			pos.z[y][x] = ft_atoi(tmp[j++]);
 			x++;
 		}
-		x = 0;
-		j = 0;
 		y++;
 		i++;
-//		ft_free_tab(tmp);
+		ft_free_tab(tmp);
 	}
 	return (pos);
 }
@@ -109,7 +113,8 @@ t_pos			ft_set_pos(char *argv, t_pos pos)
 		exit(1);
 	}
 	i = 0;
-	line = ft_malloc_line(line, fd, &pos);
+	line = ft_malloc_line(line, fd, &pos); //faire apres le parse//
+//	while (1);
 	close(fd);
 	fd = open(argv, O_RDONLY);
 	while (get_next_line(fd, &line[i]) > 0)
@@ -119,6 +124,6 @@ t_pos			ft_set_pos(char *argv, t_pos pos)
 		i++;
 	}
 	pos = ft_get_z(pos, line);
-//	ft_free_tab(line);
+	ft_free_tab(line);
 	return (pos);
 }

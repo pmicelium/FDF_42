@@ -6,7 +6,7 @@
 #    By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 14:44:04 by pmiceli           #+#    #+#              #
-#    Updated: 2017/12/27 18:41:37 by pmiceli          ###   ########.fr        #
+#    Updated: 2017/12/29 21:43:31 by pmiceli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,6 +62,7 @@ SRCS = ft_putchar.c\
 	   ft_itoa.c\
 	   ft_memdel.c\
 	   ft_memalloc.c\
+	   ft_free_tab_int.c\
 	   ft_putchar_fd.c\
 	   ft_putendl.c\
 	   ft_putendl_fd.c\

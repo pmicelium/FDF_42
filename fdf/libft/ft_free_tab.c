@@ -6,7 +6,7 @@
 /*   By: vtudes <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 22:12:42 by vtudes            #+#    #+#             */
-/*   Updated: 2017/11/24 17:26:12 by pmiceli          ###   ########.fr       */
+/*   Updated: 2017/12/29 21:26:41 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_free_tab(char **tab)
 	i = 0;
 	while (tab[i])
 	{
-		ft_strdel(&tab[i]);
+		free(tab[i]);
 		i++;
 	}
 	free(tab);

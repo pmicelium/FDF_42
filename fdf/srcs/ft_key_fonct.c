@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 15:48:06 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/27 22:29:15 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/02 17:44:07 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	ft_free_all(t_fdf *fdf)
 	mlx_destroy_image(fdf->mlx, fdf->img);
 	mlx_destroy_window(fdf->mlx, fdf->win1);
 	free(fdf->mlx);
-	free(fdf->pos.z);
+	ft_free_tab_int(fdf->pos.z);
 }
 
 int			key_fonct(int keycode, t_fdf *fdf)
@@ -60,14 +60,15 @@ int			key_fonct(int keycode, t_fdf *fdf)
 	{
 		ft_putendl_color("Exiting...", "green");
 		ft_free_all(fdf);
-//		while (1);
+		while (1);
 		exit(1);
 	}
-	else if ((keycode == 69 || keycode == 24) || (keycode == 78 || keycode == 27))
+	else if (keycode == 69 || keycode == 24 || keycode == 78 || keycode == 27)
 		key_fonct_elev(keycode, fdf);
-	else if ((keycode == 25 || keycode == 29) || (keycode == 92 || keycode == 82))
+	else if (keycode == 25 || keycode == 29 || keycode == 92 || keycode == 82)
 		key_fonct_zoom(keycode, fdf);
-	else if (keycode == 126 || keycode == 123 || keycode == 124 || keycode == 125)
+	else if (keycode == 126 || keycode == 123
+			|| keycode == 124 || keycode == 125)
 		key_fonct_mv_struct(keycode, fdf);
 	else if (keycode == 49)
 		key_fonct_reset(fdf);
@@ -86,16 +87,16 @@ int			loop_hook(t_fdf *fdf)
 {
 	if (fdf->repaint == 1)
 	{
-	fdf->img = mlx_new_image(fdf->mlx, X_WIN_1, Y_WIN_1);
-	fdf->img_data = (int*)mlx_get_data_addr(fdf->img, &fdf->bpp, &fdf->lsize,
-			&fdf->endian);
-	ft_place(*fdf, fdf->key);
-	fdf->repaint = 0;
+		fdf->img = mlx_new_image(fdf->mlx, X_WIN_1, Y_WIN_1);
+		fdf->img_data = (int*)mlx_get_data_addr(fdf->img, &fdf->bpp,
+				&fdf->lsize, &fdf->endian);
+		ft_place(*fdf, fdf->key);
+		fdf->repaint = 0;
 	}
 	mlx_clear_window(fdf->mlx, fdf->win1);
 	mlx_put_image_to_window(fdf->mlx, fdf->win1, fdf->img, 0, 0);
 	if (fdf->key.hud == 1)
 		ft_feature_print(*fdf);
-	ft_fps(*fdf);
+	ft_fps(fdf);
 	return (0);
 }
