@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/03 15:31:44 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/02 18:33:45 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/02 20:53:20 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ static char		**ft_malloc_line(char **line, int fd, t_pos *pos)
 		pos->y++;
 		free(line2);
 	}
-// no leaks //
 	if (!(line = (char**)malloc(sizeof(char*) * (pos->y + 1))))
 		exit(1);
 	line[pos->y] = NULL;
