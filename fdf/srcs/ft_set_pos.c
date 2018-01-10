@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/03 15:31:44 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/02 20:53:20 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/08 18:27:31 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ static t_pos	ft_get_z(t_pos pos, char **line)
 		i++;
 		ft_free_tab(tmp);
 	}
+	pos = ft_pos_normalization(pos);
 	return (pos);
 }
 
@@ -103,14 +104,14 @@ t_pos			ft_set_pos(char *argv, t_pos pos)
 	int		i;
 
 	line = NULL;
+	i = 0;
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
 	{
 		ft_putendl_color("READ error, check the file => exit", "red");
 		exit(1);
 	}
-	i = 0;
-	line = ft_malloc_line(line, fd, &pos); //faire apres le parse//
+	line = ft_malloc_line(line, fd, &pos);
 	close(fd);
 	fd = open(argv, O_RDONLY);
 	while (get_next_line(fd, &line[i]) > 0)

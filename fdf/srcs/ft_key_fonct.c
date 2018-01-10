@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 15:48:06 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/02 22:02:38 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/08 19:29:32 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int			key_fonct(int keycode, t_fdf *fdf)
 	{
 		ft_putendl_color("Exiting...", "green");
 		ft_free_all(fdf);
-		while (1);
+//			while (1);
 		exit(1);
 	}
 	else if (keycode == 69 || keycode == 24 || keycode == 78 || keycode == 27)

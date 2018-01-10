@@ -6,13 +6,11 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 19:04:23 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/02 20:38:15 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/08 20:48:45 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-
-// ajouter le multpile fd //
 
 void			key_fonct_set(t_fdf *fdf)
 {

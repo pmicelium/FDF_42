@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 21:44:12 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/29 19:41:16 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/08 16:43:09 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void		ft_fps(t_fdf *fdf)
 	static unsigned int				tmp;
 	char							*tmp_2;
 	struct timespec					tmptime;
-	
 
 	fdf->fps.fps++;
 	if (!last.tv_nsec)

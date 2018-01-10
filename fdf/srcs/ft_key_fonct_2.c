@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 21:23:08 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/27 21:08:13 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/08 16:37:55 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	key_fonct_mv_struct(int keycode, t_fdf *fdf)
 		fdf->key.a -= 3;
 	if (keycode == 124)
 		fdf->key.a += 3;
-
 }
 
 void	key_fonct_elev(int keycode, t_fdf *fdf)
@@ -31,7 +30,6 @@ void	key_fonct_elev(int keycode, t_fdf *fdf)
 		fdf->key.elev--;
 	else
 		fdf->key.elev++;
-
 }
 
 void	key_fonct_zoom(int keycode, t_fdf *fdf)

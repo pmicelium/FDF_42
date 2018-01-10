@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 22:27:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/02 21:55:46 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/08 21:11:08 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ typedef struct		s_degrad
 	int				l_r;
 	int				l_g;
 	int				l_b;
+	int				b_r;
+	int				b_g;
+	int				b_b;
 }					t_degrad;
 
 typedef struct		s_pos
@@ -52,6 +55,8 @@ typedef struct		s_pos
 	int				high_color;
 	int				low_color;
 	int				degraded;
+	int				low_nb;
+	int				high_nb;
 }					t_pos;
 
 typedef struct		s_put
@@ -66,9 +71,6 @@ typedef struct		s_put
 	int				inc_y;
 	int				err;
 	int				e2;
-	int				o_x;
-	int				o_y;
-	int				r;
 	int				color;
 }					t_put;
 
@@ -125,6 +127,7 @@ void				ft_link_point(t_fdf fdf);
 void				ft_feature_color_2(t_fdf fdf);
 
 t_pos				ft_set_pos(char *argv, t_pos pos);
+t_pos				ft_pos_normalization(t_pos pos);
 
 int					mouse_fonct(int button, int x, int y, t_fdf *fdf);
 int					loop_hook(t_fdf *fdf);

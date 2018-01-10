@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 15:30:51 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/02 22:01:19 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/08 16:39:19 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,19 +86,19 @@ static void	ft_feature_var(t_fdf fdf)
 	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 - 100, 25, 0x00c1c1c1, "FPS :");
 	tmp = ft_strjoin_free_2("Zoom : x", ft_itoa(fdf.key.zoom));
 	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 - 110, 45, 0x00c1c1c1, tmp);
-	free (tmp);
+	free(tmp);
 	tmp = ft_strjoin_free_2("Elevation : ", ft_itoa(fdf.key.elev));
 	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 - 160, 65, 0x00c1c1c1, tmp);
-	free (tmp);
+	free(tmp);
 	tmp = ft_strjoin_free_2("X-axis rotation : ", ft_itoa(fdf.key.rot_x));
 	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 - 220, 85, 0x00c1c1c1, tmp);
-	free (tmp);
+	free(tmp);
 	tmp = ft_strjoin_free_2("Y-axis rotation : ", ft_itoa(fdf.key.rot_y));
 	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 - 220, 105, 0x00c1c1c1, tmp);
-	free (tmp);
+	free(tmp);
 	tmp = ft_strjoin_free_2("Z-axis rotation : ", ft_itoa(fdf.key.rot_z));
 	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 - 220, 125, 0x00c1c1c1, tmp);
-	free (tmp);
+	free(tmp);
 }
 
 void		ft_feature_print(t_fdf fdf)

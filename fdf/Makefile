@@ -13,6 +13,7 @@ SRCS = srcs/main.c\
 	   srcs/ft_display_bonus.c\
 	   srcs/ft_fps.c\
 	   srcs/ft_link_point.c\
+	   srcs/ft_pos_normalization.c\
 
 all : test
 
@@ -30,7 +31,7 @@ $(NAME) :
 
 test :
 	@echo "\033[036m=>	\033[0m\033[033mCompiling FDF ...\033[0m"
-	@gcc -o $(NAME) $(SRCS) libft/libft.a  minilibx_macos/libmlx.a -framework OpenGL -framework Appkit
+	@gcc -o $(NAME) $(SRCS) libft/libft.a  minilibx_macos/libmlx.a -framework OpenGL -framework Appkit -fsanitize=address
 	@echo "\033[036m=>	\033[0m\033[032mDONE !\033[0m"
 	@echo "=============================================="
 

@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 17:29:13 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/02 18:43:22 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/08 19:15:41 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	ft_place_point(t_fdf *fdf)
 		while (x < fdf->pos.x)
 		{
 			ft_place_calcul(fdf, x, y, i);
-			fdf->pos.elev[i] = fdf->pos.z[y][x] != 0 ? 1 : 0;
+			fdf->pos.elev[i] = fdf->pos.z[y][x];
 			i++;
 			x++;
 		}
