@@ -14,114 +14,49 @@
 
 static int		ft_parse_line(char *line)
 {
-	return (0);
+	return (1);
 }
 
-static int		ft_count_x(char *str)
+static void		ft_get_xy(int fd, t_pos *pos)
 {
-	int		i;
-	int		res;
-
-	i = 0;
-	res = 0;
-	while (str[i])
-	{
-		if (str[i] != 32 && (str[i + 1] == 32 || str[i + 1] == '\0'))
-			res++;
-		i++;
-	}
-	return (res);
-}
-
-static char		**ft_malloc_line(char **line, int fd, t_pos *pos)
-{
-	char	*line2;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	pos->y = 0;
-	pos->x = 0;
-	line2 = NULL;
-	while (get_next_line(fd, &line2) > 0)
-	{
-		if (j == 0)
-		{
-			pos->x = ft_count_x(line2);
-			j++;
-		}
-		pos->y++;
-		free(line2);
-	}
-	if (!(line = (char**)malloc(sizeof(char*) * (pos->y + 1))))
-		exit(1);
-	line[pos->y] = NULL;
-	if (!(pos->z = (int**)malloc(sizeof(int*) * (pos->y + 1))))
-		exit(1);
-	pos->z[pos->y] = NULL;
-	while (i < pos->y)
-	{
-		if (!(pos->z[i] = (int*)malloc(sizeof(int) * pos->x)))
-			exit(1);
-		i++;
-	}
-	return (line);
-}
-
-static t_pos	ft_get_z(t_pos pos, char **line)
-{
-	int		i;
-	int		j;
-	int		x;
-	int		y;
-	char	**tmp;
-
-	i = 0;
-	y = 0;
-	while (line[i] && i < pos.y - 1)
-	{
-		tmp = ft_strsplit(line[i], ' ');
-		j = 0;
-		x = 0;
-		while (tmp[j])
-		{
-			pos.z[y][x] = ft_atoi(tmp[j++]);
-			x++;
-		}
-		y++;
-		i++;
-		ft_free_tab(tmp);
-	}
-	pos = ft_pos_normalization(pos);
-	return (pos);
+	
 }
 
 t_pos			ft_set_pos(char *argv, t_pos pos)
 {
-	char	**line;
-	int		fd;
-	int		i;
+	int			fd;
+	int			i;
+	int test;
+	char		*line;
 
-	line = NULL;
 	i = 0;
-	fd = open(argv, O_RDONLY);
-	if (fd == -1)
+	if ((fd = open(argv, O_RDONLY)) < 0)
 	{
-		ft_putendl_color("READ error, check the file => exit", "red");
+		ft_putendl_color("READ error, check the file !", "red");
 		exit(1);
 	}
-	line = ft_malloc_line(line, fd, &pos);
+	ft_get_xy(fd, &pos);
 	close(fd);
 	fd = open(argv, O_RDONLY);
-	while (get_next_line(fd, &line[i]) > 0)
+//	/*
+	while ((test = gnl(fd, &line) > 0))
 	{
-		if (ft_parse_line(line[i]) == -1)
+		ft_putstr_color("gnl : ", "green");
+		ft_putnbr_endl(test);
+		if (ft_parse_line(line) == 0)
+		{
+			ft_putstr_color("Error line ", "red");
+			ft_putnbr(i);
+			ft_putendl_color(" , exit", "red");
+			free(line);
 			exit(1);
+		}
+		ft_putendl(line);
 		i++;
+		free(line);
 	}
+//	*/
 	close(fd);
-	pos = ft_get_z(pos, line);
-	ft_free_tab(line);
+	while (1);
 	return (pos);
 }

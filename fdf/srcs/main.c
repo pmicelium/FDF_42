@@ -70,7 +70,7 @@ int				main(int argc, char *argv[])
 	fdf.pos.low_color = 0x00FFFFFF;
 	fdf.pos.high_color = 0x00FF0000;
 	key_fonct_set(&fdf);
-	ft_place(fdf, fdf.key);
+	ft_place(fdf);
 	mlx_hook(fdf.win1, 4, (1l << 8), &mouse_fonct, &fdf);
 	mlx_hook(fdf.win1, 2, (1l << 8), &key_fonct, &fdf);
 	mlx_loop_hook(fdf.mlx, loop_hook, &fdf);

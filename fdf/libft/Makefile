@@ -70,6 +70,7 @@ SRCS = ft_putchar.c\
 	   ft_strtrim.c\
 	   ft_strsub.c\
 	   get_next_line.c\
+	   gnl.c\
 	   ft_strsplit.c\
 	   ft_strequ.c\
 	   ft_strnew.c\

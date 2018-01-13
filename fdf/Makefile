@@ -15,7 +15,7 @@ SRCS = srcs/main.c\
 	   srcs/ft_link_point.c\
 	   srcs/ft_pos_normalization.c\
 
-all : test
+all : $(NAME)
 
 $(NAME) :
 	@echo "\033[036m=>	\033[0m\033[033mCompiling libft ...\033[0m"
@@ -25,13 +25,13 @@ $(NAME) :
 	@make re -C minilibx_macos
 	@echo "\033[036m=>	\033[0m\033[032mDONE !\033[0m"
 	@echo "\033[036m=>	\033[0m\033[033mCompiling FDF ...\033[0m"
-	@gcc -Wall -Wextra -Werror -o $(NAME) $(SRCS) libft/libft.a  minilibx_macos/libmlx.a -framework OpenGL -framework Appkit -fsanitize=address
+	@gcc -Wall -Wextra -Werror -o $(NAME) $(SRCS) libft/libft.a  minilibx_macos/libmlx.a -framework OpenGL -framework Appkit
 	@echo "\033[036m=>	\033[0m\033[032mDONE !\033[0m"
 	@echo "=============================================="
 
 test :
 	@echo "\033[036m=>	\033[0m\033[033mCompiling FDF ...\033[0m"
-	@gcc -o $(NAME) $(SRCS) libft/libft.a  minilibx_macos/libmlx.a -framework OpenGL -framework Appkit -fsanitize=address
+	@gcc -o $(NAME) $(SRCS) libft/libft.a  minilibx_macos/libmlx.a -framework OpenGL -framework Appkit
 	@echo "\033[036m=>	\033[0m\033[032mDONE !\033[0m"
 	@echo "=============================================="
 
@@ -40,3 +40,5 @@ clean :
 	@echo "\033[036m=>	\033[0m\033[031mRemove executable\033[0m"
 
 re : clean all
+
+ret : clean test

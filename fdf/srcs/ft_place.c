@@ -81,7 +81,7 @@ static void	ft_place_point(t_fdf *fdf)
 	ft_link_point(*fdf);
 }
 
-void		ft_place(t_fdf fdf, t_key key)
+void		ft_place(t_fdf fdf)
 {
 	ft_place_point(&fdf);
 }

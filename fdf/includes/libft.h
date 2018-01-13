@@ -89,6 +89,7 @@ int					ft_memcmp(void const *s1, void const *s2, size_t n);
 int					ft_strequ(char const *s1, char const *s2);
 int					ft_strnequ(char const *s1, char const *s2, size_t n);
 int					get_next_line(int fd, char **line);
+int					gnl(int fd, char **line);
 int					*ft_atoi_tab(char **str);
 int					ft_intlen_base(int nb, char *base);
 

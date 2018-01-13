@@ -17,8 +17,8 @@
 # include <math.h>
 # include <stdio.h>
 # include <time.h>
-# define Y_WIN_1 1000
-# define X_WIN_1 1800
+# define Y_WIN_1 700
+# define X_WIN_1 1300
 # define GREY 0x00c1c1c1
 # define WHITE 0x00FFFFFF
 
@@ -110,7 +110,7 @@ typedef struct		s_fdf
 
 void				bresenham_line(t_fdf fdf, t_put put, int color, int degrad);
 void				bresenham_circle(t_fdf fdf, t_put put, int color);
-void				ft_place(t_fdf fdf, t_key key);
+void				ft_place(t_fdf fdf);
 void				ft_feature_print(t_fdf fdf);
 void				key_fonct_set(t_fdf *fdf);
 void				ft_display_bonus_fr(void);
