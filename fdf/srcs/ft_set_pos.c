@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/03 15:31:44 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/14 01:57:02 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/14 02:55:31 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 static int		ft_parse_line(char *line)
 {
-	ft_putendl(line);
+	if (!(line))
+		ft_putendl(line);
 	return (1);
 }
 
-static int		ft_get_x(char *line, t_pos *pos)
+static int		ft_get_x(char *line)
 {
 	int		i;
 	int		res;
@@ -54,7 +55,7 @@ t_pos			ft_set_pos(char *argv, t_pos pos)
 		if (ft_parse_line(line) == 0)
 		{
 			if (pos.y == 0)
-				pos.x = ft_get_x(line, &pos);
+				pos.x = ft_get_x(line);
 			ft_putstr_color("Error line ", "red");
 			ft_putnbr(pos.y);
 			ft_putendl_color(" , exit", "red");

@@ -5,69 +5,57 @@
 #                                                     +:+ +:+         +:+      #
 #    By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/01/14 02:06:15 by pmiceli           #+#    #+#              #
-#    Updated: 2018/01/14 02:38:54 by pmiceli          ###   ########.fr        #
+#    Created: 2018/01/14 02:47:46 by pmiceli           #+#    #+#              #
+#    Updated: 2018/01/14 03:57:04 by pmiceli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-# SRCS AND OBJS
-SRCS_DIR = ./srcs/
-SRCS_NAME = $(shell ls $(SRCS_DIR) | grep -E ".c")
-SRCS = $(addprefix $(SRCS_DIR), $(SRCS_NAME))
-OBJS_DIR = ./objs/
-OBJS = $(addprefix $(OBJS_DIR), $(SRCS_NAME:.c=.o))
+SRCDIR = ./srcs/
+SRCNAMES = $(shell ls $(SRCDIR) | grep -E ".+\.c")
+SRC = $(addprefix $(SRCDIR), $(SRCNAMES))
 INC = ./includes/
+OBJS_DIR = ./objs/
+OBJS = $(addprefix $(OBJS_DIR), $(SRCNAMES:.c=.o))
 
-# LIBS
 LIBFT_DIR = ./libft/
 LIBFT = ./libft/libft.a
-MLX_DIR = ./minilibx_macos/
 MLX = ./minilibx_macos/libmlx.a
 
-# COMPIL
 CC = gcc
-CC_FLAG = -Wall -Wextra -Werror
-MLX_FLAG = -framework OpenGL -framework Appkit
+CFLAGS = -Wall -Werror -Wextra
+MLX_FLAGS = -framework OpenGL -framework AppKit
 
-# main rule
-all : libft mlx $(NAME)
+all: $(OBJS_DIR) $(LIBFT) $(MLX) $(NAME)
 
-$(NAME) :
-	@echo "\033[036m=>	\033[0m\033[033mCompiling FDF ...\033[0m"
-	@$(CC) $(CC_FLAG) -o $(NAME) $(OBJ) $(LIBFT) $(MLX) $(MLX_FLAG)
-	@echo "\033[036m=>	\033[0m\033[032mDONE !\033[0m"
-	@echo "=============================================="
+$(OBJS_DIR):
+	@mkdir -p $(OBJS_DIR)
 
-# MAKE OBJS DIR
-$(OBJS_DIR) :
-	@mkdir $(OBJS_DIR)
+$(OBJS_DIR)%.o:$(SRCDIR)%.c
+	@echo "\033[036m=>	\033[034mCreating 		$<\033[0m"
+	@$(CC) $(CFLAGS) -I$(INC) -o $@ -c $<
 
-# OBJS RULE
-$(OBJS_DIR)%.o:$(SRCS_DIR)%.c
-	$(CC) $(CC_FLAG) -I$(INC) -o $@ -c $<
+$(NAME): $(OBJS)
+	@echo "\033[036m=>	\033[035mCreating FDF's executable\033[0m"
+	@$(CC) $(CFLAGS) $(MLX_FLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(MLX)
+	@echo "\033[036m=>	\033[032mDONE !\033[0m"
 
-# LIBS RULES
-libft :
-	@echo "\033[036m=>	\033[0m\033[033mCompiling libft ...\033[0m"
-	@make re -C $(LIBFT_DIR)
-	@echo "\033[036m=>	\033[0m\033[032mDONE !\033[0m"
+$(LIBFT):
+	@make -C $(LIBFT_DIR)
+	@echo "\033[036m=>	\033[033mCompiling FDF ...\033[0m"
+	@echo "\033[036m=>	\033[033mCreating FDF's objetcs\033[0m"
 
-mlx :
-	@echo "\033[036m=>	\033[0m\033[033mCompiling minilibx_macos ...\033[0m"
-	@make re -C $(MLX_DIR)
-	@echo "\033[036m=>	\033[0m\033[032mDONE !\033[0m"
-
-# CLEAN RULE
-clean :
+clean:
+	@echo "\033[036m=>	\033[031mRemouve FDF's objects\033[0m"
 	@rm -rf $(OBJS_DIR)
-	@echo "\033[036m=>	\033[0m\033[031mRemove executable\033[0m"
+	@make -C $(LIBFT_DIR) clean
 
-fclean : clean
+fclean: clean
+	@echo "\033[036m=>	\033[031mRemouve FDF's executable\033[0m"
 	@rm -rf $(NAME)
-	@make fclean -C $(LIBFT_DIR)
+	@make -C $(LIBFT_DIR) fclean
 
-re : fclean all
+re: fclean all
 
-.PHONY : all clean fclean re
+.PHONY: all fclean clean re

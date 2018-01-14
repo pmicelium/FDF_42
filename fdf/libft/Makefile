@@ -6,114 +6,45 @@
 #    By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 14:44:04 by pmiceli           #+#    #+#              #
-#    Updated: 2018/01/13 19:33:30 by pmiceli          ###   ########.fr        #
+#    Updated: 2018/01/14 03:57:48 by pmiceli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-SRCS = ft_putchar.c\
-	   ft_putstr.c\
-	   ft_strcmp.c\
-	   ft_putnbr_endl.c\
-	   ft_strlen.c\
-	   ft_atoi.c\
-	   ft_putnbr.c\
-	   ft_strcat.c\
-	   ft_display_file.c\
-	   ft_putendl_background.c\
-	   ft_strchr_rev.c\
-	   ft_itoa_base.c\
-	   ft_putendl_color.c\
-	   ft_intlen_base.c\
-	   ft_putstr_background.c\
-	   ft_strjoin_free_2.c\
-	   ft_putstr_color.c\
-	   ft_strjoin_free.c\
-	   ft_rm_path.c\
-	   ft_strcpy.c\
-	   ft_atoi_tab.c\
-	   ft_strdup.c\
-	   ft_strncat.c\
-	   ft_strncmp.c\
-	   ft_strncpy.c\
-	   ft_swap_char.c\
-	   ft_swap_nbr.c\
-	   ft_isalnum.c\
-	   ft_isalpha.c\
-	   ft_isascii.c\
-	   ft_isdigit.c\
-	   ft_isprint.c\
-	   ft_strstr.c\
-	   ft_tolower.c\
-	   ft_toupper.c\
-	   ft_strchr.c\
-	   ft_strrchr.c\
-	   ft_bzero.c\
-	   ft_memset.c\
-	   ft_free_tab.c\
-	   ft_strlcat.c\
-	   ft_memcpy.c\
-	   ft_memccpy.c\
-	   ft_memchr.c\
-	   ft_memcmp.c\
-	   ft_memmove.c\
-	   ft_intlen.c\
-	   ft_itoa.c\
-	   ft_memdel.c\
-	   ft_memalloc.c\
-	   ft_free_tab_int.c\
-	   ft_putchar_fd.c\
-	   ft_putendl.c\
-	   ft_putendl_fd.c\
-	   ft_printlst_char.c\
-	   ft_strtrim.c\
-	   ft_strsub.c\
-	   get_next_line.c\
-	   gnl.c\
-	   ft_strsplit.c\
-	   ft_strequ.c\
-	   ft_strnew.c\
-	   ft_strnequ.c\
-	   ft_strmapi.c\
-	   ft_strmap.c\
-	   ft_striteri.c\
-	   ft_strjoin.c\
-	   ft_striter.c\
-	   ft_strdel.c\
-	   ft_strclr.c\
-	   ft_putstr_fd.c\
-	   ft_putnbr_fd.c\
-	   ft_printtab_char.c\
-	   ft_printtab_int.c\
-	   ft_lstnew.c\
-	   ft_lstadd.c\
-	   ft_lstmap.c\
-	   ft_lstiter.c\
-	   ft_lstdel.c\
-	   ft_lstdelone.c\
-	   ft_strnstr.c\
+SRCS_DIR = ./srcs/
+SRCS_NAME = $(shell ls $(SRCS_DIR) | grep -E ".c")
+SRCS = $(addprefix $(SRCDIR), $(SRCS_NAME))
+INC = ./includes/
+OBJS_DIR = ./objets/
+OBJS = $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
 
-OBJS = $(subst .c,.o,$(SRCS))
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
 
-all : $(NAME)
+all : $(OBJS_DIR) $(NAME)
 
-$(NAME):
-	@gcc -Wall -Wextra -Werror -c $(SRCS)
-	@echo "\033[036m=>	\033[0m\033[035mObject created\033[0m"
-	@ar rc $(NAME) $(OBJS)
+$(OBJS_DIR):
 	@mkdir objets
-	@mv $(OBJS) objets
+	@echo "\033[036m=>	\033[035mCreating Libft's objects\033m"
+
+$(OBJS_DIR)%.o:$(SRCS_DIR)%.c
+	@echo "\033[036m=>	\033[034mCreating		$<\033[0m"
+	@$(CC) $(CFLAGS) -I$(INC) -o $@ -c $<
+
+$(NAME) : $(OBJS)
+	@echo "\033[036m=>	\033[0m\033[035mLibft's objects created\033[0m"
+	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
-	@echo "\033[036m=>	\033[0m\033[035mLib created\033[0m"
+	@echo "\033[036m=>	\033[0m\033[032mLibft created\033[0m"
 
 clean :
 	@rm -rf objets
-	@echo "\033[36m=>	\033[0m\033[31mObjets removed\033[0m"
+	@echo "\033[36m=>	\033[0m\033[31mLibft's objets removed\033[0m"
 
 fclean : clean
 	@rm -rf $(NAME)
-	@echo "\033[036m=>	\033[0m\033[31mLib removed"
+	@echo "\033[036m=>	\033[0m\033[31mLibft removed"
 
 re : fclean all
 
