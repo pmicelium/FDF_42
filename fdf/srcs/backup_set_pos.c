@@ -6,16 +6,16 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/03 15:31:44 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/08 18:27:31 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/13 21:17:50 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-//static int		ft_parse_line(char *line)
-//{
-//	return (0);
-//}
+static int		ft_parse_line(char *line)
+{
+	return (0);
+}
 
 static int		ft_count_x(char *str)
 {
@@ -114,16 +114,14 @@ t_pos			ft_set_pos(char *argv, t_pos pos)
 	line = ft_malloc_line(line, fd, &pos);
 	close(fd);
 	fd = open(argv, O_RDONLY);
-//	while (get_next_line(fd, &line[i]) > 0)
-//	{
-	//	if (ft_parse_line(line[i]) == -1)
-	//		exit(1);
+	while (get_next_line(fd, &line[i]) > 0)
+	{
+		if (ft_parse_line(line[i]) == -1)
+			exit(1);
 		i++;
-///	}
+	}
 	close(fd);
-//	pos = ft_get_z(pos, line);
+	pos = ft_get_z(pos, line);
 	ft_free_tab(line);
-	ft_free_tab_int(pos.z);
-	while(1);
 	return (pos);
 }

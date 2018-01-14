@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 22:27:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/08 21:11:08 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/13 21:23:32 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <math.h>
 # include <stdio.h>
 # include <time.h>
-# define Y_WIN_1 700
-# define X_WIN_1 1300
+# define Y_WIN_1 1000
+# define X_WIN_1 1800
 # define GREY 0x00c1c1c1
 # define WHITE 0x00FFFFFF
 

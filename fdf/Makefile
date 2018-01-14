@@ -25,7 +25,7 @@ $(NAME) :
 	@make re -C minilibx_macos
 	@echo "\033[036m=>	\033[0m\033[032mDONE !\033[0m"
 	@echo "\033[036m=>	\033[0m\033[033mCompiling FDF ...\033[0m"
-	@gcc -Wall -Wextra -Werror -o $(NAME) $(SRCS) libft/libft.a  minilibx_macos/libmlx.a -framework OpenGL -framework Appkit
+	@gcc -o $(NAME) $(SRCS) libft/libft.a  minilibx_macos/libmlx.a -framework OpenGL -framework Appkit
 	@echo "\033[036m=>	\033[0m\033[032mDONE !\033[0m"
 	@echo "=============================================="
 
