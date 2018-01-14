@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 10:46:55 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/02 18:43:56 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/14 01:39:02 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,11 @@
 
 static char		*ft_get_after(char **line, char *after)
 {
-	char	*tmp;
-
 	if (ft_strchr(after, '\n'))
 	{
 		*ft_strchr(after, '\n') = '\0';
 		*line = after;
-		tmp = ft_strdup(&after[ft_strlen(after) + 1]);
-		return (tmp);
-	}
-	if (ft_strlen(after))
-	{
-		*line = after;
-		tmp = ft_strdup(&after[ft_strlen(after) + 1]);
-		return (tmp);
+		return (&after[ft_strlen(after) + 1]);
 	}
 	return (NULL);
 }

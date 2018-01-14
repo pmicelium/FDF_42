@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/03 15:31:44 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/14 01:20:41 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/14 01:57:02 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,25 @@ static int		ft_parse_line(char *line)
 	return (1);
 }
 
-static void		ft_get_xy(char *line, t_pos *pos)
+static int		ft_get_x(char *line, t_pos *pos)
 {
-	if (line && pos->y != -1)
-		ft_putnbr_endl(pos->y);
+	int		i;
+	int		res;
+
+	i = 0;
+	res = 0;
+	while (line[i])
+	{
+		if (line[i] != 32 && (line[i + 1] == 32 || line[i + 1] == '\0'))
+			res++;
+		i++;
+	}
+	return (res);
 }
 
 t_pos			ft_set_pos(char *argv, t_pos pos)
 {
 	int			fd;
-//	int			i;
 	int test;
 	char		*line;
 
@@ -42,10 +51,10 @@ t_pos			ft_set_pos(char *argv, t_pos pos)
 	fd = open(argv, O_RDONLY);
 	while ((test = gnl(fd, &line) > 0))
 	{
-		if (pos.y == 0)
-			ft_get_xy(line, &pos);
 		if (ft_parse_line(line) == 0)
 		{
+			if (pos.y == 0)
+				pos.x = ft_get_x(line, &pos);
 			ft_putstr_color("Error line ", "red");
 			ft_putnbr(pos.y);
 			ft_putendl_color(" , exit", "red");
@@ -54,6 +63,8 @@ t_pos			ft_set_pos(char *argv, t_pos pos)
 		}
 		pos.y++;
 	}
+	ft_putnbr_endl(pos.x);
+	ft_putnbr_endl(pos.y);
 	close(fd);
 	TEST;
 	while (1);

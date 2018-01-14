@@ -1,44 +1,73 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/01/14 02:06:15 by pmiceli           #+#    #+#              #
+#    Updated: 2018/01/14 02:38:54 by pmiceli          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = fdf
 
-SRCS = srcs/main.c\
-	   srcs/ft_set_pos.c\
-	   srcs/ft_algo_bresenham.c\
-	   srcs/ft_place.c\
-	   srcs/ft_key_fonct.c\
-	   srcs/ft_key_fonct_2.c\
-	   srcs/ft_mouse_fonct.c\
-	   srcs/ft_mouse_fonct_2.c\
-	   srcs/ft_feature_print.c\
-	   srcs/ft_feature_print_2.c\
-	   srcs/ft_display_bonus.c\
-	   srcs/ft_fps.c\
-	   srcs/ft_link_point.c\
-	   srcs/ft_pos_normalization.c\
+# SRCS AND OBJS
+SRCS_DIR = ./srcs/
+SRCS_NAME = $(shell ls $(SRCS_DIR) | grep -E ".c")
+SRCS = $(addprefix $(SRCS_DIR), $(SRCS_NAME))
+OBJS_DIR = ./objs/
+OBJS = $(addprefix $(OBJS_DIR), $(SRCS_NAME:.c=.o))
+INC = ./includes/
 
-all : $(NAME)
+# LIBS
+LIBFT_DIR = ./libft/
+LIBFT = ./libft/libft.a
+MLX_DIR = ./minilibx_macos/
+MLX = ./minilibx_macos/libmlx.a
+
+# COMPIL
+CC = gcc
+CC_FLAG = -Wall -Wextra -Werror
+MLX_FLAG = -framework OpenGL -framework Appkit
+
+# main rule
+all : libft mlx $(NAME)
 
 $(NAME) :
+	@echo "\033[036m=>	\033[0m\033[033mCompiling FDF ...\033[0m"
+	@$(CC) $(CC_FLAG) -o $(NAME) $(OBJ) $(LIBFT) $(MLX) $(MLX_FLAG)
+	@echo "\033[036m=>	\033[0m\033[032mDONE !\033[0m"
+	@echo "=============================================="
+
+# MAKE OBJS DIR
+$(OBJS_DIR) :
+	@mkdir $(OBJS_DIR)
+
+# OBJS RULE
+$(OBJS_DIR)%.o:$(SRCS_DIR)%.c
+	$(CC) $(CC_FLAG) -I$(INC) -o $@ -c $<
+
+# LIBS RULES
+libft :
 	@echo "\033[036m=>	\033[0m\033[033mCompiling libft ...\033[0m"
-	@make re -C libft
+	@make re -C $(LIBFT_DIR)
 	@echo "\033[036m=>	\033[0m\033[032mDONE !\033[0m"
+
+mlx :
 	@echo "\033[036m=>	\033[0m\033[033mCompiling minilibx_macos ...\033[0m"
-	@make re -C minilibx_macos
+	@make re -C $(MLX_DIR)
 	@echo "\033[036m=>	\033[0m\033[032mDONE !\033[0m"
-	@echo "\033[036m=>	\033[0m\033[033mCompiling FDF ...\033[0m"
-	@gcc -o $(NAME) $(SRCS) libft/libft.a  minilibx_macos/libmlx.a -framework OpenGL -framework Appkit
-	@echo "\033[036m=>	\033[0m\033[032mDONE !\033[0m"
-	@echo "=============================================="
 
-test :
-	@echo "\033[036m=>	\033[0m\033[033mCompiling FDF ...\033[0m"
-	@gcc -o $(NAME) $(SRCS) libft/libft.a  minilibx_macos/libmlx.a -framework OpenGL -framework Appkit
-	@echo "\033[036m=>	\033[0m\033[032mDONE !\033[0m"
-	@echo "=============================================="
-
+# CLEAN RULE
 clean :
-	@rm fdf
+	@rm -rf $(OBJS_DIR)
 	@echo "\033[036m=>	\033[0m\033[031mRemove executable\033[0m"
 
-re : clean all
+fclean : clean
+	@rm -rf $(NAME)
+	@make fclean -C $(LIBFT_DIR)
 
-ret : clean test
+re : fclean all
+
+.PHONY : all clean fclean re
