@@ -1,23 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_set_tab.c                                       :+:      :+:    :+:   */
+/*   ft_set_pos.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/03 15:31:44 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/14 02:55:31 by pmiceli          ###   ########.fr       */
+/*   Created: 2018/01/14 04:14:19 by pmiceli           #+#    #+#             */
+/*   Updated: 2018/01/14 05:25:01 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-
-static int		ft_parse_line(char *line)
-{
-	if (!(line))
-		ft_putendl(line);
-	return (1);
-}
 
 static int		ft_get_x(char *line)
 {
@@ -35,39 +28,51 @@ static int		ft_get_x(char *line)
 	return (res);
 }
 
+static int		ft_parse_line_2(char *line)
+{
+	if (!(line))
+		TEST;
+	return (1);
+}
+
+static int		ft_parse_line(int fd, t_pos *pos)
+{
+	char	*line;
+
+	while ((gnl(fd, &line) > 0))
+	{
+		if (ft_parse_line_2(line) == 0)
+		{
+			ft_putstr_color("Error line ", "red");
+			ft_putnbr(pos->y);
+			ft_putendl_color(" , exit", "red");
+			return (0);
+		}
+		if (pos->y == 0)
+			pos->x = ft_get_x(line);
+		pos->y++;
+	}
+	return (1);
+}
+
 t_pos			ft_set_pos(char *argv, t_pos pos)
 {
 	int			fd;
-	int test;
 	char		*line;
 
 	pos.y = 0;
+	line = NULL;
 	if ((fd = open(argv, O_RDONLY)) < 0)
 	{
 		ft_putendl_color("READ error, check the file !", "red");
 		exit(1);
 	}
-//	ft_get_xy(fd, &pos);
+	if (ft_parse_line(fd, &pos) == 0)
+		exit(1);
 	close(fd);
 	fd = open(argv, O_RDONLY);
-	while ((test = gnl(fd, &line) > 0))
-	{
-		if (ft_parse_line(line) == 0)
-		{
-			if (pos.y == 0)
-				pos.x = ft_get_x(line);
-			ft_putstr_color("Error line ", "red");
-			ft_putnbr(pos.y);
-			ft_putendl_color(" , exit", "red");
-			free(line);
-			exit(1);
-		}
-		pos.y++;
-	}
-	ft_putnbr_endl(pos.x);
-	ft_putnbr_endl(pos.y);
+	pos = ft_get_z(fd, pos, line);
 	close(fd);
-	TEST;
-	while (1);
+//	while (1);
 	return (pos);
 }

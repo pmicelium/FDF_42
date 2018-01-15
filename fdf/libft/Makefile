@@ -6,7 +6,7 @@
 #    By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 14:44:04 by pmiceli           #+#    #+#              #
-#    Updated: 2018/01/14 03:57:48 by pmiceli          ###   ########.fr        #
+#    Updated: 2018/01/14 04:23:59 by pmiceli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ $(OBJS_DIR):
 	@echo "\033[036m=>	\033[035mCreating Libft's objects\033m"
 
 $(OBJS_DIR)%.o:$(SRCS_DIR)%.c
-	@echo "\033[036m=>	\033[034mCreating		$<\033[0m"
+	@echo "\033[036m=>	\033[034mCreating	$<\033[0m"
 	@$(CC) $(CFLAGS) -I$(INC) -o $@ -c $<
 
 $(NAME) : $(OBJS)

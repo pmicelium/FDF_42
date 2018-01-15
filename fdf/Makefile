@@ -6,7 +6,7 @@
 #    By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/14 02:47:46 by pmiceli           #+#    #+#              #
-#    Updated: 2018/01/14 03:57:04 by pmiceli          ###   ########.fr        #
+#    Updated: 2018/01/14 05:05:06 by pmiceli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,17 +29,20 @@ MLX_FLAGS = -framework OpenGL -framework AppKit
 
 all: $(OBJS_DIR) $(LIBFT) $(MLX) $(NAME)
 
+test : $(OBJS_DIR) $(NAME)
+
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)
 
 $(OBJS_DIR)%.o:$(SRCDIR)%.c
-	@echo "\033[036m=>	\033[034mCreating 		$<\033[0m"
+	@echo "\033[036m=>	\033[034mCreating 	$<\033[0m"
 	@$(CC) $(CFLAGS) -I$(INC) -o $@ -c $<
 
 $(NAME): $(OBJS)
 	@echo "\033[036m=>	\033[035mCreating FDF's executable\033[0m"
 	@$(CC) $(CFLAGS) $(MLX_FLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(MLX)
 	@echo "\033[036m=>	\033[032mDONE !\033[0m"
+	@echo "================================================================="
 
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
@@ -57,5 +60,7 @@ fclean: clean
 	@make -C $(LIBFT_DIR) fclean
 
 re: fclean all
+
+ret : clean test
 
 .PHONY: all fclean clean re
