@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 17:59:54 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/08 18:35:38 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/16 00:15:03 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static t_pos	ft_pos_normalization_2(t_pos pos)
 {
-	int		i;
+	int			i;
 	int			j;
 
 	i = 0;

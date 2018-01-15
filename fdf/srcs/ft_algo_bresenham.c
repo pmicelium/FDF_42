@@ -6,12 +6,11 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 20:24:05 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/15 18:13:36 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/16 00:11:37 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-
 
 static int		ft_degraded(t_fdf fdf, double i, int degrad, int base)
 {

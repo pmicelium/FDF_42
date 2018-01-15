@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/14 04:14:19 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/15 23:57:43 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/16 00:42:35 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,45 +33,49 @@ static int		ft_parse_line_2(char *line)
 	int				h;
 	int				i;
 	int				j;
-	static int		nb = 0;
 	char			**tmp;
+	static int		nb = 0;
 
-	j = 0;
-	h = 0;
+	j = -1;
 	tmp = ft_strsplit(line, ' ');
-	while (tmp[j])
+	while (tmp[++j])
 	{
-		i = 0;
-		if (ft_strstr(tmp[j], "0x") != NULL)
-			h = 1;
-		while (tmp[j][i])
+		i = -1;
+		h = ft_strstr(tmp[j], "0x") != NULL ? 1 : 0;
+		while (tmp[j][++i])
 		{
 			if (ft_isdigit(tmp[j][i]) == 0 && tmp[j][i] != '-' && h == 0)
 			{
 				ft_free_tab(tmp);
-				return (0);
+				return (j);
 			}
-			i++;
 		}
-		j++;
-		h = 0;
 	}
 	ft_free_tab(tmp);
 	if (nb == 0)
 		nb = j;
-	return (j != nb ? 0 : 1);
+	return (j != nb ? 0 : -1);
 }
 
 static int		ft_parse_line(int fd, t_pos *pos)
 {
 	char	*line;
+	int		ret;
 
 	while ((gnl(fd, &line) > 0))
 	{
-		if (ft_parse_line_2(line) == 0)
+		if ((ret = ft_parse_line_2(line)) != -1)
 		{
-			ft_putstr_color("Error line ", "red");
+			if (ret == 0)
+				ft_putstr_color("Error line ", "red");
+			else
+				ft_putstr_color("Wrong character detected line ", "red");
 			ft_putnbr(pos->y + 1);
+			if (ret != 0)
+			{
+				ft_putstr(":");
+				ft_putnbr(ret);
+			}
 			ft_putendl_color(", exit", "red");
 			return (0);
 		}

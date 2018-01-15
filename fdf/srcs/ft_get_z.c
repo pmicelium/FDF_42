@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/14 04:56:06 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/15 20:32:30 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/16 00:11:17 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_pos			ft_get_z(int fd, t_pos pos)
 		tmp = ft_strsplit(line, ' ');
 		x = 0;
 		i = 0;
-		while(tmp[i])
+		while (tmp[i])
 		{
 			pos.z[y][x] = ft_atoi(tmp[i++]);
 			x++;
@@ -55,4 +55,3 @@ t_pos			ft_get_z(int fd, t_pos pos)
 	pos = ft_pos_normalization(pos);
 	return (pos);
 }
-
