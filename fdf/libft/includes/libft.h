@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 14:55:34 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/13 19:33:18 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/15 22:04:25 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int					ft_isdigit(int c);
 int					ft_isalnum(int c);
 int					ft_isprint(int c);
 int					ft_isascii(int c);
+int					ft_is_base(char *nbr, char *base);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
 int					ft_memcmp(void const *s1, void const *s2, size_t n);

@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 22:25:54 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/08 21:02:58 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/15 18:13:27 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	ft_place_pre_bresenham_i(t_fdf fdf, t_put *put, int i, int j)
 		if (fdf.pos.elev[i] != 0 && fdf.pos.elev[i + 1] == 0)
 			bresenham_line(fdf, *put, put->color, 2);
 		else if (fdf.pos.elev[i] == 0 && fdf.pos.elev[i + 1] != 0)
-			bresenham_line(fdf, *put, put->color, 2);
+			bresenham_line(fdf, *put, put->color, 1);
 		else
 			bresenham_line(fdf, *put, put->color, 0);
 	}
@@ -57,7 +57,7 @@ static void	ft_place_pre_bresenham_j(t_fdf fdf, t_put *put, int i, int j)
 		if (fdf.pos.elev[i] != 0 && fdf.pos.elev[i + fdf.pos.x] == 0)
 			bresenham_line(fdf, *put, put->color, 2);
 		else if (fdf.pos.elev[i] == 0 && fdf.pos.elev[i + fdf.pos.x] != 0)
-			bresenham_line(fdf, *put, put->color, 2);
+			bresenham_line(fdf, *put, put->color, 1);
 		else
 			bresenham_line(fdf, *put, put->color, 0);
 	}

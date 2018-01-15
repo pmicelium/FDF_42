@@ -6,7 +6,7 @@
 #    By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 14:44:04 by pmiceli           #+#    #+#              #
-#    Updated: 2018/01/14 04:23:59 by pmiceli          ###   ########.fr        #
+#    Updated: 2018/01/15 20:20:11 by pmiceli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,20 +20,20 @@ OBJS_DIR = ./objets/
 OBJS = $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 
 all : $(OBJS_DIR) $(NAME)
 
 $(OBJS_DIR):
 	@mkdir objets
-	@echo "\033[036m=>	\033[035mCreating Libft's objects\033m"
+	@echo "\033[036m=>	\033[033mCreating Libft's objects\033m"
 
 $(OBJS_DIR)%.o:$(SRCS_DIR)%.c
-	@echo "\033[036m=>	\033[034mCreating	$<\033[0m"
+	@echo "\033[036m=>	\033[038;2;255;153;0mCreating	$@\033[0m"
 	@$(CC) $(CFLAGS) -I$(INC) -o $@ -c $<
 
 $(NAME) : $(OBJS)
-	@echo "\033[036m=>	\033[0m\033[035mLibft's objects created\033[0m"
+	@echo "\033[036m=>	\033[0m\033[032mLibft's objects created\033[0m"
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
 	@echo "\033[036m=>	\033[0m\033[032mLibft created\033[0m"

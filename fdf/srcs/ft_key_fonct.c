@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 15:48:06 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/08 19:29:32 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/15 20:18:14 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ int			key_fonct(int keycode, t_fdf *fdf)
 	{
 		ft_putendl_color("Exiting...", "green");
 		ft_free_all(fdf);
-			while (1);
 		exit(1);
 	}
 	else if (keycode == 69 || keycode == 24 || keycode == 78 || keycode == 27)
@@ -96,7 +95,9 @@ int			loop_hook(t_fdf *fdf)
 	mlx_clear_window(fdf->mlx, fdf->win1);
 	mlx_put_image_to_window(fdf->mlx, fdf->win1, fdf->img, 0, 0);
 	if (fdf->key.hud == 1)
+	{
 		ft_feature_print(*fdf);
-	ft_fps(fdf);
+		ft_fps(fdf);
+	}
 	return (0);
 }

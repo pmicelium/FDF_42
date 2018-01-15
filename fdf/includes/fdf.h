@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 22:27:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/14 04:57:03 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/15 18:56:06 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,8 @@ void				ft_feature_color_2(t_fdf fdf);
 
 t_pos				ft_set_pos(char *argv, t_pos pos);
 t_pos				ft_pos_normalization(t_pos pos);
-t_pos				ft_get_z(int fd, t_pos pos, char *line);
+//t_pos				ft_get_z(int fd, t_pos pos, char *line);
+t_pos				ft_get_z(int fd, t_pos pos);
 
 int					mouse_fonct(int button, int x, int y, t_fdf *fdf);
 int					loop_hook(t_fdf *fdf);
