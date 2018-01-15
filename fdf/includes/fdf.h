@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 22:27:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/15 18:56:06 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/15 23:34:28 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,6 @@
 # define GREY 0x00c1c1c1
 # define WHITE 0x00FFFFFF
 
-//
-//
-//
-//faire le menage dans les strcut//
-//
-//
-//
-
 typedef struct		s_degrad
 {
 	int				h_r;
@@ -42,6 +34,11 @@ typedef struct		s_degrad
 	int				b_g;
 	int				b_b;
 }					t_degrad;
+
+typedef struct		s_color
+{
+	int				**hexa;
+}					t_color;
 
 typedef struct		s_pos
 {
@@ -57,6 +54,7 @@ typedef struct		s_pos
 	int				degraded;
 	int				low_nb;
 	int				high_nb;
+	struct s_color	color;
 }					t_pos;
 
 typedef struct		s_put

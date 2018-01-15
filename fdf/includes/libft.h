@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 14:55:34 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/13 19:33:48 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/15 22:18:38 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdio.h>
 
 # define TEST ft_putendl_color("TEST", "cyan");
+# define OK ft_putendl_color("OK", "green");
 # define NL ft_putchar('\n');
 
 typedef struct		s_list
