@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 17:29:13 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/16 05:38:14 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/16 21:58:43 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,27 @@ static void	ft_place_calcul(t_fdf *fdf, int x, int y, int i)
 	int tmp_px;
 	int tmp_py;
 	int tmp_pz;
+	double pi;
+
+	pi = M_PI / 180;
 
 	tmp_px = x * fdf->key.zoom;
 	tmp_py = y * fdf->key.zoom;
 	tmp_pz = fdf->pos.point[y][x].z * fdf->key.elev;
-	fdf->pos.placex[i] = tmp_px * cos(-fdf->key.rot_z * M_PI / 180)
-		- tmp_py * sin(-fdf->key.rot_z * M_PI / 180);
-	fdf->pos.placey[i] = tmp_py * cos(-fdf->key.rot_z * M_PI / 180)
-		+ tmp_px * sin(-fdf->key.rot_z * M_PI / 180);
+	fdf->pos.placex[i] = tmp_px * cos(-fdf->key.rot_z * pi)
+		- tmp_py * sin(-fdf->key.rot_z * pi);
+	fdf->pos.placey[i] = tmp_py * cos(-fdf->key.rot_z * pi)
+		+ tmp_px * sin(-fdf->key.rot_z * pi);
 	tmp_px = fdf->pos.placex[i];
 	tmp_py = fdf->pos.placey[i];
-	fdf->pos.placey[i] = tmp_py * cos(fdf->key.rot_x * M_PI / 180)
-		- tmp_pz * sin(fdf->key.rot_x * M_PI / 180);
-	fdf->pos.placez[i] = tmp_py * sin(fdf->key.rot_x * M_PI / 180)
-		+ tmp_pz * cos(fdf->key.rot_x * M_PI / 180);
+	fdf->pos.placey[i] = tmp_py * cos(fdf->key.rot_x * pi)
+		- tmp_pz * sin(fdf->key.rot_x * pi);
+	fdf->pos.placez[i] = tmp_py * sin(fdf->key.rot_x * pi)
+		+ tmp_pz * cos(fdf->key.rot_x * pi);
 	tmp_py = fdf->pos.placey[i];
 	tmp_pz = fdf->pos.placez[i];
-	fdf->pos.placex[i] = tmp_px * cos(fdf->key.rot_y * M_PI / 180)
-		+ tmp_pz * sin(fdf->key.rot_y * M_PI / 180);
+	fdf->pos.placex[i] = tmp_px * cos(fdf->key.rot_y * pi)
+		+ tmp_pz * sin(fdf->key.rot_y * pi);
 	fdf->pos.placex[i] += (((X_WIN_1 / 2) - (fdf->pos.x * fdf->key.zoom / 2))
 			+ fdf->key.zoom / 10) + fdf->key.a;
 	fdf->pos.placey[i] += (((Y_WIN_1 / 2) - (fdf->pos.y * fdf->key.zoom / 2))
