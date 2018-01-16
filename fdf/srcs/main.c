@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 19:04:23 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/15 22:34:24 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/16 01:48:54 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,15 @@ int				main(int argc, char *argv[])
 	i = show_bonus(argc, argv, i);
 	if (i == 0)
 		return (0);
+	fdf.pos.low_color = 0x00FFFFFF;
+	fdf.pos.high_color = 0x00FF0000;
+	key_fonct_set(&fdf);
 	fdf.pos = ft_set_pos(argv[i], fdf.pos);
 	fdf.mlx = mlx_init();
 	fdf.win1 = mlx_new_window(fdf.mlx, X_WIN_1, Y_WIN_1, argv[i]);
 	fdf.img = mlx_new_image(fdf.mlx, X_WIN_1, Y_WIN_1);
 	fdf.img_data = (int*)mlx_get_data_addr(fdf.img, &fdf.bpp, &fdf.lsize,
 			&fdf.endian);
-	fdf.pos.low_color = 0x00FFFFFF;
-	fdf.pos.high_color = 0x00FF0000;
-	key_fonct_set(&fdf);
 	ft_place(fdf);
 	mlx_hook(fdf.win1, 4, (1l << 8), &mouse_fonct, &fdf);
 	mlx_hook(fdf.win1, 2, (1l << 8), &key_fonct, &fdf);

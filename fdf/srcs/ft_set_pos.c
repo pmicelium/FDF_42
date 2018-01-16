@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/14 04:14:19 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/16 00:42:35 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/16 03:20:21 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,20 +89,20 @@ static int		ft_parse_line(int fd, t_pos *pos)
 t_pos			ft_set_pos(char *argv, t_pos pos)
 {
 	int			fd;
+	char		*line;
 
+	line = NULL;
 	pos.y = 0;
 	if ((fd = open(argv, O_RDONLY)) < 0)
 	{
-		ft_putendl_color("READ error, check the file !", "red");
+		ft_putendl_color("READ error, check the file", "red");
 		exit(1);
 	}
 	if (ft_parse_line(fd, &pos) == 0)
 		exit(1);
 	close(fd);
 	fd = open(argv, O_RDONLY);
-	pos = ft_get_z(fd, pos);
+	pos = ft_get_z(fd, pos, line);
 	close(fd);
-	OK;
-	exit(1);
 	return (pos);
 }

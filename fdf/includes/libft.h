@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 14:55:34 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/16 00:37:13 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/16 02:42:03 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define TEST ft_putendl_color("TEST", "cyan");
 # define OK ft_putendl_color("OK", "green");
 # define NL ft_putchar('\n');
+# define HEXA "0123456789ABCDEF"
 
 typedef struct		s_list
 {
@@ -79,6 +80,7 @@ size_t				ft_intlen(int nb);
 int					ft_strcmp(char const *s1, char const *s2);
 int					ft_strncmp(char const *s1, char const *s2, size_t n);
 int					ft_atoi(char const *str);
+int					ft_atoi_base(char const *str, char *base);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);

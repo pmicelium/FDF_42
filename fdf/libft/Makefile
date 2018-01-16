@@ -6,7 +6,7 @@
 #    By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 14:44:04 by pmiceli           #+#    #+#              #
-#    Updated: 2018/01/15 20:20:11 by pmiceli          ###   ########.fr        #
+#    Updated: 2018/01/16 03:14:05 by pmiceli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ OBJS_DIR = ./objets/
 OBJS = $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 
 all : $(OBJS_DIR) $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 17:59:54 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/16 00:15:03 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/16 00:57:57 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static t_pos	ft_pos_normalization_2(t_pos pos)
 		j = 0;
 		while (j < pos.x)
 		{
-			pos.z[i][j] -= pos.low_nb;
+			pos.point[i][j].z -= pos.low_nb;
 			j++;
 		}
 		i++;
@@ -36,18 +36,18 @@ t_pos			ft_pos_normalization(t_pos pos)
 	int		i;
 	int		j;
 
-	pos.low_nb = pos.z[0][0];
-	pos.high_nb = pos.z[0][0];
+	pos.low_nb = pos.point[0][0].z;
+	pos.high_nb = pos.point[0][0].z;
 	i = 0;
 	while (i < pos.y - 1)
 	{
 		j = 0;
 		while (j < pos.x)
 		{
-			if (pos.z[i][j] < pos.low_nb)
-				pos.low_nb = pos.z[i][j];
-			else if (pos.z[i][j] > pos.high_nb)
-				pos.high_nb = pos.z[i][j];
+			if (pos.point[i][j].z < pos.low_nb)
+				pos.low_nb = pos.point[i][j].z;
+			else if (pos.point[i][j].z > pos.high_nb)
+				pos.high_nb = pos.point[i][j].z;
 			j++;
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 22:27:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/15 23:34:28 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/16 03:19:41 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,16 @@ typedef struct		s_degrad
 	int				b_b;
 }					t_degrad;
 
-typedef struct		s_color
+typedef struct		s_point
 {
-	int				**hexa;
-}					t_color;
+	int				color;
+	int				z;
+}					t_point;
 
 typedef struct		s_pos
 {
 	int				x;
 	int				y;
-	int				**z;
 	int				*placex;
 	int				*placey;
 	int				*placez;
@@ -54,7 +54,7 @@ typedef struct		s_pos
 	int				degraded;
 	int				low_nb;
 	int				high_nb;
-	struct s_color	color;
+	struct s_point	**point;
 }					t_pos;
 
 typedef struct		s_put
@@ -124,10 +124,11 @@ void				ft_fps(t_fdf *fdf);
 void				ft_link_point(t_fdf fdf);
 void				ft_feature_color_2(t_fdf fdf);
 
+//t_pos				ft_set_pos(char *argv, t_fdf fdf);
 t_pos				ft_set_pos(char *argv, t_pos pos);
 t_pos				ft_pos_normalization(t_pos pos);
-//t_pos				ft_get_z(int fd, t_pos pos, char *line);
-t_pos				ft_get_z(int fd, t_pos pos);
+//t_pos				ft_get_z(int fd, t_pos pos);
+t_pos				ft_get_z(int fd, t_pos pos, char *line);
 
 int					mouse_fonct(int button, int x, int y, t_fdf *fdf);
 int					loop_hook(t_fdf *fdf);

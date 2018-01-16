@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 15:48:06 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/15 20:18:14 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/16 03:14:32 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,15 @@ static void	key_fonct_rot_z(int keycode, t_fdf *fdf)
 
 static void	ft_free_all(t_fdf *fdf)
 {
-	ft_free_tab_int(fdf->pos.z);
+	int		i;
+
+	i = 0;
+	while (fdf->pos.point[i])
+	{
+		free(fdf->pos.point[i]);
+		i++;
+	}
+	free(fdf->pos.point);
 	mlx_clear_window(fdf->mlx, fdf->win1);
 	mlx_destroy_image(fdf->mlx, fdf->img);
 	mlx_destroy_window(fdf->mlx, fdf->win1);

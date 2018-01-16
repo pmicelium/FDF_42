@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 20:24:05 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/16 00:11:37 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/16 01:47:42 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ static int		ft_degraded(t_fdf fdf, double i, int degrad, int base)
 	fdf.degrad.b_b = (base) & 0xFF;
 	if (degrad == 1)
 	{
-		r = (fdf.degrad.h_r - fdf.degrad.b_r) * i + fdf.degrad.l_r;
-		g = (fdf.degrad.h_g - fdf.degrad.b_g) * i + fdf.degrad.l_g;
-		b = (fdf.degrad.h_b - fdf.degrad.b_b) * i + fdf.degrad.l_b;
+		r = (fdf.degrad.h_r - fdf.degrad.b_r) * i + fdf.degrad.b_r;
+		g = (fdf.degrad.h_g - fdf.degrad.b_g) * i + fdf.degrad.b_g;
+		b = (fdf.degrad.h_b - fdf.degrad.b_b) * i + fdf.degrad.b_b;
 		color = (r & 0xFF) << 16 | (g & 0xFF) << 8 | (b & 0xFF);
 	}
 	else
