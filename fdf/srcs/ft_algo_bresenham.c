@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 20:24:05 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/16 05:57:34 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/16 20:33:25 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,10 @@ static int		ft_degraded(t_fdf fdf, double i, int color0, int color1)
 	fdf.pos.degrad.c_r = (color1 >> 16) & 0xFF;
 	fdf.pos.degrad.c_g = (color1 >> 8) & 0xFF;
 	fdf.pos.degrad.c_b = (color1) & 0xFF;
-	r = abs(fdf.pos.degrad.b_r - fdf.pos.degrad.c_r) * i +
-		ft_nbrmin(fdf.pos.degrad.b_r, fdf.pos.degrad.c_r);
-	g = abs(fdf.pos.degrad.b_g - fdf.pos.degrad.c_g) * i +
-		ft_nbrmin(fdf.pos.degrad.b_g, fdf.pos.degrad.c_g);
-	b = abs(fdf.pos.degrad.b_b - fdf.pos.degrad.c_b) * i +
-		ft_nbrmin(fdf.pos.degrad.b_b, fdf.pos.degrad.c_b);
+
+	r = (fdf.pos.degrad.c_r - fdf.pos.degrad.b_r) * i + fdf.pos.degrad.b_r;
+	g = (fdf.pos.degrad.c_g - fdf.pos.degrad.b_g) * i + fdf.pos.degrad.b_g;
+	b = (fdf.pos.degrad.c_b - fdf.pos.degrad.b_b) * i + fdf.pos.degrad.b_b;
 	color = (r & 0xFF) << 16 | (g & 0xFF) << 8 | (b & 0xFF);
 	return (color);
 }
