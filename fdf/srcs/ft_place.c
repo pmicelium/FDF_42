@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 17:29:13 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/16 00:56:46 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/16 05:38:14 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ static void	ft_place_malloc(t_fdf *fdf)
 	if (!(fdf->pos.elev = (int*)malloc(sizeof(int) * (fdf->pos.x *
 						(fdf->pos.y - 1)))))
 		exit(1);
+	if (!(fdf->pos.color = (int*)malloc(sizeof(int) * (fdf->pos.x *
+						(fdf->pos.y - 1)))))
+		exit(1);
 }
 
 static void	ft_place_point(t_fdf *fdf)
@@ -73,6 +76,7 @@ static void	ft_place_point(t_fdf *fdf)
 		{
 			ft_place_calcul(fdf, x, y, i);
 			fdf->pos.elev[i] = fdf->pos.point[y][x].z;
+			fdf->pos.color[i] = fdf->pos.point[y][x].color;
 			i++;
 			x++;
 		}

@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 19:04:23 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/16 01:48:54 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/16 03:34:40 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void			key_fonct_set(t_fdf *fdf)
 	fdf->key.zoom = 5;
 	fdf->key.w = 0;
 	fdf->key.a = 0;
-	fdf->degrad.h_r = (fdf->pos.high_color >> 16) & 0xFF;
-	fdf->degrad.h_g = (fdf->pos.high_color >> 8) & 0xFF;
-	fdf->degrad.h_b = (fdf->pos.high_color) & 0xFF;
-	fdf->degrad.l_r = (fdf->pos.low_color >> 16) & 0xFF;
-	fdf->degrad.l_g = (fdf->pos.low_color >> 8) & 0xFF;
-	fdf->degrad.l_b = (fdf->pos.low_color) & 0xFF;
+	fdf->pos.degrad.h_r = (fdf->pos.high_color >> 16) & 0xFF;
+	fdf->pos.degrad.h_g = (fdf->pos.high_color >> 8) & 0xFF;
+	fdf->pos.degrad.h_b = (fdf->pos.high_color) & 0xFF;
+	fdf->pos.degrad.l_r = (fdf->pos.low_color >> 16) & 0xFF;
+	fdf->pos.degrad.l_g = (fdf->pos.low_color >> 8) & 0xFF;
+	fdf->pos.degrad.l_b = (fdf->pos.low_color) & 0xFF;
 	fdf->key.hud = 1;
 	fdf->repaint = 1;
 	fdf->key.rot_x = 0;

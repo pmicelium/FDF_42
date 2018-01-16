@@ -6,38 +6,36 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 20:24:05 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/16 01:47:42 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/16 05:41:23 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static int		ft_degraded(t_fdf fdf, double i, int degrad, int base)
+static int		ft_degraded(t_fdf fdf, double i, int color0, int color1)
 {
 	int		r;
 	int		g;
 	int		b;
 	int		color;
 
-	fdf.degrad.b_r = (base >> 16) & 0xFF;
-	fdf.degrad.b_g = (base >> 8) & 0xFF;
-	fdf.degrad.b_b = (base) & 0xFF;
-	if (degrad == 1)
-	{
-		r = (fdf.degrad.h_r - fdf.degrad.b_r) * i + fdf.degrad.b_r;
-		g = (fdf.degrad.h_g - fdf.degrad.b_g) * i + fdf.degrad.b_g;
-		b = (fdf.degrad.h_b - fdf.degrad.b_b) * i + fdf.degrad.b_b;
-		color = (r & 0xFF) << 16 | (g & 0xFF) << 8 | (b & 0xFF);
-	}
-	else
-	{
-		r = (fdf.degrad.l_r - fdf.degrad.b_r) * i + fdf.degrad.b_r;
-		g = (fdf.degrad.l_g - fdf.degrad.b_g) * i + fdf.degrad.b_g;
-		b = (fdf.degrad.l_b - fdf.degrad.b_b) * i + fdf.degrad.b_b;
-		color = (r & 0xFF) << 16 | (g & 0xFF) << 8 | (b & 0xFF);
-	}
+	fdf.pos.degrad.b_r = (color0 >> 16) & 0xFF;
+	fdf.pos.degrad.b_g = (color0 >> 8) & 0xFF;
+	fdf.pos.degrad.b_b = (color0) & 0xFF;
+	fdf.pos.degrad.c_r = (color1 >> 16) & 0xFF;
+	fdf.pos.degrad.c_g = (color1 >> 8) & 0xFF;
+	fdf.pos.degrad.c_b = (color1) & 0xFF;
+
+	r = abs(fdf.pos.degrad.b_r - fdf.pos.degrad.c_r) * i +
+		ft_nbrmin(fdf.pos.degrad.b_r, fdf.pos.degrad.c_r);
+	g = abs(fdf.pos.degrad.b_g - fdf.pos.degrad.c_g) * i +
+		ft_nbrmin(fdf.pos.degrad.b_g, fdf.pos.degrad.c_g);
+	b = abs(fdf.pos.degrad.b_b - fdf.pos.degrad.c_b) * i +
+		ft_nbrmin(fdf.pos.degrad.b_b, fdf.pos.degrad.c_b);
+	color = (r & 0xFF) << 16 | (g & 0xFF) << 8 | (b & 0xFF);
 	return (color);
 }
+
 
 static t_put	ft_set_put_line(t_put put)
 {
@@ -69,13 +67,14 @@ void			bresenham_line(t_fdf fdf, t_put put, int color, int degrad)
 	int		i;
 	double	steap;
 
+	degrad = 0;
 	i = 0;
 	steap = sqrt(pow((put.x1 - put.x0), 2) + pow((put.y1 - put.y0), 2));
 	put = ft_set_put_line(put);
 	while (1)
 	{
-		if (degrad != 0)
-			color = ft_degraded(fdf, i++ / steap, degrad, put.color);
+	//	if (degrad != 0)
+		color = ft_degraded(fdf, i++ / steap, put.color, put.color1);
 		if (put.y0 * X_WIN_1 + put.x0 < X_WIN_1 * Y_WIN_1
 				&& put.y0 >= 0 && put.x0 >= 0
 				&& put.y0 < Y_WIN_1 && put.x0 < X_WIN_1)

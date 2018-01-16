@@ -6,32 +6,50 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/14 04:56:06 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/16 03:19:55 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/16 03:33:27 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-/*
-static int	ft_set_color(t_fdf fdf, int i)
+static int		ft_set_color_2(t_pos pos, int x, int y)
 {
 	int		color;
 	int		r;
 	int		g;
 	int		b;
 
-	if (fdf.pos.elev[i] == 0)
-		return (fdf.pos.low_color);
-	r = (fdf.degrad.h_r - fdf.degrad.l_r) * ((float)fdf.pos.elev[i] /
-			(float)(fdf.pos.high_nb - fdf.pos.low_nb)) + fdf.degrad.l_r;
-	g = (fdf.degrad.h_g - fdf.degrad.l_g) * ((float)fdf.pos.elev[i] /
-			(float)(fdf.pos.high_nb - fdf.pos.low_nb)) + fdf.degrad.l_g;
-	b = (fdf.degrad.h_b - fdf.degrad.l_b) * ((float)fdf.pos.elev[i] /
-			(float)(fdf.pos.high_nb - fdf.pos.low_nb)) + fdf.degrad.l_b;
+	if (pos.point[y][x].z == 0)
+		return (pos.low_color);
+	r = (pos.degrad.h_r - pos.degrad.l_r) * ((float)pos.point[y][x].z /
+			(float)(pos.high_nb - pos.low_nb)) + pos.degrad.l_r;
+	g = (pos.degrad.h_g - pos.degrad.l_g) * ((float)pos.point[y][x].z /
+			(float)(pos.high_nb - pos.low_nb)) + pos.degrad.l_g;
+	b = (pos.degrad.h_b - pos.degrad.l_b) * ((float)pos.point[y][x].z /
+			(float)(pos.high_nb - pos.low_nb)) + pos.degrad.l_b;
 	color = (r & 0xFF) << 16 | (g & 0xFF) << 8 | (b & 0xFF);
 	return (color);
 }
-*/
+
+static t_pos	ft_set_color(t_pos pos)
+{
+	int		x;
+	int		y;
+
+	y = 0;
+	while (y < pos.y)
+	{
+		x = 0;
+		while (x < pos.x)
+		{
+			if (pos.point[y][x].color == 0)
+				pos.point[y][x].color = ft_set_color_2(pos, x, y);
+			x++;
+		}
+		y++;
+	}
+	return (pos);
+}
 
 static t_pos	ft_malloc_z(t_pos pos)
 {
@@ -78,14 +96,13 @@ t_pos			ft_get_z(int fd, t_pos pos, char *line)
 		while (tmp[i])
 		{
 			if (ft_strstr(tmp[i], ",0x") != NULL)
-			{
 				pos.point[y][x].color = ft_hexa(tmp[i]);
-			}
 			pos.point[y][x++].z = ft_atoi(tmp[i++]);
 		}
 		y++;
 		ft_free_tab(tmp);
 	}
 	pos = ft_pos_normalization(pos);
+	pos = ft_set_color(pos);
 	return (pos);
 }

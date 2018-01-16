@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 15:30:51 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/08 16:39:19 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/16 04:46:03 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ static void	ft_feature_color_3(t_fdf fdf)
 			"Lower color:");
 	mlx_string_put(fdf.mlx, fdf.win1, 160, Y_WIN_1 - 75, GREY,
 			"-     +");
-	tmp = ft_itoa(fdf.degrad.l_r);
+	tmp = ft_itoa(fdf.pos.degrad.l_r);
 	mlx_string_put(fdf.mlx, fdf.win1, 180, Y_WIN_1 - 75, GREY, tmp);
 	free(tmp);
 	mlx_string_put(fdf.mlx, fdf.win1, 245, Y_WIN_1 - 75, GREY,
 			"-     +");
-	tmp = ft_itoa(fdf.degrad.l_g);
+	tmp = ft_itoa(fdf.pos.degrad.l_g);
 	mlx_string_put(fdf.mlx, fdf.win1, 265, Y_WIN_1 - 75, GREY, tmp);
 	free(tmp);
 	mlx_string_put(fdf.mlx, fdf.win1, 335, Y_WIN_1 - 75, GREY,
 			"-     +");
-	tmp = ft_itoa(fdf.degrad.l_b);
+	tmp = ft_itoa(fdf.pos.degrad.l_b);
 	mlx_string_put(fdf.mlx, fdf.win1, 355, Y_WIN_1 - 75, GREY, tmp);
 	free(tmp);
 }
@@ -74,7 +74,7 @@ static void	ft_feature_key(t_fdf fdf)
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 190, 0x00c1c1c1,
 			"Rotate image < z >  : r f");
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 210, 0x00c1c1c1,
-			"Mouve image         : arrows");
+			"Move image          : arrows");
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 230, 0x00c1c1c1,
 			"Reset image         : space");
 }
