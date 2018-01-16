@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 22:22:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/16 03:42:11 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/16 22:44:57 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,9 @@ int			mouse_fonct(int button, int x, int y, t_fdf *fdf)
 			ft_bleu_upper(fdf, button, x);
 		fdf->pos.high_color = (fdf->pos.degrad.h_r & 0xFF) << 16 |
 			(fdf->pos.degrad.h_g & 0xFF) << 8 | (fdf->pos.degrad.h_b & 0xFF);
+		fdf->color = 1;
 	}
-	if (y > 930 && y < 945)
+	else if (y > 930 && y < 945)
 	{
 		if (x > 160 && x < 230)
 			ft_red_lower(fdf, button, x);
@@ -95,7 +96,10 @@ int			mouse_fonct(int button, int x, int y, t_fdf *fdf)
 			ft_bleu_lower(fdf, button, x);
 		fdf->pos.low_color = (fdf->pos.degrad.l_r & 0xFF) << 16 |
 			(fdf->pos.degrad.l_g & 0xFF) << 8 | (fdf->pos.degrad.l_b & 0xFF);
+		fdf->color = 1;
 	}
+	else
+		mouse_fonct_zoom(button, fdf);
 	fdf->repaint = 1;
 	return (0);
 }

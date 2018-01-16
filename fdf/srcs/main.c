@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 19:04:23 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/16 03:34:40 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/16 22:41:43 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void			key_fonct_set(t_fdf *fdf)
 	fdf->key.rot_z = 0;
 	fdf->fps.fps = 0;
 	fdf->fps.start = 0;
+	fdf->color = 1;
 }
 
 static int		show_bonus(int argc, char **argv, int i)

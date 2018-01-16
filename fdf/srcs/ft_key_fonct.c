@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 15:48:06 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/16 03:14:32 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/16 22:41:24 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,11 @@ int			loop_hook(t_fdf *fdf)
 		fdf->img = mlx_new_image(fdf->mlx, X_WIN_1, Y_WIN_1);
 		fdf->img_data = (int*)mlx_get_data_addr(fdf->img, &fdf->bpp,
 				&fdf->lsize, &fdf->endian);
+		if (fdf->color == 1)
+		{
+			fdf->pos = ft_set_color(fdf->pos);
+			fdf->color = 0;
+		}
 		ft_place(*fdf);
 		fdf->repaint = 0;
 	}

@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 22:27:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/16 05:34:50 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/16 22:33:12 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct		s_degrad
 
 typedef struct		s_point
 {
+	int				hexa;
 	int				color;
 	int				z;
 }					t_point;
@@ -106,6 +107,7 @@ typedef struct		s_fdf
 	int				endian;
 	int				bpp;
 	int				repaint;
+	int				color;
 	struct s_pos	pos;
 	struct s_key	key;
 	struct s_fps	fps;
@@ -127,12 +129,12 @@ void				ft_green_upper(t_fdf *fdf, int button, int x);
 void				ft_fps(t_fdf *fdf);
 void				ft_link_point(t_fdf fdf);
 void				ft_feature_color_2(t_fdf fdf);
-
 t_pos				ft_set_pos(char *argv, t_pos pos);
 t_pos				ft_pos_normalization(t_pos pos);
 t_pos				ft_get_z(int fd, t_pos pos, char *line);
-
+t_pos				ft_set_color(t_pos pos);
 int					mouse_fonct(int button, int x, int y, t_fdf *fdf);
+void				mouse_fonct_zoom(int button, t_fdf *fdf);
 int					loop_hook(t_fdf *fdf);
 
 #endif

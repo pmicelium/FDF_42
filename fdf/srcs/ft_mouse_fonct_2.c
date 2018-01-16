@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 21:31:17 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/16 03:41:39 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/16 22:25:54 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,12 @@ void	ft_green_upper(t_fdf *fdf, int button, int x)
 		else if (fdf->pos.degrad.h_g > 0)
 			fdf->pos.degrad.h_g--;
 	}
+}
+
+void	mouse_fonct_zoom(int button, t_fdf *fdf)
+{
+	if (button == 4)
+		fdf->key.zoom++;
+	if (button == 5)
+		fdf->key.zoom--;
 }

@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 20:24:05 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/16 21:46:44 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/16 22:09:02 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,13 @@ static int		ft_degraded(t_degrad degrad, double i)
 	int		g;
 	int		b;
 	int		color;
-/*
-	degrad.b_r = (color0 >> 16) & 0xFF;
-	degrad.b_g = (color0 >> 8) & 0xFF;
-	degrad.b_b = (color0) & 0xFF;
-	degrad.c_r = (color1 >> 16) & 0xFF;
-	degrad.c_g = (color1 >> 8) & 0xFF;
-	degrad.c_b = (color1) & 0xFF;
-*/
+
 	r = (degrad.c_r - degrad.b_r) * i + degrad.b_r;
 	g = (degrad.c_g - degrad.b_g) * i + degrad.b_g;
 	b = (degrad.c_b - degrad.b_b) * i + degrad.b_b;
 	color = (r & 0xFF) << 16 | (g & 0xFF) << 8 | (b & 0xFF);
 	return (color);
 }
-
 
 static t_put	ft_set_put_line(t_put put)
 {
