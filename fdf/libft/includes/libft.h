@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 14:55:34 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/16 05:11:42 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/16 05:55:46 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ size_t				ft_intlen(int nb);
 
 int					ft_strcmp(char const *s1, char const *s2);
 int					ft_nbrmin(int n1, int n2);
+int					ft_nbrmax(int n1, int n2);
 int					ft_strncmp(char const *s1, char const *s2, size_t n);
 int					ft_atoi(char const *str);
 int					ft_atoi_base(char const *str, char *base);

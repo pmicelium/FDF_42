@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 20:24:05 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/16 05:41:23 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/16 05:57:34 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static int		ft_degraded(t_fdf fdf, double i, int color0, int color1)
 	fdf.pos.degrad.c_r = (color1 >> 16) & 0xFF;
 	fdf.pos.degrad.c_g = (color1 >> 8) & 0xFF;
 	fdf.pos.degrad.c_b = (color1) & 0xFF;
-
 	r = abs(fdf.pos.degrad.b_r - fdf.pos.degrad.c_r) * i +
 		ft_nbrmin(fdf.pos.degrad.b_r, fdf.pos.degrad.c_r);
 	g = abs(fdf.pos.degrad.b_g - fdf.pos.degrad.c_g) * i +
