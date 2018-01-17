@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 14:55:34 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/16 05:56:06 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/17 04:57:37 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void				ft_free_tab(char **tab);
 void				ft_free_tab_int(int **tab);
 void				ft_display_file(char *file_name);
 
-size_t				ft_strlcat(char *dest, char const *src, size_t nb);
+;size_t				ft_strlcat(char *dest, char const *src, size_t nb);
 size_t				ft_strlen(char const *str);
 size_t				ft_intlen(int nb);
 
@@ -88,6 +88,7 @@ int					ft_isdigit(int c);
 int					ft_isalnum(int c);
 int					ft_isprint(int c);
 int					ft_isascii(int c);
+int					ft_is_base(char *nbr, char *base);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
 int					ft_memcmp(void const *s1, void const *s2, size_t n);

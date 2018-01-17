@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 19:04:23 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/16 22:41:43 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/17 05:48:30 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,45 @@ void			key_fonct_set(t_fdf *fdf)
 	fdf->color = 1;
 }
 
-static int		show_bonus(int argc, char **argv, int i)
+static int		ft_parameters2(char **argv, int i, t_fdf *fdf)
 {
-	if (ft_strcmp(argv[i], "-bonus.fr") == 0)
+	if (ft_strcmp(argv[i], "-lcolor") == 0)
 	{
-		ft_display_bonus_fr();
 		i++;
-		if (i == argc)
-			return (0);
+		if (ft_is_base(argv[i], HEXA) == 1)
+			fdf->pos.low_color = ft_atoi_base(argv[i], HEXA);
+		else
+			ft_putendl_color("-lcolor error: wrong number detected", "red");
 	}
-	if (ft_strcmp(argv[i], "-bonus.en") == 0)
+	if (ft_strcmp(argv[i], "-ucolor") == 0)
 	{
 		i++;
-		ft_display_bonus_en();
+		if (ft_is_base(argv[i], HEXA) == 1)
+			fdf->pos.high_color = ft_atoi_base(argv[i], HEXA);
+		else
+			ft_putendl_color("-ucolor error: wrong number detected", "red");
+	}
+	return (i);
+}
+
+static int		ft_parameters(int argc, char **argv, int i, t_fdf *fdf)
+{
+	while (ft_strcmp(argv[i], "-bonus.fr") == 0 ||
+			ft_strcmp(argv[i], "-bonus.en") == 0 ||
+			ft_strcmp(argv[i], "-lcolor") == 0 ||
+			ft_strcmp(argv[i], "-ucolor") == 0 ||
+			ft_strcmp(argv[i], "-leaks") == 0)
+	{
+		if (ft_strcmp(argv[i], "-bonus.fr") == 0)
+			ft_display_bonus_fr();
+		if (ft_strcmp(argv[i], "-bonus.en") == 0)
+			ft_display_bonus_en();
+		if (ft_strcmp(argv[i], "-leaks") == 0)
+			fdf->leaks = 1;
+		if (ft_strcmp(argv[i], "-lcolor") == 0 ||
+				ft_strcmp(argv[i], "-ucolor") == 0)
+			i = ft_parameters2(argv, i, fdf);
+		i++;
 		if (i == argc)
 			return (0);
 	}
@@ -58,12 +84,15 @@ int				main(int argc, char *argv[])
 	t_fdf	fdf;
 	int		i;
 
+	if (argc == 1)
+		ft_print_usage();
 	i = 1;
-	i = show_bonus(argc, argv, i);
+	fdf.leaks = 0;
+	fdf.pos.low_color = 0x00FFFFFF;
+	fdf.pos.high_color = 0x80FF0000;
+	i = ft_parameters(argc, argv, i, &fdf);
 	if (i == 0)
 		return (0);
-	fdf.pos.low_color = 0x00FFFFFF;
-	fdf.pos.high_color = 0x00FF0000;
 	key_fonct_set(&fdf);
 	fdf.pos = ft_set_pos(argv[i], fdf.pos);
 	fdf.mlx = mlx_init();
