@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 17:29:13 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/16 22:12:26 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/17 01:40:38 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,24 @@ static void	ft_place_calcul(t_fdf *fdf, int x, int y, int i)
 
 	pi = M_PI / 180;
 	tmp_pz = fdf->pos.point[y][x].z * fdf->key.elev;
-	fdf->pos.placex[i] = (x * fdf->key.zoom) * cos(-fdf->key.rot_z * pi)
-		- (y * fdf->key.zoom) * sin(-fdf->key.rot_z * pi);
-	fdf->pos.placey[i] = (y * fdf->key.zoom) * cos(-fdf->key.rot_z * pi)
-		+ (x * fdf->key.zoom) * sin(-fdf->key.rot_z * pi);
+	//rot z//
+	fdf->pos.placex[i] = X_CEN + ((x * fdf->key.zoom) - X_CEN) * cos(-fdf->key.rot_z * pi) - ((y * fdf->key.zoom) - Y_CEN) * sin(-fdf->key.rot_z * pi);
+	fdf->pos.placey[i] = Y_CEN + ((y * fdf->key.zoom) - Y_CEN) * cos(-fdf->key.rot_z * pi) + ((x * fdf->key.zoom) - X_CEN) * sin(-fdf->key.rot_z * pi);
+	//
 	tmp_px = fdf->pos.placex[i];
 	tmp_py = fdf->pos.placey[i];
-	fdf->pos.placey[i] = tmp_py * cos(fdf->key.rot_x * pi)
-		- tmp_pz * sin(fdf->key.rot_x * pi);
-	fdf->pos.placez[i] = tmp_py * sin(fdf->key.rot_x * pi)
-		+ tmp_pz * cos(fdf->key.rot_x * pi);
+	//rot x//
+	fdf->pos.placey[i] = Y_CEN + (tmp_py - Y_CEN) * cos(fdf->key.rot_x * pi) - (tmp_pz - Z_CEN) * sin(fdf->key.rot_x * pi);
+	fdf->pos.placez[i] = Z_CEN + (tmp_py - Y_CEN) * sin(fdf->key.rot_x * pi) + (tmp_pz - Z_CEN) * cos(fdf->key.rot_x * pi);
+	//
 	tmp_py = fdf->pos.placey[i];
 	tmp_pz = fdf->pos.placez[i];
-	fdf->pos.placex[i] = tmp_px * cos(fdf->key.rot_y * pi)
-		+ tmp_pz * sin(fdf->key.rot_y * pi);
-	fdf->pos.placex[i] += (((X_WIN_1 / 2) - (fdf->pos.x * fdf->key.zoom / 2))
-			+ fdf->key.zoom / 10) + fdf->key.a;
-	fdf->pos.placey[i] += (((Y_WIN_1 / 2) - (fdf->pos.y * fdf->key.zoom / 2))
-			+ fdf->key.zoom / 10) + fdf->key.w;
+	//rot y//
+	fdf->pos.placex[i] = (X_CEN) + (tmp_px - X_CEN) * cos(fdf->key.rot_y * pi) - (tmp_pz - Z_CEN) * sin(fdf->key.rot_y * pi);
+	fdf->pos.placez[i] = (Z_CEN) + (tmp_px - X_CEN) * cos(fdf->key.rot_y * pi) + (tmp_pz - Z_CEN) * sin(fdf->key.rot_y * pi);
+	//
+	fdf->pos.placex[i] += (((X_WIN_1 / 2) - X_CEN) + fdf->key.zoom / 10) + fdf->key.a * 2;
+	fdf->pos.placey[i] += (((Y_WIN_1 / 2) - Y_CEN) + fdf->key.zoom / 10) + fdf->key.w * 2;
 }
 
 static void	ft_place_malloc(t_fdf *fdf)

@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 22:27:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/16 22:33:12 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/17 01:44:48 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # define X_WIN_1 1800
 # define GREY 0x00c1c1c1
 # define WHITE 0x00FFFFFF
+# define X_CEN ((fdf->pos.x / 2)  * fdf->key.zoom)
+# define Y_CEN ((fdf->pos.y / 2 - 1) * fdf->key.zoom)
+# define Z_CEN ((fdf->pos.high_nb / 2) * fdf->key.elev)
 
 typedef struct		s_degrad
 {
@@ -129,6 +132,7 @@ void				ft_green_upper(t_fdf *fdf, int button, int x);
 void				ft_fps(t_fdf *fdf);
 void				ft_link_point(t_fdf fdf);
 void				ft_feature_color_2(t_fdf fdf);
+//void				ft_put_to_center(t_fdf fdf, int x, int y, int i);
 t_pos				ft_set_pos(char *argv, t_pos pos);
 t_pos				ft_pos_normalization(t_pos pos);
 t_pos				ft_get_z(int fd, t_pos pos, char *line);
