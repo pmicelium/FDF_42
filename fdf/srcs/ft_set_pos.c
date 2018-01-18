@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/14 04:14:19 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/16 03:20:21 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/18 22:10:44 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,10 @@ static int		ft_parse_line(int fd, t_pos *pos)
 			ft_putendl_color(", exit", "red");
 			return (0);
 		}
-		if (pos->y == 0)
-			pos->x = ft_get_x(line);
+		pos->x = pos->y == 0 ? ft_get_x(line) : pos->x;
 		pos->y++;
 	}
+	pos->y++;
 	return (1);
 }
 

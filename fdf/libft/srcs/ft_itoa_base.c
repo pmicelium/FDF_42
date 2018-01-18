@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 18:24:56 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/12/20 19:06:25 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/18 20:34:52 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,8 @@ char	*ft_itoa_base(int nb, char *base)
 	if (!(s = (char*)malloc(sizeof(char) * (i + 1))))
 		return (NULL);
 	s[i] = '\0';
-	if (nb == 0)
-		return (ft_strdup("0"));
-	if (nb == -2147483648)
-		return (ft_strdup("-2147483648"));
+	if (nb == 0 || nb == -2147483648)
+		return (ft_strdup(ft_itoa(nb)));
 	if (nb < 0)
 	{
 		s[0] = '-';

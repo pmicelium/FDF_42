@@ -6,13 +6,26 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 02:00:04 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/17 05:01:45 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/18 20:40:19 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-int			ft_atoi_base(char const *str, char* base)
+static int	clear(char const *str)
+{
+	int			i;
+
+	i = 0;
+	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\f' || str[i] == '\t'
+			|| str[i] == '\v' || str[i] == '\r')
+		i++;
+	if (str[i] == '0' && str[i + 1] == 'x')
+		i += 2;
+	return (i);
+}
+
+int			ft_atoi_base(char const *str, char *base)
 {
 	int		val;
 	int		i;
@@ -20,15 +33,10 @@ int			ft_atoi_base(char const *str, char* base)
 	int		base_len;
 	int		digit;
 
-	i = 0;
 	val = 0;
 	sign = 1;
 	base_len = ft_strlen(base);
-	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\f' || str[i] == '\t'
-			|| str[i] == '\v' || str[i] == '\r')
-		i++;
-	if (str[i] == '0' && str[i + 1] == 'x')
-		i += 2;
+	i = clear(str);
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')

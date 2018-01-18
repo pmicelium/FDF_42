@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/14 04:56:06 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/16 22:35:41 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/18 20:53:31 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int		ft_set_color_2(t_pos pos, int x, int y)
 	return (color);
 }
 
-t_pos	ft_set_color(t_pos pos)
+t_pos			ft_set_color(t_pos pos)
 {
 	int		x;
 	int		y;
@@ -96,12 +96,8 @@ t_pos			ft_get_z(int fd, t_pos pos, char *line)
 		while (tmp[i])
 		{
 			if (ft_strstr(tmp[i], ",0x") != NULL)
-			{
-				pos.point[y][x].hexa = 1;
 				pos.point[y][x].color = ft_hexa(tmp[i]);
-			}
-			else
-				pos.point[y][x].hexa = 0;
+			pos.point[y][x].hexa = pos.point[y][x].color != 0 ? 1 : 0;
 			pos.point[y][x++].z = ft_atoi(tmp[i++]);
 		}
 		y++;

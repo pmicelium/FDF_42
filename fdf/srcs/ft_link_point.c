@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 22:25:54 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/16 22:07:23 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/18 22:02:31 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	ft_place_pre_bresenham(t_fdf fdf, t_put *put, int i, int j)
 		put->y1 = fdf.pos.placey[i + 1];
 		bresenham_line(fdf, *put, put->color, 0);
 	}
-	if (j != fdf.pos.y - 1)
+	if (j + 1 != fdf.pos.y)
 	{
 		put->color1 = fdf.pos.color[i + fdf.pos.x];
 		put->x1 = fdf.pos.placex[i + fdf.pos.x];

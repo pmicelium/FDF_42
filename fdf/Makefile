@@ -6,7 +6,7 @@
 #    By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/14 02:47:46 by pmiceli           #+#    #+#              #
-#    Updated: 2018/01/17 04:39:33 by pmiceli          ###   ########.fr        #
+#    Updated: 2018/01/18 20:30:03 by pmiceli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,14 +50,14 @@ $(LIBFT):
 	@echo "\033[036m=>	\033[033mCreating FDF's objetcs\033[0m"
 
 clean:
-	@echo "\033[036m=>	\033[031mRemouve FDF's objects\033[0m"
 	@rm -rf $(OBJS_DIR)
 	@make -C $(LIBFT_DIR) clean
+	@echo "\033[036m=>	\033[031mRemouve FDF's objects\033[0m"
 
 fclean: clean
-	@echo "\033[036m=>	\033[031mRemouve FDF's executable\033[0m"
 	@rm -rf $(NAME)
 	@make -C $(LIBFT_DIR) fclean
+	@echo "\033[036m=>	\033[031mRemouve FDF's executable\033[0m"
 
 re: fclean all
 

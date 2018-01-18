@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 15:48:06 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/17 04:32:26 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/18 20:54:42 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ static void	ft_free_all(t_fdf *fdf)
 	mlx_destroy_image(fdf->mlx, fdf->img);
 	mlx_destroy_window(fdf->mlx, fdf->win1);
 	if (fdf->leaks == 1)
-		while(1);
+		while (1)
+			;
 }
 
 int			key_fonct(int keycode, t_fdf *fdf)

@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 22:22:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/17 05:48:34 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/18 21:07:36 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,32 +74,28 @@ static void	ft_bleu_lower(t_fdf *fdf, int button, int x)
 
 int			mouse_fonct(int button, int x, int y, t_fdf *fdf)
 {
-	if (y > 910 && y < 920)
-	{
-		if (x > 160 && x < 230)
-			ft_red_upper(fdf, button, x);
-		if (x > 245 && x < 315)
-			ft_green_upper(fdf, button, x);
-		if (x > 335 && x < 410)
-			ft_bleu_upper(fdf, button, x);
-		fdf->pos.high_color = (fdf->pos.degrad.h_r & 0xFF) << 16 |
-			(fdf->pos.degrad.h_g & 0xFF) << 8 | (fdf->pos.degrad.h_b & 0xFF);
-		fdf->color = 1;
-	}
-	else if (y > 930 && y < 945)
-	{
-		if (x > 160 && x < 230)
-			ft_red_lower(fdf, button, x);
-		if (x > 245 && x < 315)
-			ft_green_lower(fdf, button, x);
-		if (x > 335 && x < 410)
-			ft_bleu_lower(fdf, button, x);
-		fdf->pos.low_color = (fdf->pos.degrad.l_r & 0xFF) << 16 |
-			(fdf->pos.degrad.l_g & 0xFF) << 8 | (fdf->pos.degrad.l_b & 0xFF);
-		fdf->color = 1;
-	}
+	if (x > 160 && x < 230 && y > 910 && y < 920)
+		ft_red_upper(fdf, button, x);
+	else if (x > 245 && x < 315 && y > 910 && y < 920)
+		ft_green_upper(fdf, button, x);
+	else if (x > 335 && x < 410 && y > 910 && y < 920)
+		ft_bleu_upper(fdf, button, x);
+	else if (x > 160 && x < 230 && y > 930 && y < 945)
+		ft_red_lower(fdf, button, x);
+	else if (x > 245 && x < 315 && y > 930 && y < 945)
+		ft_green_lower(fdf, button, x);
+	else if (x > 335 && x < 410 && y > 930 && y < 945)
+		ft_bleu_lower(fdf, button, x);
 	else
 		mouse_fonct_zoom(button, fdf);
+	if (y > 930 && y < 945)
+		fdf->pos.low_color = (fdf->pos.degrad.l_r & 0xFF) << 16 |
+		(fdf->pos.degrad.l_g & 0xFF) << 8 | (fdf->pos.degrad.l_b & 0xFF);
+	if (y > 910 && y < 920)
+		fdf->pos.high_color = (fdf->pos.degrad.h_r & 0xFF) << 16 |
+		(fdf->pos.degrad.h_g & 0xFF) << 8 | (fdf->pos.degrad.h_b & 0xFF);
+	if ((y > 930 && y < 945) || (y > 910 && y < 920))
+		fdf->color = 1;
 	fdf->repaint = 1;
 	return (0);
 }

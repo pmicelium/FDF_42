@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/23 16:26:53 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/17 05:34:56 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/18 20:41:48 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ void		ft_display_bonus_en(void)
 void		ft_print_usage(void)
 {
 	ft_putendl("usage : ");
-	ft_putendl("./fdf [-bonus.en] [-bonus.fr] [-leaks]\
- [-lcolor <hex color>] [-ucolor <hex color>] map");
-	ft_putendl("-bonus.fr and -bonus.en display the bonus list respectively in\
- french and english");
-	ft_putendl("-leaks activates an infinite loop before the end of the\
- program");
+	ft_putendl("./fdf [-bonus.en] [-bonus.fr] [-leaks] \
+[-lcolor <hex color>] [-ucolor <hex color>] map");
+	ft_putendl("-bonus.fr and -bonus.en display the bonus list respectively in \
+french and english");
+	ft_putendl("-leaks activates an infinite loop before the end of the \
+program");
 	ft_putendl("-lcolor and -ucolor allows to choose the default color for \
 respectively the lowest and highest point, by default it's FFFFFF and FF0000");
 	exit(1);
