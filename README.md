@@ -29,8 +29,12 @@ This project consists in graphically creating the schematic representation of a 
 
 Run `make`. An executable will compile.
 
-Run it with `./fdf [-bonus.fr] [-bonus.en] map.fdf`.
+Run it with `./fdf [-bonus.fr] [-bonus.en] [-leaks] [-lcolor <hex color\>] [-ucolor <hex color\>] map`.
 
-The flags `-bonus.fr` and `-bonus.en` shows the bonus list.
+`-bonus.fr` and `-bonus.en` shows the bonus list, respectively in french and english.
+
+`-leaks` activates an infinite loop before the end of the program.
+
+`'-lcolor` ans `-ucolor` allows to choose the default color for respectively the lowest ans the highest point, by default it's FFFFFF and FF0000.
 
 Some maps have been created in 'test_maps' folder.
