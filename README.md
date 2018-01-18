@@ -1,6 +1,8 @@
 # FDF 42
 This project consists in graphically creating the schematic representation of a terrain in relief.
 
+The subject can be fond here https://cdn.intra.42.fr/pdf/pdf/881/fdf.en.pdf in english and here https://cdn.intra.42.fr/pdf/pdf/19/fdf.fr.pdf in french
+
 ![screenshot](/fdf/screens/fdf_42.png?raw=true)
 
 # Features
