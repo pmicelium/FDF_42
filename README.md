@@ -9,7 +9,7 @@ This project consists in graphically creating the schematic representation of a 
 
 -Display colors according to the elevation of the point.
 
--Possiblity to change the color directly in the file in this way: <height>,0xRRGGBB
+-Possiblity to change the color directly in the file in this way: <<height>>,0xRRGGBB
 
 -Display a color gradient between a point in height and a neutral point.
 
@@ -29,7 +29,7 @@ This project consists in graphically creating the schematic representation of a 
 
 Run `make`. An executable will compile.
 
-Run it with `./fdf [-bonus.fr] [-bonus.en] [map.fdf]`.
+Run it with `./fdf [-bonus.fr] [-bonus.en] map.fdf`.
 
 The flags `-bonus.fr` and `-bonus.en` shows the bonus list.
 
