@@ -23,7 +23,9 @@ The subject can be fond here https://cdn.intra.42.fr/pdf/pdf/881/fdf.en.pdf in e
 
 -Dynamic color management (with the mouse or mouse wheel).
 
--Line clipping
+-Line clipping.
+
+-Anti-aliasing.
 
 -Management of the 'button stayed pressed' utility.
 
