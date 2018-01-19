@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 22:55:02 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/19 06:14:18 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/19 06:24:40 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static t_wu		set_wu(t_wu wu, t_put put, int i)
 	if (i == 1)
 	{
 		wu.gradient = (double)put.dy / (double)put.dx;
-		wu.xend = round_(put.x0);
+		wu.xend = ROUND_(put.x0);
 		wu.yend = put.y0 + wu.gradient * (wu.xend - put.x0);
 		wu.xgap = rfpart_(put.x0 + 0.5);
 		wu.xpx11 = wu.xend;
@@ -91,8 +91,10 @@ static void		xiaolin_wu_2(t_fdf fdf, t_put put, t_wu wu)
 	{
 		if (check_print(x, ipart_(wu.intery + 1)) == 1)
 		{
-			print_xiao(x, ipart_(wu.intery), rfpart_(wu.intery), fdf, ft_degraded(fdf.pos.degrad, i / steap));
-			print_xiao(x, ipart_(wu.intery) + 1, fpart_(wu.intery), fdf, ft_degraded(fdf.pos.degrad, i++ / steap));
+			print_xiao(x, ipart_(wu.intery), rfpart_(wu.intery), fdf,
+					ft_degraded(fdf.pos.degrad, i / steap));
+			print_xiao(x, ipart_(wu.intery) + 1, fpart_(wu.intery), fdf,
+					ft_degraded(fdf.pos.degrad, i++ / steap));
 		}
 		wu.intery += wu.gradient;
 		x++;
