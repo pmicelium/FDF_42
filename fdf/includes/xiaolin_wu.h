@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 01:22:55 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/19 06:24:04 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/19 06:32:25 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 # define IPART_(X) ((int)(X))
 # define ROUND_(X) ((int)(((double)(X)) + 0.5))
-# define FPART_(X) (((double)(X)) - (double)ipart_(X))
-# define RFPART_(X) (1.0 - fpart_(X))
+# define FPART_(X) (((double)(X)) - (double)IPART_(X))
+# define RFPART_(X) (1.0 - FPART_(X))
 
 typedef struct			s_print
 {
