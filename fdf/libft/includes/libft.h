@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 14:55:34 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/19 02:32:32 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/19 05:46:52 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 # include <fcntl.h>
 # include <stdio.h>
 
-# define TEST(X) ft_putstr_color("TEST ", "cyan"); ft_putnbr_endl(X);
+# define TESTS(X) ft_putstr_color("TEST ", "cyan"); ft_putnbr_endl(X);
+# define TEST ft_putendl_color("TEST ", "cyan");
 # define OK ft_putendl_color("OK", "green");
 # define NL ft_putchar('\n');
 # define HEXA "0123456789ABCDEF"

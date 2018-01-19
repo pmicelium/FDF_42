@@ -6,13 +6,13 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 20:24:05 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/19 03:17:44 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/19 05:50:32 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static int		ft_degraded(t_degrad degrad, double i)
+int			ft_degraded(t_degrad degrad, double i)
 {
 	int		r;
 	int		g;

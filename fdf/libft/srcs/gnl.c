@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 10:46:55 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/15 19:41:28 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/19 05:38:54 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int				gnl(int fd, char **line)
 	char			buff[BUFF_SIZE + 1];
 	static char		*after;
 
-	if (fd < 0 || fd >= OPEN_MAX)
+	if (fd <= 0 || fd >= OPEN_MAX)
 		return (-1);
 	while ((ret = read(fd, buff, BUFF_SIZE)))
 	{

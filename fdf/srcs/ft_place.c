@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 17:29:13 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/18 21:52:46 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/19 06:19:32 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	ft_place_calcul(t_fdf *fdf, int x, int y, int i)
 	double	pi;
 
 	pi = M_PI / 180;
-	tmp_pz = fdf->pos.point[y][x].z * ((fdf->key.elev) * (fdf->key.zoom)) / 10;
+	tmp_pz = fdf->pos.point[y][x].z * (fdf->key.elev * fdf->key.zoom) / 10;
 	fdf->pos.placex[i] = X_CEN + ((x * fdf->key.zoom) - X_CEN) *
 		cos(-fdf->key.rot_z * pi) - ((y * fdf->key.zoom) - Y_CEN) *
 		sin(-fdf->key.rot_z * pi);

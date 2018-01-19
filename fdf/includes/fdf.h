@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 22:27:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/19 04:31:09 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/19 06:19:30 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define WHITE 0x00FFFFFF
 # define X_CEN ((fdf->pos.x / 2)  * fdf->key.zoom)
 # define Y_CEN ((fdf->pos.y / 2 - 1) * fdf->key.zoom)
-# define Z_CEN ((fdf->pos.high_nb / 2) * fdf->key.elev)
+# define Z_CEN ((fdf->pos.high_nb / 2) * ((fdf->key.elev * fdf->key.zoom) / 10))
 
 typedef struct		s_degrad
 {
@@ -75,10 +75,10 @@ typedef struct		s_wu
 	double			ygap;
 	int				xpx11;
 	int				ypx11;
-	double			intery;
-	double			interx;
 	int				xpx12;
 	int				ypx12;
+	double			intery;
+	double			interx;
 }					t_wu;
 
 
@@ -96,7 +96,6 @@ typedef struct		s_put
 	int				e2;
 	int				color;
 	int				color1;
-//	struct s_wu		wu;
 }					t_put;
 
 typedef struct		s_fps
@@ -161,5 +160,6 @@ void				mouse_fonct_zoom(int button, t_fdf *fdf);
 void				ft_print_usage();
 void				key_fonct_2(int keycode, t_fdf *fdf);
 void				xiaolin_wu(t_fdf fdf, t_put put);
+int					ft_degraded(t_degrad degrad, double i);
 
 #endif
