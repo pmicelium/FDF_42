@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 04:02:25 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/19 06:45:08 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/20 00:07:40 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,6 @@ t_degrad		set_degrad(t_put put, t_degrad degrad)
 	degrad.c_g = (put.color1 >> 8) & 0xFF;
 	degrad.c_b = (put.color1) & 0xFF;
 	return (degrad);
-}
-
-void		print_xiao(int x, int y, float br, t_fdf fdf, int color)
-{
-	fdf.img_data[y * X_WIN_1 + x] = set_brightness(color, br);
 }
 
 static t_wu		set_wu(t_wu wu, t_put put, int i)
@@ -52,6 +47,24 @@ static t_wu		set_wu(t_wu wu, t_put put, int i)
 	return (wu);
 }
 
+void			print_first_last(t_wu wu, t_put put, t_fdf fdf, int x)
+{
+	if (x == 11)
+	{
+		fdf.img_data[wu.ypx11 * X_WIN_1 + wu.xpx11] =
+			set_brightness(put.color, RFPART_(wu.yend) * wu.xgap);
+		fdf.img_data[wu.ypx11 + 1 * X_WIN_1 + wu.xpx11] =
+			set_brightness(put.color, FPART_(wu.yend) * wu.xgap);
+	}
+	if (x == 12)
+	{
+		fdf.img_data[wu.ypx12 * X_WIN_1 + wu.xpx12] =
+	set_brightness(put.color1, RFPART_(wu.yend) * wu.xgap);
+		fdf.img_data[wu.ypx12 + 1 * X_WIN_1 + wu.xpx12] =
+	set_brightness(put.color1, FPART_(wu.yend) * wu.xgap);
+	}
+}
+
 void			xiaolin_wu_3(t_fdf fdf, t_put put, t_wu wu)
 {
 	int			y;
@@ -62,29 +75,19 @@ void			xiaolin_wu_3(t_fdf fdf, t_put put, t_wu wu)
 	steap = sqrt(pow((put.x1 - put.x0), 2) + pow((put.y1 - put.y0), 2));
 	wu = set_wu(wu, put, 1);
 	if (check_print(wu.xpx11, wu.ypx11 + 1) == 1)
-	{
-		print_xiao(wu.xpx11, wu.ypx11, RFPART_(wu.yend) * wu.xgap,
-				fdf, put.color);
-		print_xiao(wu.xpx11, wu.ypx11 + 1, FPART_(wu.yend) * wu.xgap,
-				fdf, put.color);
-	}
+		print_first_last(wu, put, fdf, 11);
 	wu = set_wu(wu, put, 2);
 	if (check_print(wu.xpx12, wu.ypx12 + 1) == 1)
-	{
-		print_xiao(wu.xpx12, wu.ypx12, RFPART_(wu.yend) * wu.xgap,
-				fdf, put.color1);
-		print_xiao(wu.xpx12, wu.ypx12 + 1, FPART_(wu.yend) * wu.xgap,
-				fdf, put.color1);
-	}
+		print_first_last(wu, put, fdf, 12);
 	y = wu.ypx11;
 	while (y <= (wu.ypx12 - 1))
 	{
 		if (check_print(IPART_(wu.interx + 1), y) == 1)
 		{
-			print_xiao(IPART_(wu.interx), y, RFPART_(wu.interx), fdf,
-					ft_degraded(fdf.pos.degrad, i / steap));
-			print_xiao(IPART_(wu.interx) + 1, y, FPART_(wu.interx), fdf,
-					ft_degraded(fdf.pos.degrad, i++ /steap));
+			fdf.img_data[y * X_WIN_1 + IPART_(wu.interx)] = set_brightness(
+	ft_degraded(fdf.pos.degrad, i / steap), RFPART_(wu.interx));
+			fdf.img_data[y * X_WIN_1 + (IPART_(wu.interx) + 1)] =
+	set_brightness(ft_degraded(fdf.pos.degrad, i++ / steap), FPART_(wu.interx));
 		}
 		wu.interx += wu.gradient;
 		y++;

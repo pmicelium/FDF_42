@@ -6,7 +6,7 @@
 #    By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 14:44:04 by pmiceli           #+#    #+#              #
-#    Updated: 2018/01/16 03:14:05 by pmiceli          ###   ########.fr        #
+#    Updated: 2018/01/19 20:23:52 by pmiceli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,25 +26,25 @@ all : $(OBJS_DIR) $(NAME)
 
 $(OBJS_DIR):
 	@mkdir objets
-	@echo "\033[036m=>	\033[033mCreating Libft's objects\033m"
+#	@echo "\033[033m➼	\033[033mCreating Libft's objects\033m"
 
 $(OBJS_DIR)%.o:$(SRCS_DIR)%.c
-	@echo "\033[036m=>	\033[038;2;255;153;0mCreating	$@\033[0m"
+	@echo "\033[038;2;255;153;0m⧖	Creating	$@\033[0m"
 	@$(CC) $(CFLAGS) -I$(INC) -o $@ -c $<
 
 $(NAME) : $(OBJS)
-	@echo "\033[036m=>	\033[0m\033[032mLibft's objects created\033[0m"
+	@echo "\033[032m✓	\033[0m\033[032mLibft's objects created\033[0m"
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
-	@echo "\033[036m=>	\033[0m\033[032mLibft created\033[0m"
+	@echo "\033[032m✓	\033[0m\033[032mLibft created\033[0m"
 
 clean :
 	@rm -rf objets
-	@echo "\033[36m=>	\033[0m\033[31mLibft's objets removed\033[0m"
+	@echo "\033[36m❌	\033[0m\033[31mLibft's objets removed\033[0m"
 
 fclean : clean
 	@rm -rf $(NAME)
-	@echo "\033[036m=>	\033[0m\033[31mLibft removed"
+	@echo "\033[036m❌	\033[0m\033[31mLibft removed"
 
 re : fclean all
 

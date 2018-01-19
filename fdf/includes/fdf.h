@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 22:27:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/19 06:40:03 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/19 23:50:04 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,16 @@ typedef struct		s_degrad
 	int				c_g;
 	int				c_b;
 }					t_degrad;
+
+typedef struct		s_rot
+{
+	double			cos_x;
+	double			cos_y;
+	double			cos_z;
+	double			sin_x;
+	double			sin_y;
+	double			sin_z;
+}					t_rot;
 
 typedef struct		s_point
 {
@@ -95,6 +105,7 @@ typedef struct		s_put
 	int				e2;
 	int				color;
 	int				color1;
+	struct s_wu		wu;
 }					t_put;
 
 typedef struct		s_fps
@@ -131,6 +142,7 @@ typedef struct		s_fdf
 	struct s_pos	pos;
 	struct s_key	key;
 	struct s_fps	fps;
+	struct s_rot	rot;
 }					t_fdf;
 
 void				bresenham_line(t_fdf fdf, t_put put);

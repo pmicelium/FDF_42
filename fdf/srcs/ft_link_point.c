@@ -6,13 +6,13 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 22:25:54 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/19 00:09:55 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/19 22:45:09 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static void	ft_place_pre_bresenham(t_fdf fdf, t_put *put, int i, int j)
+static void	ft_place_pre_draw(t_fdf fdf, t_put *put, int i, int j)
 {
 	put->color = fdf.pos.color[i];
 	if (i + 1 != fdf.pos.x * j)
@@ -53,7 +53,7 @@ void		ft_link_point(t_fdf fdf)
 		{
 			put.x0 = fdf.pos.placex[i];
 			put.y0 = fdf.pos.placey[i];
-			ft_place_pre_bresenham(fdf, &put, i, y);
+			ft_place_pre_draw(fdf, &put, i, y);
 			i++;
 			x++;
 		}
