@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 21:49:08 by pmiceli           #+#    #+#             */
-/*   Updated: 2017/11/14 22:44:56 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/19 18:58:54 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ void	ft_putstr_color(char *str, char *color)
 		ft_putstr("\033[36m");
 	if (ft_strcmp(color, "grey") == 0)
 		ft_putstr("\033[37m");
+	if (ft_strcmp(color, "orange") == 0)
+		ft_putstr("\033[038;2;255;153;0m");
+	if (ft_strcmp(color, "purple") == 0)
+		ft_putstr("\033[038;2;154;37;232m");
 	ft_putstr(str);
 	ft_putstr("\033[0m");
 }

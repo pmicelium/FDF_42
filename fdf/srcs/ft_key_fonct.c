@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 15:48:06 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/18 23:49:18 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/19 18:58:29 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,11 @@ static void	ft_free_all(t_fdf *fdf)
 	mlx_destroy_image(fdf->mlx, fdf->img);
 	mlx_destroy_window(fdf->mlx, fdf->win1);
 	if (fdf->leaks == 1)
+	{
+		ft_putendl_color("infinite loop", "purple");
 		while (1)
 			;
+	}
 }
 
 int			key_fonct(int keycode, t_fdf *fdf)
@@ -68,8 +71,8 @@ int			key_fonct(int keycode, t_fdf *fdf)
 	fdf->repaint = 1;
 	if (keycode == 53)
 	{
-		ft_putendl_color("Exiting...", "green");
 		ft_free_all(fdf);
+		ft_putendl_color("Exiting...", "green");
 		exit(1);
 	}
 	else if (keycode == 69 || keycode == 24 || keycode == 78 || keycode == 27)

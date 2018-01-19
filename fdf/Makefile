@@ -6,7 +6,7 @@
 #    By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/14 02:47:46 by pmiceli           #+#    #+#              #
-#    Updated: 2018/01/19 05:39:42 by pmiceli          ###   ########.fr        #
+#    Updated: 2018/01/19 18:55:42 by pmiceli          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ LIBFT = ./libft/libft.a
 MLX = ./minilibx_macos/libmlx.a
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra
 MLX_FLAGS = -framework OpenGL -framework AppKit
 
 all: $(OBJS_DIR) $(LIBFT) $(MLX) $(NAME)
