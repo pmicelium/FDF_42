@@ -6,11 +6,19 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/25 21:23:08 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/08 16:37:55 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/18 23:50:08 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
+void	key_fonct_2(int keycode, t_fdf *fdf)
+{
+	if (keycode == 12)
+		fdf->key.anti_aliasing = fdf->key.anti_aliasing == 1 ? 0 : 1;
+	if (keycode == 36)
+		fdf->key.hud *= -1;
+}
 
 void	key_fonct_mv_struct(int keycode, t_fdf *fdf)
 {

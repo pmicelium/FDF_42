@@ -6,13 +6,13 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 22:27:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/17 05:21:49 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/19 04:31:09 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# include "libft.h"
+# include "../libft/includes/libft.h"
 # include "mlx.h"
 # include <math.h>
 # include <stdio.h>
@@ -66,6 +66,22 @@ typedef struct		s_pos
 	struct s_degrad	degrad;
 }					t_pos;
 
+typedef struct		s_wu
+{
+	double			gradient;
+	double			xend;
+	double			yend;
+	double			xgap;
+	double			ygap;
+	int				xpx11;
+	int				ypx11;
+	double			intery;
+	double			interx;
+	int				xpx12;
+	int				ypx12;
+}					t_wu;
+
+
 typedef struct		s_put
 {
 	int				x0;
@@ -80,6 +96,7 @@ typedef struct		s_put
 	int				e2;
 	int				color;
 	int				color1;
+//	struct s_wu		wu;
 }					t_put;
 
 typedef struct		s_fps
@@ -98,6 +115,7 @@ typedef struct		s_key
 	int				w;
 	int				a;
 	int				hud;
+	int				anti_aliasing;
 }					t_key;
 
 typedef struct		s_fdf
@@ -117,7 +135,7 @@ typedef struct		s_fdf
 	struct s_fps	fps;
 }					t_fdf;
 
-void				bresenham_line(t_fdf fdf, t_put put, int color, int degrad);
+void				bresenham_line(t_fdf fdf, t_put put);
 void				ft_place(t_fdf fdf);
 void				ft_feature_print(t_fdf fdf);
 void				key_fonct_set(t_fdf *fdf);
@@ -141,5 +159,7 @@ int					mouse_fonct(int button, int x, int y, t_fdf *fdf);
 int					loop_hook(t_fdf *fdf);
 void				mouse_fonct_zoom(int button, t_fdf *fdf);
 void				ft_print_usage();
+void				key_fonct_2(int keycode, t_fdf *fdf);
+void				xiaolin_wu(t_fdf fdf, t_put put);
 
 #endif

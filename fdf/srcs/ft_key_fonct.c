@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 15:48:06 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/18 20:54:42 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/18 23:49:18 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static void	key_fonct_rot(int keycode, t_fdf *fdf)
 	if (keycode == 1)
 		fdf->key.rot_x--;
 	if (keycode == 0)
-		fdf->key.rot_y--;
-	if (keycode == 2)
 		fdf->key.rot_y++;
+	if (keycode == 2)
+		fdf->key.rot_y--;
 	if (fdf->key.rot_x == 360)
 		fdf->key.rot_x = 0;
 	if (fdf->key.rot_x == -1)
@@ -85,8 +85,8 @@ int			key_fonct(int keycode, t_fdf *fdf)
 		key_fonct_rot(keycode, fdf);
 	else if (keycode == 15 || keycode == 3)
 		key_fonct_rot_z(keycode, fdf);
-	else if (keycode == 36)
-		fdf->key.hud *= -1;
+	else if (keycode == 36 || keycode == 12)
+		key_fonct_2(keycode, fdf);
 	else
 		fdf->repaint = 0;
 	return (0);

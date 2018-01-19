@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 15:30:51 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/16 04:46:03 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/19 04:42:11 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,22 +60,24 @@ static void	ft_feature_key(t_fdf fdf)
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 50, 0x00c1c1c1,
 			"HUD                 : return");
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 70, 0x00c1c1c1,
-			"Zoom                : 0");
+			"Anti_aliasing       : q");
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 90, 0x00c1c1c1,
-			"Zoom out            : 9");
+			"Zoom                : 0");
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 110, 0x00c1c1c1,
-			"Elevation +         : +");
+			"Zoom out            : 9");
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 130, 0x00c1c1c1,
-			"Elevation -         : -");
+			"Elevation +         : +");
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 150, 0x00c1c1c1,
-			"Rotate image < x >  : w s");
+			"Elevation -         : -");
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 170, 0x00c1c1c1,
-			"Rotate image < y >  : a d");
+			"Rotate image < x >  : w s");
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 190, 0x00c1c1c1,
-			"Rotate image < z >  : r f");
+			"Rotate image < y >  : a d");
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 210, 0x00c1c1c1,
-			"Move image          : arrows");
+			"Rotate image < z >  : r f");
 	mlx_string_put(fdf.mlx, fdf.win1, 25, 230, 0x00c1c1c1,
+			"Move image          : arrows");
+	mlx_string_put(fdf.mlx, fdf.win1, 25, 250, 0x00c1c1c1,
 			"Reset image         : space");
 }
 
@@ -87,17 +89,23 @@ static void	ft_feature_var(t_fdf fdf)
 	tmp = ft_strjoin_free_2("Zoom : x", ft_itoa(fdf.key.zoom));
 	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 - 110, 45, 0x00c1c1c1, tmp);
 	free(tmp);
+	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 - 200, 65, 0x00c1c1c1,
+			"Anti_aliasing : ");
+	if (fdf.key.anti_aliasing == 1)
+		mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 - 40, 65, 0x0000FF00, "ON");
+	else
+		mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 - 40, 65, 0x00FF0000, "OFF");
 	tmp = ft_strjoin_free_2("Elevation : ", ft_itoa(fdf.key.elev));
-	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 - 160, 65, 0x00c1c1c1, tmp);
+	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 - 160, 85, 0x00c1c1c1, tmp);
 	free(tmp);
 	tmp = ft_strjoin_free_2("X-axis rotation : ", ft_itoa(fdf.key.rot_x));
-	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 - 220, 85, 0x00c1c1c1, tmp);
-	free(tmp);
-	tmp = ft_strjoin_free_2("Y-axis rotation : ", ft_itoa(fdf.key.rot_y));
 	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 - 220, 105, 0x00c1c1c1, tmp);
 	free(tmp);
-	tmp = ft_strjoin_free_2("Z-axis rotation : ", ft_itoa(fdf.key.rot_z));
+	tmp = ft_strjoin_free_2("Y-axis rotation : ", ft_itoa(fdf.key.rot_y));
 	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 - 220, 125, 0x00c1c1c1, tmp);
+	free(tmp);
+	tmp = ft_strjoin_free_2("Z-axis rotation : ", ft_itoa(fdf.key.rot_z));
+	mlx_string_put(fdf.mlx, fdf.win1, X_WIN_1 - 220, 145, 0x00c1c1c1, tmp);
 	free(tmp);
 }
 

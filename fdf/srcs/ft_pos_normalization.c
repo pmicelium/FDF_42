@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 17:59:54 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/18 21:53:46 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/19 03:38:08 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ t_pos			ft_pos_normalization(t_pos pos)
 		j = 0;
 		while (j < pos.x)
 		{
-			if (pos.point[i][j].z < pos.low_nb)
+			if (pos.point[i][j].z < pos.low_nb && pos.point[i][j].hexa == 0)
 				pos.low_nb = pos.point[i][j].z;
-			else if (pos.point[i][j].z > pos.high_nb)
+			else if (pos.point[i][j].z > pos.high_nb &&
+					pos.point[i][j].hexa == 0)
 				pos.high_nb = pos.point[i][j].z;
 			j++;
 		}

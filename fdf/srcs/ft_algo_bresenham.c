@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 20:24:05 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/17 03:10:08 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/19 03:17:44 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static int		ft_degraded(t_degrad degrad, double i)
 
 static t_put	ft_set_put_line(t_put put)
 {
-	put.dx = abs(put.x1 - put.x0);
-	put.dy = -abs(put.y1 - put.y0);
+	put.dx = ft_abs(put.x1 - put.x0);
+	put.dy = -ft_abs(put.y1 - put.y0);
 	put.inc_x = put.x0 < put.x1 ? 1 : -1;
 	put.inc_y = put.y0 < put.y1 ? 1 : -1;
 	put.err = put.dx + put.dy;
@@ -51,12 +51,12 @@ static t_put	bresenham_line_2(t_put put)
 	return (put);
 }
 
-void			bresenham_line(t_fdf fdf, t_put put, int color, int degrad)
+void			bresenham_line(t_fdf fdf, t_put put)
 {
 	int		i;
 	double	steap;
+	int		color;
 
-	degrad = 0;
 	i = 0;
 	steap = sqrt(pow((put.x1 - put.x0), 2) + pow((put.y1 - put.y0), 2));
 	put = ft_set_put_line(put);

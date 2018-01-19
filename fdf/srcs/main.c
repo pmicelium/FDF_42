@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 19:04:23 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/17 05:48:30 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/19 02:51:20 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void			key_fonct_set(t_fdf *fdf)
 	fdf->fps.fps = 0;
 	fdf->fps.start = 0;
 	fdf->color = 1;
+	fdf->key.anti_aliasing = 0;
 }
 
 static int		ft_parameters2(char **argv, int i, t_fdf *fdf)
@@ -89,7 +90,7 @@ int				main(int argc, char *argv[])
 	i = 1;
 	fdf.leaks = 0;
 	fdf.pos.low_color = 0x00FFFFFF;
-	fdf.pos.high_color = 0x80FF0000;
+	fdf.pos.high_color = 0x00FF0000;
 	i = ft_parameters(argc, argv, i, &fdf);
 	if (i == 0)
 		return (0);

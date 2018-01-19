@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 14:55:34 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/16 05:55:46 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/19 02:32:32 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 
-# define TEST ft_putendl_color("TEST", "cyan");
+# define TEST(X) ft_putstr_color("TEST ", "cyan"); ft_putnbr_endl(X);
 # define OK ft_putendl_color("OK", "green");
 # define NL ft_putchar('\n');
 # define HEXA "0123456789ABCDEF"
@@ -83,6 +83,8 @@ int					ft_nbrmax(int n1, int n2);
 int					ft_strncmp(char const *s1, char const *s2, size_t n);
 int					ft_atoi(char const *str);
 int					ft_atoi_base(char const *str, char *base);
+int					ft_abs(int nb);
+int					ft_round(double nb);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);
