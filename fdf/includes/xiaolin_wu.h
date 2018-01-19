@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   xioalin_wu.h                                       :+:      :+:    :+:   */
+/*   xiaolin_wu.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/19 01:22:55 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/19 06:32:25 by pmiceli          ###   ########.fr       */
+/*   Created: 2018/01/19 06:43:25 by pmiceli           #+#    #+#             */
+/*   Updated: 2018/01/19 06:44:13 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef XIAOLING_WU_H
-# define XIAOLING_WU_H
+#ifndef XIAOLIN_WU_H
+# define XIAOLIN_WU_H
 # include "fdf.h"
 
 # define IPART_(X) ((int)(X))
@@ -27,10 +27,10 @@ typedef struct			s_print
 	int					color;
 }						t_print;
 
-void		xioalin_wu(t_fdf fdf, t_put put);
-void		print_xiao(int x, int y, float br, t_fdf fdf, int color);
-int			set_brightness(int color, float br);
-void		xiaolin_wu_3(t_fdf fdf, t_put put, t_wu wu);
-int			check_print(int x, int y);
-t_degrad	set_degrad(t_put put, t_degrad degrad);
+void					xioalin_wu(t_fdf fdf, t_put put);
+void					print_xiao(int x, int y, float br, t_fdf fdf, int c);
+int						set_brightness(int color, float br);
+void					xiaolin_wu_3(t_fdf fdf, t_put put, t_wu wu);
+int						check_print(int x, int y);
+t_degrad				set_degrad(t_put put, t_degrad degrad);
 #endif

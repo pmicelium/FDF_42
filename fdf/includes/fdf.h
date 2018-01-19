@@ -6,7 +6,7 @@
 /*   By: pmiceli <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 22:27:28 by pmiceli           #+#    #+#             */
-/*   Updated: 2018/01/19 06:19:30 by pmiceli          ###   ########.fr       */
+/*   Updated: 2018/01/19 06:40:03 by pmiceli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ typedef struct		s_wu
 	double			intery;
 	double			interx;
 }					t_wu;
-
 
 typedef struct		s_put
 {
